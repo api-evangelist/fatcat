@@ -1,0 +1,14 @@
+rateLimits:
+  - name: General API Rate Limits
+    description: Fatcat does not currently publish explicit rate limits. The service is operated as low-cost open scholarly infrastructure and the project notes that rate limits may be imposed in the future if necessary to keep the service functional. Users are encouraged to be considerate of server load.
+    url: https://guide.fatcat.wiki/http_api.html
+    requestsPerSecond: null
+    requestsPerMinute: null
+    requestsPerHour: null
+    requestsPerDay: null
+    notes:
+      - No published rate limits as of 2026-06-13
+      - Service warns that restrictions may be added if needed to maintain availability
+      - Bulk access to data recommended via public metadata dumps rather than high-volume API calls
+      - QA environment available at api.qa.fatcat.wiki for testing and development
+      - All API traffic must use HTTPS; no HTTP endpoint available

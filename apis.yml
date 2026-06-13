@@ -1,0 +1,60 @@
+name: Fatcat
+description: Fatcat is a versioned, user-editable open catalog of published research works maintained by the Internet Archive. It tracks bibliographic metadata, links papers to full-text copies, and preserves access to scholarly publications including journal articles, conference proceedings, and datasets across millions of research works.
+image: https://fatcat.wiki/static/fatcat_logo.svg
+url: https://fatcat.wiki/
+tags:
+  - Scholarly
+  - Research
+  - Academic
+  - Open Access
+  - Bibliographic
+  - Publications
+  - Metadata
+  - Internet Archive
+created: "2026-06-13"
+modified: "2026-06-13"
+specificationVersion: "0.19"
+apis:
+  - name: Fatcat REST API
+    description: RESTful API providing access to Fatcat's open scholarly catalog, enabling lookup and management of bibliographic metadata for research works including releases, containers, creators, files, filesets, and webcaptures across millions of publications.
+    image: https://fatcat.wiki/static/fatcat_logo.svg
+    humanURL: https://api.fatcat.wiki/redoc
+    baseURL: https://api.fatcat.wiki/v0
+    tags:
+      - Scholarly
+      - Research
+      - Bibliographic
+      - Open Access
+      - Metadata
+    properties:
+      - type: Documentation
+        url: https://guide.fatcat.wiki/http_api.html
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/internetarchive/fatcat/master/fatcat-openapi2.yml
+      - type: Redoc
+        url: https://api.fatcat.wiki/redoc
+      - type: GitHubRepository
+        url: https://github.com/internetarchive/fatcat
+      - type: PricingPage
+        url: https://guide.fatcat.wiki/http_api.html
+      - type: Plans
+        url: plans/plans.yml
+      - type: RateLimits
+        url: rate-limits/rate-limits.yml
+      - type: FinOps
+        url: finops/finops.yml
+    contact:
+      - FN: Fatcat / Internet Archive
+        email: ""
+        url: https://gitter.im/internetarchive/fatcat
+    meta:
+      - name: x-authentication-type
+        value: Bearer Token (Macaroon)
+      - name: x-api-version
+        value: v0
+      - name: x-qa-base-url
+        value: https://api.qa.fatcat.wiki/v0
+maintainers:
+  - FN: Internet Archive
+    url: https://archive.org/
+    email: info@archive.org

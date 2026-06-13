@@ -1,0 +1,22 @@
+finops:
+  - name: Fatcat API Cost Profile
+    description: Fatcat is a free, open scholarly infrastructure project with no monetization or API pricing. It is operated by the Internet Archive and has received funding from the Andrew W. Mellon Foundation to support perpetual access to the scholarly record.
+    url: https://fatcat.wiki/about
+    costModel: free
+    pricingTiers: []
+    costDrivers:
+      - name: API Calls
+        description: No cost per API call. All endpoints are freely accessible.
+        unitCost: 0.00
+        currency: USD
+    budgetConsiderations:
+      - No usage-based costs for API consumption
+      - No authentication costs; editor accounts are free via OAuth2 providers
+      - Bulk data access recommended via public metadata dumps to minimize API load
+      - Service funded by Internet Archive and grant funding, not user fees
+    funding:
+      - funder: Internet Archive
+        url: https://archive.org/
+      - funder: Andrew W. Mellon Foundation
+        url: https://mellon.org/
+        purpose: Capture long-tail open access works on the public web

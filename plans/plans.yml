@@ -1,0 +1,18 @@
+plans:
+  - name: Free Open Access
+    description: Fatcat provides its full REST API at no cost as a free and open scholarly infrastructure project funded by the Internet Archive and the Andrew W. Mellon Foundation. All read and write operations are available to registered editors at no charge.
+    url: https://guide.fatcat.wiki/http_api.html
+    price: 0.00
+    priceCurrency: USD
+    billingCycle: none
+    features:
+      - Full read access to all entity types (releases, containers, creators, files, filesets, webcaptures, works)
+      - Lookup by external identifiers (DOI, PMID, arXiv ID, ISBN-13, ISSN-L, ORCID, etc.)
+      - Changelog and editgroup history access
+      - Write access via authenticated editor accounts (Bearer token)
+      - Access to QA/staging environment at api.qa.fatcat.wiki
+      - Public metadata dumps available for bulk access
+    limitations:
+      - No explicit SLA; service may have periodic downtime due to low-cost infrastructure
+      - Potential future rate limiting if service load requires it
+      - Write access requires account registration via OAuth2 (Internet Archive, ORCID, GitHub, or Wikimedia)
