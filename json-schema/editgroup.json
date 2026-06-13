@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://fatcat.wiki/schema/editgroup",
+  "title": "Editgroup",
+  "description": "An editgroup is a collection of edits to Fatcat entities proposed by an editor for review and acceptance.",
+  "type": "object",
+  "properties": {
+    "editgroup_id": {
+      "type": "string",
+      "description": "Fatcat identifier for this editgroup. Assigned on creation.",
+      "example": "q3nouwy3nnbsvo3h5klxsx4a7y"
+    },
+    "editor_id": {
+      "type": "string",
+      "description": "Fatcat identifier of editor that created this editgroup.",
+      "example": "q3nouwy3nnbsvo3h5klxsx4a7y"
+    },
+    "changelog_index": {
+      "type": "integer",
+      "example": 1048576,
+      "description": "For accepted/merged editgroups, the changelog index that the accept occurred at."
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when this editgroup was first created."
+    },
+    "submitted": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when this editgroup was most recently submitted for review."
+    },
+    "description": {
+      "type": "string",
+      "description": "Comment describing the changes in this editgroup."
+    },
+    "extra": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "Free-form JSON metadata attached to this editgroup."
+    },
+    "edits": {
+      "type": "object",
+      "description": "Collections of edits grouped by entity type.",
+      "properties": {
+        "containers": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/entity_edit" }
+        },
+        "creators": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/entity_edit" }
+        },
+        "files": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/entity_edit" }
+        },
+        "filesets": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/entity_edit" }
+        },
+        "webcaptures": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/entity_edit" }
+        },
+        "releases": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/entity_edit" }
+        },
+        "works": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/entity_edit" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "entity_edit": {
+      "type": "object",
+      "required": ["edit_id", "ident", "editgroup_id"],
+      "properties": {
+        "edit_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique UUID for this specific edit object."
+        },
+        "ident": {
+          "type": "string",
+          "description": "Fatcat identifier of the entity this edit is mutating."
+        },
+        "revision": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Entity revision that this edit will set the entity to."
+        },
+        "prev_revision": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Revision of entity just before this edit."
+        },
+        "redirect_ident": {
+          "type": "string",
+          "description": "Target entity identifier for redirect/merge edits."
+        },
+        "editgroup_id": {
+          "type": "string",
+          "description": "Editgroup identifier that this edit is part of."
+        },
+        "extra": {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://fatcat.wiki/schema/file-entity",
+  "title": "FileEntity",
+  "description": "A file entity represents a specific digital file (such as a PDF) that is a manifestation of one or more research release entities.",
+  "type": "object",
+  "properties": {
+    "ident": {
+      "type": "string",
+      "description": "Fatcat identifier for this entity.",
+      "example": "q3nouwy3nnbsvo3h5klxsx4a7y"
+    },
+    "revision": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID of the current entity revision."
+    },
+    "redirect": {
+      "type": "string",
+      "description": "If set, this entity has been merged into the entity with this identifier."
+    },
+    "state": {
+      "type": "string",
+      "enum": ["wip", "active", "redirect", "deleted"],
+      "description": "Current state of the entity."
+    },
+    "extra": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "Free-form additional metadata about this file."
+    },
+    "size": {
+      "type": "integer",
+      "example": 1048576,
+      "description": "Size of file in bytes. Non-zero."
+    },
+    "md5": {
+      "type": "string",
+      "description": "MD5 hash of file content.",
+      "example": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sha1": {
+      "type": "string",
+      "description": "SHA-1 hash of file content.",
+      "example": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    },
+    "sha256": {
+      "type": "string",
+      "description": "SHA-256 hash of file content.",
+      "example": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "urls": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/file_url"
+      },
+      "description": "URLs where this file can be accessed."
+    },
+    "mimetype": {
+      "type": "string",
+      "example": "application/pdf",
+      "description": "MIME type of the file."
+    },
+    "content_scope": {
+      "type": "string",
+      "example": "issue",
+      "description": "Scope of content within this file."
+    },
+    "release_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Set of identifiers of release entities this file represents a full manifestation of."
+    }
+  },
+  "definitions": {
+    "file_url": {
+      "type": "object",
+      "required": ["url", "rel"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "example": "https://example.edu/~frau/prcding.pdf",
+          "description": "URL/URI pointing directly to a machine retrievable copy of this exact file."
+        },
+        "rel": {
+          "type": "string",
+          "example": "web",
+          "description": "Indicates type of host this URL points to. Eg, 'publisher', 'repository', 'webarchive'."
+        }
+      }
+    }
+  }
+}

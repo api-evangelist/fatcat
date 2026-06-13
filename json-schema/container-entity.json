@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://fatcat.wiki/schema/container-entity",
+  "title": "ContainerEntity",
+  "description": "A container entity represents a publication venue such as a journal, conference proceedings, or book series in which releases are published.",
+  "type": "object",
+  "properties": {
+    "ident": {
+      "type": "string",
+      "description": "Fatcat identifier for this entity.",
+      "example": "q3nouwy3nnbsvo3h5klxsx4a7y"
+    },
+    "revision": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID of the current entity revision."
+    },
+    "redirect": {
+      "type": "string",
+      "description": "If set, this entity has been merged into the entity with this identifier."
+    },
+    "state": {
+      "type": "string",
+      "enum": ["wip", "active", "redirect", "deleted"],
+      "description": "Current state of the entity."
+    },
+    "extra": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "Free-form additional metadata about this container."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the container (eg, Journal title). Required for entity creation.",
+      "example": "Journal of Important Results"
+    },
+    "container_type": {
+      "type": "string",
+      "description": "Type of container, eg 'journal' or 'proceedings'.",
+      "example": "journal"
+    },
+    "publication_status": {
+      "type": "string",
+      "description": "Whether the container is active, discontinued, etc.",
+      "example": "active"
+    },
+    "publisher": {
+      "type": "string",
+      "description": "Name of the organization or entity responsible for publication.",
+      "example": "Society of Curious Students"
+    },
+    "issnl": {
+      "type": "string",
+      "description": "Linking ISSN number (ISSN-L).",
+      "example": "1234-5678"
+    },
+    "issne": {
+      "type": "string",
+      "description": "Electronic ISSN number (ISSN-E).",
+      "example": "1234-5678"
+    },
+    "issnp": {
+      "type": "string",
+      "description": "Print ISSN number (ISSN-P).",
+      "example": "1234-5678"
+    },
+    "wikidata_qid": {
+      "type": "string",
+      "example": "Q42812",
+      "description": "Wikidata entity QID."
+    }
+  }
+}

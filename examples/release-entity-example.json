@@ -1,0 +1,51 @@
+{
+  "ident": "aaaaaaaaaaaaarceaaaaaaaaae",
+  "revision": "00000000-0000-0000-3333-000000000001",
+  "state": "active",
+  "title": "Towards a Unified Theory of High-Energy Metaphysics: Silly String Theory",
+  "subtitle": "A seriously unserious study",
+  "work_id": "aaaaaaaaaaaaavkvaaaaaaaaae",
+  "container_id": "aaaaaaaaaaaaaeiraaaaaaaaae",
+  "release_type": "article-journal",
+  "release_stage": "published",
+  "release_date": "2014-09-15",
+  "release_year": 2014,
+  "ext_ids": {
+    "doi": "10.1234/abcde.789",
+    "pmid": "482132",
+    "arxiv": "1234.56789v1"
+  },
+  "volume": "3",
+  "issue": "12",
+  "pages": "340-345",
+  "publisher": "Elastic-ity Publishing",
+  "language": "en",
+  "license_slug": "CC-BY",
+  "contribs": [
+    {
+      "index": 0,
+      "raw_name": "Grace Hopper",
+      "given_name": "Grace",
+      "surname": "Hopper",
+      "role": "author",
+      "creator_id": "aaaaaaaaaaaaaircaaaaaaaaae"
+    }
+  ],
+  "abstracts": [
+    {
+      "content": "We discuss the potential for Silly String to resolve several outstanding problems in high-energy physics.",
+      "mimetype": "text/plain",
+      "lang": "en"
+    }
+  ],
+  "refs": [
+    {
+      "index": 0,
+      "key": "ref-1",
+      "year": 2012,
+      "title": "String Theory for Beginners",
+      "container_name": "Physics Letters B",
+      "target_release_id": "aaaaaaaaaaaaarceaaaaaaaaai"
+    }
+  ]
+}

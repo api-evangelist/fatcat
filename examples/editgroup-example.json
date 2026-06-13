@@ -1,0 +1,27 @@
+{
+  "editgroup_id": "aaaaaaaaaaaabo53aaaaaaaaae",
+  "editor_id": "aaaaaaaaaaaabkvkaaaaaaaaae",
+  "created": "2021-01-01T00:00:00Z",
+  "submitted": "2021-01-01T12:00:00Z",
+  "description": "Importing metadata from CrossRef for new DOIs",
+  "extra": {
+    "agent": "crossref-importer/1.0",
+    "source": "crossref"
+  },
+  "edits": {
+    "releases": [
+      {
+        "edit_id": "00000000-0000-0000-0000-000000000001",
+        "ident": "aaaaaaaaaaaaarceaaaaaaaaae",
+        "revision": "00000000-0000-0000-3333-000000000002",
+        "editgroup_id": "aaaaaaaaaaaabo53aaaaaaaaae"
+      }
+    ],
+    "containers": [],
+    "creators": [],
+    "files": [],
+    "filesets": [],
+    "webcaptures": [],
+    "works": []
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "name": "Fatcat API Vocabulary",
+  "description": "Domain vocabulary and controlled values used in the Fatcat open scholarly catalog API.",
+  "url": "https://fatcat.wiki/",
+  "version": "0.5.0",
+  "terms": [
+    {
+      "term": "release_type",
+      "description": "The type or medium in which a release is published.",
+      "values": [
+        { "value": "article-journal", "description": "Journal article" },
+        { "value": "paper-conference", "description": "Conference paper or proceedings" },
+        { "value": "book", "description": "Full book" },
+        { "value": "chapter", "description": "Chapter or section within a book" },
+        { "value": "dataset", "description": "Research dataset" },
+        { "value": "thesis", "description": "Academic thesis or dissertation" },
+        { "value": "report", "description": "Technical or institutional report" },
+        { "value": "review", "description": "Published review article" },
+        { "value": "entry-encyclopedia", "description": "Encyclopedia entry" },
+        { "value": "post", "description": "Blog post or online post" },
+        { "value": "preprint", "description": "Preprint (use release_stage instead if possible)" },
+        { "value": "standard", "description": "Technical standard" },
+        { "value": "software", "description": "Software package" },
+        { "value": "webpage", "description": "Webpage or website" }
+      ]
+    },
+    {
+      "term": "release_stage",
+      "description": "The publication stage of a specific release.",
+      "values": [
+        { "value": "draft", "description": "Unpublished draft" },
+        { "value": "submitted", "description": "Submitted but not yet peer reviewed" },
+        { "value": "accepted", "description": "Accepted for publication" },
+        { "value": "published", "description": "Formally published" },
+        { "value": "updated", "description": "Previously published but updated" },
+        { "value": "retracted", "description": "Retracted after publication" },
+        { "value": "preprint", "description": "Preprint (not peer reviewed)" }
+      ]
+    },
+    {
+      "term": "container_type",
+      "description": "The type of publication venue or container.",
+      "values": [
+        { "value": "journal", "description": "Peer-reviewed academic journal" },
+        { "value": "proceedings", "description": "Conference proceedings" },
+        { "value": "book-series", "description": "Book series" },
+        { "value": "blog", "description": "Blog or online publication" },
+        { "value": "repository", "description": "Preprint or institutional repository" },
+        { "value": "database", "description": "Data repository or database" }
+      ]
+    },
+    {
+      "term": "entity_state",
+      "description": "Lifecycle state of a Fatcat entity.",
+      "values": [
+        { "value": "wip", "description": "Work in progress; not yet accepted into the catalog" },
+        { "value": "active", "description": "Active entity in the catalog" },
+        { "value": "redirect", "description": "Redirected to another entity (merged)" },
+        { "value": "deleted", "description": "Deleted from the catalog" }
+      ]
+    },
+    {
+      "term": "withdrawn_status",
+      "description": "Type of withdrawal or retraction for a release.",
+      "values": [
+        { "value": "retracted", "description": "Formally retracted by authors or publisher" },
+        { "value": "withdrawn", "description": "Withdrawn from publication" },
+        { "value": "concern", "description": "Expression of concern raised" },
+        { "value": "corrected", "description": "Corrected version supersedes this release" }
+      ]
+    },
+    {
+      "term": "file_url_rel",
+      "description": "Relationship type for a file URL, indicating what kind of host it points to.",
+      "values": [
+        { "value": "web", "description": "Generic web URL" },
+        { "value": "publisher", "description": "Publisher's website" },
+        { "value": "repository", "description": "Institutional or subject repository" },
+        { "value": "webarchive", "description": "Web archive (eg, Internet Archive Wayback Machine)" },
+        { "value": "aggregator", "description": "Metadata aggregator" }
+      ]
+    },
+    {
+      "term": "contrib_role",
+      "description": "Role of a contributor in a release.",
+      "values": [
+        { "value": "author", "description": "Primary author" },
+        { "value": "editor", "description": "Editor of the work" },
+        { "value": "translator", "description": "Translator of the work" },
+        { "value": "illustrator", "description": "Illustrator" }
+      ]
+    },
+    {
+      "term": "abstract_mimetype",
+      "description": "MIME type indicating the encoding of an abstract.",
+      "values": [
+        { "value": "text/plain", "description": "Plain text" },
+        { "value": "text/html", "description": "HTML encoded" },
+        { "value": "application/xml+jats", "description": "JATS XML encoding used in scholarly publishing" },
+        { "value": "application/xml+nlm", "description": "NLM XML encoding" }
+      ]
+    },
+    {
+      "term": "publication_status",
+      "description": "Current publication status of a container/journal.",
+      "values": [
+        { "value": "active", "description": "Currently publishing" },
+        { "value": "discontinued", "description": "No longer publishing" },
+        { "value": "renamed", "description": "Renamed to another container" },
+        { "value": "superseded", "description": "Superseded by another container" }
+      ]
+    },
+    {
+      "term": "content_scope",
+      "description": "Scope of content within a file or fileset.",
+      "values": [
+        { "value": "article", "description": "Single article" },
+        { "value": "issue", "description": "Full issue of a journal" },
+        { "value": "supplement", "description": "Supplementary material" },
+        { "value": "landing-page", "description": "Web landing page" },
+        { "value": "chapter", "description": "Book chapter" },
+        { "value": "abstract", "description": "Abstract only" }
+      ]
+    }
+  ]
+}

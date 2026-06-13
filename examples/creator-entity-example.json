@@ -1,0 +1,13 @@
+{
+  "ident": "aaaaaaaaaaaaaircaaaaaaaaae",
+  "revision": "00000000-0000-0000-2222-000000000001",
+  "state": "active",
+  "display_name": "Grace Hopper",
+  "given_name": "Grace",
+  "surname": "Hopper",
+  "orcid": "0000-0002-1825-0097",
+  "wikidata_qid": "Q182947",
+  "extra": {
+    "affiliation": "United States Navy"
+  }
+}

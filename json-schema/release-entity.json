@@ -1,0 +1,284 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://fatcat.wiki/schema/release-entity",
+  "title": "ReleaseEntity",
+  "description": "A release entity represents a specific published version of a research work, such as a journal article, conference paper, preprint, book, or dataset.",
+  "type": "object",
+  "required": ["ext_ids"],
+  "properties": {
+    "ident": {
+      "type": "string",
+      "description": "Fatcat identifier for this entity.",
+      "example": "q3nouwy3nnbsvo3h5klxsx4a7y"
+    },
+    "revision": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID of the current entity revision."
+    },
+    "redirect": {
+      "type": "string",
+      "description": "If set, this entity has been merged into the entity with this identifier."
+    },
+    "state": {
+      "type": "string",
+      "enum": ["wip", "active", "redirect", "deleted"],
+      "description": "Current state of the entity."
+    },
+    "extra": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "Free-form additional metadata about this release."
+    },
+    "title": {
+      "type": "string",
+      "description": "The title used in citations and for display."
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "Subtitle of release."
+    },
+    "original_title": {
+      "type": "string",
+      "description": "Title in original language if title field has been translated."
+    },
+    "work_id": {
+      "type": "string",
+      "example": "q3nouwy3nnbsvo3h5klxsx4a7y",
+      "description": "Identifier of work this release is part of."
+    },
+    "container_id": {
+      "type": "string",
+      "example": "q3nouwy3nnbsvo3h5klxsx4a7y",
+      "description": "Used to link this release to a container entity."
+    },
+    "release_type": {
+      "type": "string",
+      "example": "book",
+      "description": "Type or medium that this release is published as."
+    },
+    "release_stage": {
+      "type": "string",
+      "example": "preprint",
+      "description": "The stage of publication of this specific release."
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Full date when this release was formally published."
+    },
+    "release_year": {
+      "type": "integer",
+      "example": 2014,
+      "description": "Year when this release was formally published."
+    },
+    "withdrawn_status": {
+      "type": "string",
+      "example": "retracted",
+      "description": "Type of withdrawal or retraction of this release, if applicable."
+    },
+    "withdrawn_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Full date when this release was formally withdrawn."
+    },
+    "ext_ids": {
+      "$ref": "#/definitions/release_ext_ids"
+    },
+    "volume": {
+      "type": "string",
+      "example": "3",
+      "description": "Volume number of container that this release was published in."
+    },
+    "issue": {
+      "type": "string",
+      "example": "12",
+      "description": "Issue number of volume/container that this release was published in."
+    },
+    "pages": {
+      "type": "string",
+      "example": "340-345",
+      "description": "Page number or range."
+    },
+    "publisher": {
+      "type": "string",
+      "example": "Elsevier",
+      "description": "Name of the entity or institution responsible for publication."
+    },
+    "language": {
+      "type": "string",
+      "example": "en",
+      "description": "Primary language of the content (ISO 639-1 code)."
+    },
+    "license_slug": {
+      "type": "string",
+      "example": "CC-BY",
+      "description": "Short string (slug) name of license under which release is openly published."
+    },
+    "contribs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/release_contrib"
+      },
+      "description": "Contributors to this release."
+    },
+    "refs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/release_ref"
+      },
+      "description": "References cited by this release."
+    },
+    "abstracts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/release_abstract"
+      },
+      "description": "Abstracts of this release."
+    }
+  },
+  "definitions": {
+    "release_ext_ids": {
+      "type": "object",
+      "properties": {
+        "doi": {
+          "type": "string",
+          "example": "10.1234/abcde.789",
+          "description": "Digital Object Identifier (DOI)."
+        },
+        "wikidata_qid": {
+          "type": "string",
+          "example": "Q42812",
+          "description": "Wikidata entity QID."
+        },
+        "isbn13": {
+          "type": "string",
+          "description": "ISBN-13, for books."
+        },
+        "pmid": {
+          "type": "string",
+          "example": "482132",
+          "description": "PubMed Identifier."
+        },
+        "pmcid": {
+          "type": "string",
+          "example": "PMC7391",
+          "description": "PubMed Central Identifier."
+        },
+        "arxiv": {
+          "type": "string",
+          "description": "arXiv identifier; must include version."
+        },
+        "jstor": {
+          "type": "string",
+          "description": "JSTOR work identifier."
+        },
+        "doaj": {
+          "type": "string",
+          "description": "DOAJ article-level identifier."
+        },
+        "dblp": {
+          "type": "string",
+          "description": "dblp paper identifier."
+        },
+        "oai": {
+          "type": "string",
+          "description": "OAI-PMH identifier."
+        }
+      }
+    },
+    "release_contrib": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "integer",
+          "description": "Zero-indexed position in author list."
+        },
+        "creator_id": {
+          "type": "string",
+          "description": "Fatcat identifier of creator entity."
+        },
+        "raw_name": {
+          "type": "string",
+          "example": "Grace Hopper",
+          "description": "Raw (possibly not normalized) name of contributor."
+        },
+        "given_name": {
+          "type": "string",
+          "description": "Given name of contributor."
+        },
+        "surname": {
+          "type": "string",
+          "description": "Surname of contributor."
+        },
+        "role": {
+          "type": "string",
+          "example": "author",
+          "description": "Role of this contributor."
+        }
+      }
+    },
+    "release_ref": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "integer",
+          "description": "Zero-indexed position of reference in reference list."
+        },
+        "target_release_id": {
+          "type": "string",
+          "description": "Fatcat release entity identifier for the target release."
+        },
+        "extra": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "key": {
+          "type": "string",
+          "description": "Short reference key string; used in rendering."
+        },
+        "year": {
+          "type": "integer",
+          "description": "Year of publication of referenced work."
+        },
+        "container_name": {
+          "type": "string",
+          "description": "Journal or container name of referenced work."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of referenced work."
+        },
+        "locator": {
+          "type": "string",
+          "example": "p. 99",
+          "description": "Page number or other locator."
+        }
+      }
+    },
+    "release_abstract": {
+      "type": "object",
+      "properties": {
+        "sha1": {
+          "type": "string",
+          "description": "SHA-1 hash of abstract content."
+        },
+        "content": {
+          "type": "string",
+          "example": "<jats:p>Some abstract thing goes here</jats:p>",
+          "description": "Abstract content."
+        },
+        "mimetype": {
+          "type": "string",
+          "example": "application/xml+jats",
+          "description": "Mimetype of abstract contents."
+        },
+        "lang": {
+          "type": "string",
+          "example": "en",
+          "description": "ISO language code of the abstract."
+        }
+      }
+    }
+  }
+}

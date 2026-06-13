@@ -1,0 +1,18 @@
+{
+  "ident": "aaaaaaaaaaaaaeiraaaaaaaaae",
+  "revision": "00000000-0000-0000-1111-000000000001",
+  "state": "active",
+  "name": "Journal of Important Results",
+  "container_type": "journal",
+  "publication_status": "active",
+  "publisher": "Society of Curious Students",
+  "issnl": "1234-5678",
+  "issne": "1234-5679",
+  "issnp": "0000-1234",
+  "wikidata_qid": "Q42812",
+  "extra": {
+    "kbart": {
+      "embargo": "P12M"
+    }
+  }
+}

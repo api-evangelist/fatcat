@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://fatcat.wiki/schema/creator-entity",
+  "title": "CreatorEntity",
+  "description": "A creator entity represents an individual who has contributed to one or more research works, such as an author or editor.",
+  "type": "object",
+  "properties": {
+    "ident": {
+      "type": "string",
+      "description": "Fatcat identifier for this entity.",
+      "example": "q3nouwy3nnbsvo3h5klxsx4a7y"
+    },
+    "revision": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID of the current entity revision."
+    },
+    "redirect": {
+      "type": "string",
+      "description": "If set, this entity has been merged into the entity with this identifier."
+    },
+    "state": {
+      "type": "string",
+      "enum": ["wip", "active", "redirect", "deleted"],
+      "description": "Current state of the entity."
+    },
+    "extra": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "Free-form additional metadata about this creator."
+    },
+    "display_name": {
+      "type": "string",
+      "example": "Grace Hopper",
+      "description": "Name as should be displayed in web interface or in author lists. Required for valid entities."
+    },
+    "given_name": {
+      "type": "string",
+      "description": "In English commonly the first name, but ordering is context and culture specific."
+    },
+    "surname": {
+      "type": "string",
+      "description": "In English commonly the last, or family name, but ordering is context and culture specific."
+    },
+    "orcid": {
+      "type": "string",
+      "description": "ORCID identifier for this creator.",
+      "example": "0000-0002-1825-0097"
+    },
+    "wikidata_qid": {
+      "type": "string",
+      "example": "Q42812",
+      "description": "Wikidata entity QID."
+    }
+  }
+}
