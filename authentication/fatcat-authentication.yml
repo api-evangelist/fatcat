@@ -1,0 +1,27 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: Bearer
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: |-
+    The only current API authentication mechanism is HTTP bearer
+    authentication using the `Authorization` HTTP header. The header should
+    be formatted as the string "Bearer", then a space, then API token (in the
+    usual base64 string encoding).
+
+    An example HTTP request would look on the wire like:
+
+        GET /v0/auth/check HTTP/1.1
+        Accept: */*
+        Accept-Encoding: gzip, deflate
+        Authorization: Beare
+  sources:
+  - openapi/openapi.yml

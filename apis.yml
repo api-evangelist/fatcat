@@ -58,3 +58,6 @@ maintainers:
   - FN: Internet Archive
     url: https://archive.org/
     email: info@archive.org
+common:
+- type: Authentication
+  url: authentication/fatcat-authentication.yml
