@@ -1,0 +1,2251 @@
+swagger: '2.0'
+info:
+  title: fatcat auth webcaptures API
+  version: 0.5.0
+  description: 'Fatcat is a scalable, versioned, API-oriented catalog of bibliographic
+
+    entities and file metadata.
+
+
+    <!-- STARTLONGDESCRIPTION -->
+
+    These API reference documents, along with client software libraries, are
+
+    generated automatically from an OpenAPI 2.0 ("Swagger") definition file.
+
+
+    ## Introduction
+
+
+
+    A higher-level introduction to the API, as well as a description of the
+
+    fatcat data model, are available in ["The Fatcat Guide"](https://guide.fatcat.wiki/).
+
+    The guide also includes a [Cookbook](https://guide.fatcat.wiki/cookbook.html)
+
+    section demonstrating end-to-end tasks like creating entities as part of
+
+    editgroups, or safely merging duplicate entities.
+
+
+    ### Expectations and Best Practices
+
+
+    A test/staging QA API instance of fatcat is available at
+
+    <https://api.qa.fatcat.wiki/v0>. The database backing this instance is
+
+    separate from the production interface, and is periodically rebuilt from
+
+    snapshots of the full production database, meaning that edits on the QA
+
+    server will *NOT* persist, and that semantics like the changelog index
+
+    monotonically increasing *MAY* be broken. Developers are expexcted to test
+
+    their scripts and tools against the QA instance before running against
+
+    production.
+
+
+    NOTE: as of Spring 2021, the QA server is temporarily unavailable.
+
+
+    Fatcat is made available as a gratis (no cost) and libre (freedom
+
+    preserving) service to the public, with limited funding and resources. We
+
+    welcome new and unforeseen uses and contributions, but may need to impose
+
+    restrictions (like rate-limits) to keep the service functional for other
+
+    users, and in extreme cases reserve the option to block accounts and IP
+
+    ranges if necessary to keep the service operational.
+
+
+    The Internet Archive owns and operates it''s own server equipment and data
+
+    centers, and operations are optimized for low-cost, not high-availability.
+
+    Users and partners should expect some downtime on the fatcat API, on the
+
+    order of hours a month.
+
+
+    Periodic metadata exports are available for batch processing, and database
+
+    snapshots can be used to create locally-hosted mirrors of the service for
+
+    more intensive and reliable querying.
+
+
+    ### Other Nitty Gritties
+
+
+    Cross-origin requests are allowed for the API service, to enable third
+
+    parties to build in-browser applications.
+
+
+    A metadata search service is available at <https://search.fatcat.wiki>.
+
+    The API is currently the raw elasticsearch API, with only GET (read)
+
+    requests allowed. This public service is experimental and may be removed or
+
+    limited in the future.
+
+
+    ## Authentication
+
+
+    The API allows basic read-only "GET" HTTP requests with no authentication.
+
+    Proposing changes to the metadata, or other mutating requests ("PUT",
+
+    "POST", "DELETE") all require authentication, and some operations require
+
+    additional account permissions.
+
+
+    End-user account creation and login happens through the web interface. From
+
+    a logged-in editor profile page, you can generate a API token. Tokens are
+
+    "macaroons", similar to JWT tokens, and are used for all API
+
+    authentication. The web interface includes macaroons in browser cookies and
+
+    passes them through to the API to authenticate editor actions.
+
+
+    <!-- ReDoc-Inject: <security-definitions> -->
+
+    <!-- ENDLONGDESCRIPTION -->
+
+    '
+  termsOfService: https://guide.fatcat.wiki/policies.html
+  contact:
+    name: Internet Archive Web Group
+    email: webservices@archive.org
+    url: https://fatcat.wiki
+  x-logo:
+    url: https://fatcat.wiki/static/paper_man_confused.gif
+    altText: Confused Papers Man (Logo)
+    backgroundColor: '#FFFFFF'
+host: api.fatcat.wiki
+basePath: /v0
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: webcaptures
+  x-displayName: Webcaptures
+  description: '**Web Capture** entities represent archival snapshots of web pages (or  # TAGLINE
+
+    other web resources), which are usually complete manifestations of a  # TAGLINE
+
+    specific release entity. Web Captures also include a set of locations  # TAGLINE
+
+    (wayback replay instances or WARC files) where the capture can be found.  # TAGLINE
+
+
+    See the "Catalog Style Guide" section of the guide for details and  # TAGLINE
+
+    semantics of what should be included in specific entity fields.  # TAGLINE
+
+    Specifically, the  # TAGLINE
+
+    [Web Capture Entity Reference](https://guide.fatcat.wiki/entity_webcapture.html).  # TAGLINE
+
+    '
+paths:
+  /editgroup/{editgroup_id}/webcapture:
+    parameters:
+    - name: editgroup_id
+      in: path
+      type: string
+      required: true
+    post:
+      operationId: create_webcapture
+      tags:
+      - webcaptures
+      parameters:
+      - name: entity
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/webcapture_entity'
+      security:
+      - Bearer: []
+      responses:
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error_response'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error_response'
+        500:
+          description: Generic Error
+          schema:
+            $ref: '#/definitions/error_response'
+        401:
+          description: Not Authorized
+          schema:
+            $ref: '#/definitions/error_response'
+          headers:
+            WWW_Authenticate:
+              type: string
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/error_response'
+        201:
+          description: Created Entity
+          schema:
+            $ref: '#/definitions/entity_edit'
+  /editgroup/auto/webcapture/batch:
+    post:
+      operationId: create_webcapture_auto_batch
+      tags:
+      - webcaptures
+      parameters:
+      - name: auto_batch
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/webcapture_auto_batch'
+      security:
+      - Bearer: []
+      responses:
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error_response'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error_response'
+        500:
+          description: Generic Error
+          schema:
+            $ref: '#/definitions/error_response'
+        401:
+          description: Not Authorized
+          schema:
+            $ref: '#/definitions/error_response'
+          headers:
+            WWW_Authenticate:
+              type: string
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/error_response'
+        201:
+          description: Created Editgroup
+          schema:
+            $ref: '#/definitions/editgroup'
+  /webcapture/{ident}:
+    parameters:
+    - name: ident
+      in: path
+      type: string
+      required: true
+    get:
+      operationId: get_webcapture
+      tags:
+      - webcaptures
+      parameters:
+      - name: expand
+        in: query
+        type: string
+        required: false
+        description: List of sub-entities to expand in response. For webcaptures, `releases` is accepted.
+      - name: hide
+        in: query
+        type: string
+        required: false
+        description: List of entity fields to elide in response. For webcaptures, 'cdx' is accepted.
+      responses:
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error_response'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error_response'
+        500:
+          description: Generic Error
+          schema:
+            $ref: '#/definitions/error_response'
+        200:
+          description: Found Entity
+          schema:
+            $ref: '#/definitions/webcapture_entity'
+  /editgroup/{editgroup_id}/webcapture/{ident}:
+    parameters:
+    - name: editgroup_id
+      in: path
+      type: string
+      required: true
+    - name: ident
+      in: path
+      type: string
+      required: true
+    put:
+      operationId: update_webcapture
+      tags:
+      - webcaptures
+      parameters:
+      - name: entity
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/webcapture_entity'
+      security:
+      - Bearer: []
+      responses:
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error_response'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error_response'
+        500:
+          description: Generic Error
+          schema:
+            $ref: '#/definitions/error_response'
+        401:
+          description: Not Authorized
+          schema:
+            $ref: '#/definitions/error_response'
+          headers:
+            WWW_Authenticate:
+              type: string
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/error_response'
+        200:
+          description: Updated Entity
+          schema:
+            $ref: '#/definitions/entity_edit'
+    delete:
+      operationId: delete_webcapture
+      tags:
+      - webcaptures
+      security:
+      - Bearer: []
+      responses:
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error_response'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error_response'
+        500:
+          description: Generic Error
+          schema:
+            $ref: '#/definitions/error_response'
+        401:
+          description: Not Authorized
+          schema:
+            $ref: '#/definitions/error_response'
+          headers:
+            WWW_Authenticate:
+              type: string
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/error_response'
+        200:
+          description: Deleted Entity
+          schema:
+            $ref: '#/definitions/entity_edit'
+  /webcapture/rev/{rev_id}:
+    parameters:
+    - type: string
+      pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+      minLength: 36
+      maxLength: 36
+      description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+      name: rev_id
+      in: path
+      required: true
+    get:
+      operationId: get_webcapture_revision
+      tags:
+      - webcaptures
+      parameters:
+      - name: expand
+        in: query
+        type: string
+        required: false
+        description: List of sub-entities to expand in response. See `get_webcapture`.
+      - name: hide
+        in: query
+        type: string
+        required: false
+        description: List of entity fields to elide in response. See `get_webcapture`.
+      responses:
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error_response'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error_response'
+        500:
+          description: Generic Error
+          schema:
+            $ref: '#/definitions/error_response'
+        200:
+          description: Found Entity Revision
+          schema:
+            $ref: '#/definitions/webcapture_entity'
+  /webcapture/{ident}/history:
+    parameters:
+    - name: ident
+      in: path
+      type: string
+      required: true
+    - name: limit
+      in: query
+      type: integer
+      format: int64
+      required: false
+    get:
+      operationId: get_webcapture_history
+      tags:
+      - webcaptures
+      responses:
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error_response'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error_response'
+        500:
+          description: Generic Error
+          schema:
+            $ref: '#/definitions/error_response'
+        200:
+          description: Found Entity History
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/entity_history_entry'
+  /webcapture/{ident}/redirects:
+    parameters:
+    - name: ident
+      in: path
+      type: string
+      required: true
+    get:
+      operationId: get_webcapture_redirects
+      tags:
+      - webcaptures
+      responses:
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error_response'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error_response'
+        500:
+          description: Generic Error
+          schema:
+            $ref: '#/definitions/error_response'
+        200:
+          description: Found Entity Redirects
+          schema:
+            type: array
+            items:
+              type: string
+              pattern: '[a-zA-Z2-7]{26}'
+              minLength: 26
+              maxLength: 26
+              description: base32-encoded unique identifier
+  /webcapture/edit/{edit_id}:
+    get:
+      operationId: get_webcapture_edit
+      tags:
+      - webcaptures
+      parameters:
+      - type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+        name: edit_id
+        in: path
+        required: true
+      responses:
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error_response'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error_response'
+        500:
+          description: Generic Error
+          schema:
+            $ref: '#/definitions/error_response'
+        200:
+          description: Found Edit
+          schema:
+            $ref: '#/definitions/entity_edit'
+  /editgroup/{editgroup_id}/webcapture/edit/{edit_id}:
+    parameters:
+    - name: editgroup_id
+      in: path
+      required: true
+      type: string
+    - type: string
+      pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+      minLength: 36
+      maxLength: 36
+      description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+      name: edit_id
+      in: path
+      required: true
+    delete:
+      operationId: delete_webcapture_edit
+      tags:
+      - webcaptures
+      security:
+      - Bearer: []
+      responses:
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error_response'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error_response'
+        500:
+          description: Generic Error
+          schema:
+            $ref: '#/definitions/error_response'
+        401:
+          description: Not Authorized
+          schema:
+            $ref: '#/definitions/error_response'
+          headers:
+            WWW_Authenticate:
+              type: string
+        403:
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/error_response'
+        200:
+          description: Deleted Edit
+          schema:
+            $ref: '#/definitions/success'
+definitions:
+  release_ref:
+    type: object
+    properties:
+      index:
+        type: integer
+        format: int64
+        description: 'Zero-indexed sequence number of this reference in the list of
+
+          references. Assigned automatically and used internally; don''t confuse
+
+          with `key`.
+
+          '
+      target_release_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Optional, fatcat identifier of release entity that this reference is
+
+          citing.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      extra:
+        type: object
+        additionalProperties: {}
+        description: 'Additional free-form JSON metadata about this citation. Generally
+
+          follows Citation Style Language (CSL) JSON schema. See guide for
+
+          details.
+
+          '
+      key:
+        type: string
+        example: SMITH2016
+        description: 'Short string used to indicate this reference from within the release
+
+          text; or numbering of references as typeset in the release itself.
+
+          Optional; don''t confuse with `index` field.
+
+          '
+      year:
+        type: integer
+        format: int64
+        example: 1972
+        description: 'Year that the cited work was published in.
+
+          '
+      container_name:
+        type: string
+        description: 'Name of the container (eg, journal) that the citation work was
+
+          published as part of. May be an acronym or full name.
+
+          '
+      title:
+        type: string
+        description: Name of the work being cited.
+      locator:
+        type: string
+        example: p123
+        description: 'Page number or other indicator of the specific subset of a work being
+
+          cited. Not to be confused with the first page (or page range) of an
+
+          entire paper or chapter being cited.
+
+          '
+  container_entity:
+    type: object
+    properties:
+      state:
+        type: string
+        enum:
+        - wip
+        - active
+        - redirect
+        - deleted
+        example: active
+      ident:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: base32-encoded unique identifier
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      revision:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      redirect:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: base32-encoded unique identifier
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      extra:
+        type: object
+        description: 'Free-form JSON metadata that will be stored with the other entity
+
+          metadata. See guide for (unenforced) schema conventions.
+
+          '
+        additionalProperties: {}
+      edit_extra:
+        type: object
+        description: 'Free-form JSON metadata that will be stored with specific entity edits
+
+          (eg, creation/update/delete).
+
+          '
+        additionalProperties: {}
+      name:
+        type: string
+        description: Name of the container (eg, Journal title). Required for entity creation.
+        example: Journal of Important Results
+      container_type:
+        type: string
+        description: Type of container, eg 'journal' or 'proceedings'. See Guide for list of valid types.
+        example: journal
+      publication_status:
+        type: string
+        description: Whether the container is active, discontinued, etc
+        example: active
+      publisher:
+        type: string
+        description: 'Name of the organization or entity responsible for publication. Not
+
+          the complete imprint/brand.
+
+          '
+        example: Society of Curious Students
+      issnl:
+        type: string
+        pattern: \d{4}-\d{3}[0-9X]
+        minLength: 9
+        maxLength: 9
+        example: 1234-5678
+        description: Linking ISSN number (ISSN-L). Should be valid and registered with issn.org
+      issne:
+        type: string
+        pattern: \d{4}-\d{3}[0-9X]
+        minLength: 9
+        maxLength: 9
+        example: 1234-5678
+        description: Electronic ISSN number (ISSN-E). Should be valid and registered with issn.org
+      issnp:
+        type: string
+        pattern: \d{4}-\d{3}[0-9X]
+        minLength: 9
+        maxLength: 9
+        example: 1234-5678
+        description: Print ISSN number (ISSN-P). Should be valid and registered with issn.org
+      wikidata_qid:
+        type: string
+        example: Q42812
+  editor:
+    type: object
+    required:
+    - username
+    properties:
+      editor_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Fatcat identifier for the editor. Can not be changed.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      username:
+        type: string
+        example: zerocool93
+        description: 'Username/handle (short slug-like string) to identify this editor. May
+
+          be changed at any time by the editor; use the `editor_id` as a
+
+          persistend identifier.
+
+          '
+      is_admin:
+        type: boolean
+        example: false
+        description: 'Whether this editor has the `admin` role.
+
+          '
+      is_bot:
+        type: boolean
+        example: false
+        description: 'Whether this editor is a bot (as opposed to a human making manual
+
+          edits)
+
+          '
+      is_active:
+        type: boolean
+        example: true
+        description: 'Whether this editor''s account is enabled (if not API tokens and web
+
+          logins will not work).
+
+          '
+  webcapture_url:
+    type: object
+    required:
+    - url
+    - rel
+    properties:
+      url:
+        type: string
+        format: url
+        example: https://web.archive.org/web/
+        description: 'URL/URI pointing to archive of this web resource.
+
+          '
+      rel:
+        type: string
+        example: wayback
+        description: 'Type of archive endpoint. Usually `wayback` (WBM replay of primary
+
+          resource), or `warc` (direct URL to a WARC file containing all
+
+          resources of the capture). See guide for full list.
+
+          '
+  file_entity:
+    type: object
+    properties:
+      state:
+        type: string
+        enum:
+        - wip
+        - active
+        - redirect
+        - deleted
+        example: active
+      ident:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: base32-encoded unique identifier
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      revision:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      redirect:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: base32-encoded unique identifier
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      extra:
+        type: object
+        description: 'Free-form JSON metadata that will be stored with the other entity
+
+          metadata. See guide for (unenforced) schema conventions.
+
+          '
+        additionalProperties: {}
+      edit_extra:
+        type: object
+        description: 'Free-form JSON metadata that will be stored with specific entity edits
+
+          (eg, creation/update/delete).
+
+          '
+        additionalProperties: {}
+      size:
+        type: integer
+        example: 1048576
+        format: int64
+        description: Size of file in bytes. Non-zero.
+      md5:
+        type: string
+        pattern: '[a-f0-9]{32}'
+        minLength: 32
+        maxLength: 32
+        description: MD5 hash of data, in hex encoding
+        example: 1b39813549077b2347c0f370c3864b40
+      sha1:
+        type: string
+        pattern: '[a-f0-9]{40}'
+        minLength: 40
+        maxLength: 40
+        description: SHA-1 hash of data, in hex encoding
+        example: e9dd75237c94b209dc3ccd52722de6931a310ba3
+      sha256:
+        type: string
+        pattern: '[a-f0-9]{64}'
+        minLength: 64
+        maxLength: 64
+        description: SHA-256 hash of data, in hex encoding
+        example: cb1c378f464d5935ddaa8de28446d82638396c61f042295d7fb85e3cccc9e452
+      urls:
+        type: array
+        items:
+          $ref: '#/definitions/file_url'
+      mimetype:
+        type: string
+        example: application/pdf
+      content_scope:
+        type: string
+        example: issue
+      release_ids:
+        type: array
+        items:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: base32-encoded unique identifier
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        description: 'Set of identifier of release entities this file represents a full
+
+          manifestation of. Usually a single release, but some files contain
+
+          content of multiple full releases (eg, an issue of a journal).
+
+          '
+      releases:
+        description: 'Full release entities, included in GET responses when `releases`
+
+          included in `expand` parameter. Ignored if included in PUT or POST
+
+          requests.
+
+          '
+        type: array
+        items:
+          $ref: '#/definitions/release_entity'
+  file_url:
+    type: object
+    required:
+    - url
+    - rel
+    properties:
+      url:
+        type: string
+        format: url
+        example: https://example.edu/~frau/prcding.pdf
+        description: 'URL/URI pointing directly to a machine retrievable copy of this exact
+
+          file.
+
+          '
+      rel:
+        type: string
+        example: web
+        description: 'Indicates type of host this URL points to. Eg, "publisher",
+
+          "repository", "webarchive". See guide for list of acceptable values.
+
+          '
+  creator_entity:
+    type: object
+    properties:
+      state:
+        type: string
+        enum:
+        - wip
+        - active
+        - redirect
+        - deleted
+        example: active
+      ident:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: base32-encoded unique identifier
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      revision:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      redirect:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: base32-encoded unique identifier
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      extra:
+        type: object
+        description: 'Free-form JSON metadata that will be stored with the other entity
+
+          metadata. See guide for (unenforced) schema conventions.
+
+          '
+        additionalProperties: {}
+      edit_extra:
+        type: object
+        description: 'Free-form JSON metadata that will be stored with specific entity edits
+
+          (eg, creation/update/delete).
+
+          '
+        additionalProperties: {}
+      display_name:
+        type: string
+        example: Grace Hopper
+        description: 'Name as should be displayed in web interface or in author lists (not
+
+          index/sorted). Required for valid entities.
+
+          '
+      given_name:
+        type: string
+        description: 'In English commonly the first name, but ordering is context and
+
+          culture specific.
+
+          '
+      surname:
+        type: string
+        description: 'In English commonly the last, or family name, but ordering is context
+
+          and culture specific.
+
+          '
+      orcid:
+        type: string
+        pattern: \d{4}-\d{4}-\d{4}-\d{3}[\dX]
+        minLength: 19
+        maxLength: 19
+        description: ORCiD (https://orcid.org) identifier
+        example: 0000-0002-1825-0097
+      wikidata_qid:
+        type: string
+        example: Q42812
+        description: Wikidata entity QID
+  entity_edit:
+    type: object
+    required:
+    - edit_id
+    - ident
+    - editgroup_id
+    properties:
+      edit_id:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: 'Unique UUID for this specific edit object.
+
+          '
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      ident:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Fatcat identifier of the entity this edit is mutating.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      revision:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: 'Entity revision that this edit will set the entity to. May be
+
+          `null` in the case of deletions.
+
+          '
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      prev_revision:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: 'Revision of entity just before this edit. May be used in the future
+
+          to prevent edit race conditions.
+
+          '
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      redirect_ident:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'When an edit is to merge entities (redirect one to another), this
+
+          is the entity fatcat identifier for the target entity.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      editgroup_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Editgroup identifier that this edit is part of.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      extra:
+        type: object
+        additionalProperties: {}
+  error_response:
+    type: object
+    required:
+    - success
+    - error
+    - message
+    properties:
+      success:
+        type: boolean
+        example: false
+      error:
+        type: string
+        example: unexpected-thing
+      message:
+        type: string
+        example: A really confusing, totally unexpected thing happened
+  fileset_entity:
+    type: object
+    properties:
+      state:
+        type: string
+        enum:
+        - wip
+        - active
+        - redirect
+        - deleted
+        example: active
+      ident:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: base32-encoded unique identifier
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      revision:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      redirect:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: base32-encoded unique identifier
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      extra:
+        type: object
+        description: 'Free-form JSON metadata that will be stored with the other entity
+
+          metadata. See guide for (unenforced) schema conventions.
+
+          '
+        additionalProperties: {}
+      edit_extra:
+        type: object
+        description: 'Free-form JSON metadata that will be stored with specific entity edits
+
+          (eg, creation/update/delete).
+
+          '
+        additionalProperties: {}
+      content_scope:
+        type: string
+        example: issue
+      manifest:
+        type: array
+        items:
+          $ref: '#/definitions/fileset_file'
+      urls:
+        type: array
+        items:
+          $ref: '#/definitions/fileset_url'
+      release_ids:
+        type: array
+        items:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: base32-encoded unique identifier
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        description: 'Set of identifier of release entities this fileset represents a full
+
+          manifestation of. Usually a single release.
+
+          '
+      releases:
+        type: array
+        items:
+          $ref: '#/definitions/release_entity'
+        description: 'Full release entities, included in GET responses when `releases`
+
+          included in `expand` parameter. Ignored if included in PUT or POST
+
+          requests.
+
+          '
+  release_contrib:
+    type: object
+    properties:
+      index:
+        type: integer
+        format: int64
+        example: 0
+        description: 'Internally assigned zero-indexed sequence number of contribution.
+
+          Authors should come first; this encodes the order of attriubtion.
+
+          '
+      creator_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'If known, indicates the creator entity this contribution was made by.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      creator:
+        $ref: '#/definitions/creator_entity'
+        description: 'Complete creator entity. Only returned in GET responses, and only if
+
+          `contribs` included in the `expand` query parameter.
+
+          '
+      raw_name:
+        type: string
+        example: Jane K. Doe
+        description: 'Full name of the contributor as typeset in the release.
+
+          '
+      given_name:
+        type: string
+        example: Jane
+        description: 'In English commonly the first name, but ordering is context and
+
+          culture specific.
+
+          '
+      surname:
+        type: string
+        example: Doe
+        description: 'In English commonly the last, or family name, but ordering is context
+
+          and culture specific.
+
+          '
+      role:
+        type: string
+        example: author
+        description: 'Short string (slug) indicating type of contribution (eg, "author",
+
+          "translator"). See guide for list of accpeted values.
+
+          '
+      raw_affiliation:
+        type: string
+        description: Raw affiliation string as displayed in text
+      extra:
+        type: object
+        additionalProperties: {}
+        description: 'Additional free-form JSON metadata about this
+
+          contributor/contribution. See guide for normative schema.
+
+          '
+  webcapture_cdx_line:
+    type: object
+    required:
+    - surt
+    - timestamp
+    - url
+    - sha1
+    properties:
+      surt:
+        type: string
+        example: org,asheesh)/apus/ch1/node15.html
+        description: '"Sortable URL" format. See guide for details.
+
+          '
+      timestamp:
+        type: string
+        format: date-time
+        example: '2016-09-19T17:20:24Z'
+        description: 'Date and time of capture, in ISO format. UTC, ''Z''-terminated, second
+
+          (or better) precision.
+
+          '
+      url:
+        type: string
+        example: http://www.asheesh.org:80/APUS/ch1/node15.html
+        description: 'Full URL/URI of resource captured.
+
+          '
+      mimetype:
+        type: string
+        example: text/html
+        description: 'Mimetype of the resource at this URL. May be the Content-Type header,
+
+          or the actually sniffed file type.
+
+          '
+      status_code:
+        type: integer
+        example: 200
+        format: int64
+        description: 'HTTP status code. Should generally be 200, especially for the primary
+
+          resource, but may be 3xx (redirect) or even error codes if embedded
+
+          resources can not be fetched successfully.
+
+          '
+      size:
+        type: integer
+        example: 1048576
+        format: int64
+        description: Resource (file) size in bytes
+      sha1:
+        type: string
+        pattern: '[a-f0-9]{40}'
+        minLength: 40
+        maxLength: 40
+        description: SHA-1 hash of data, in hex encoding
+        example: e9dd75237c94b209dc3ccd52722de6931a310ba3
+      sha256:
+        type: string
+        pattern: '[a-f0-9]{64}'
+        minLength: 64
+        maxLength: 64
+        description: SHA-256 hash of data, in hex encoding
+        example: cb1c378f464d5935ddaa8de28446d82638396c61f042295d7fb85e3cccc9e452
+  release_ext_ids:
+    type: object
+    properties:
+      doi:
+        type: string
+        example: 10.1234/abcde.789
+        description: 'Digital Object Identifier (DOI), mostly for published papers and
+
+          datasets. Should be registered and resolvable via https://doi.org/
+
+          '
+      wikidata_qid:
+        type: string
+        example: Q42812
+        description: Wikidata entity QID
+      isbn13:
+        type: string
+        description: 'ISBN-13, for books. Usually not set for chapters. ISBN-10 should be
+
+          converted to ISBN-13.
+
+          '
+      pmid:
+        type: string
+        example: '482132'
+        description: PubMed Identifier
+      pmcid:
+        example: PMC7391
+        type: string
+        description: PubMed Central Identifier
+      core:
+        example: '9234592'
+        type: string
+        description: CORE (https://core.ac.uk) identifier
+      arxiv:
+        type: string
+        description: arXiv (https://arxiv.org) identifier; must include version
+      jstor:
+        type: string
+        description: JSTOR work identifier
+      ark:
+        type: string
+        description: ARK identifier
+      mag:
+        type: string
+        description: Microsoft Academic Graph identifier
+      doaj:
+        type: string
+        description: DOAJ article-level identifier
+      dblp:
+        type: string
+        description: dblp (https://dblp.uni-trier.de/) paper identifier; eg for conference proceedings
+      oai:
+        type: string
+        description: OAI-PMH identifier; only used when an OAI-PMH record is the only authoritative metadata (eg, journal OAI-PMH feeds w/o DOIs)
+      hdl:
+        type: string
+        description: Handle identifier. Do not put DOIs in this field
+  fileset_file:
+    type: object
+    required:
+    - path
+    - size
+    properties:
+      path:
+        type: string
+        example: img/cat.png
+        description: 'Path name of file within this fileset (eg, directory)
+
+          '
+      size:
+        type: integer
+        example: 1048576
+        format: int64
+        description: File size in bytes
+      md5:
+        type: string
+        pattern: '[a-f0-9]{32}'
+        minLength: 32
+        maxLength: 32
+        description: MD5 hash of data, in hex encoding
+        example: 1b39813549077b2347c0f370c3864b40
+      sha1:
+        type: string
+        pattern: '[a-f0-9]{40}'
+        minLength: 40
+        maxLength: 40
+        description: SHA-1 hash of data, in hex encoding
+        example: e9dd75237c94b209dc3ccd52722de6931a310ba3
+      sha256:
+        type: string
+        pattern: '[a-f0-9]{64}'
+        minLength: 64
+        maxLength: 64
+        description: SHA-256 hash of data, in hex encoding
+        example: cb1c378f464d5935ddaa8de28446d82638396c61f042295d7fb85e3cccc9e452
+      mimetype:
+        type: string
+        example: application/pdf
+      extra:
+        type: object
+        additionalProperties: {}
+        description: 'Free-form additional metadata about this specific file in the set.
+
+          Eg, `original_url`. See guide for nomative (but unenforced) schema
+
+          fields.
+
+          '
+  release_abstract:
+    type: object
+    properties:
+      sha1:
+        type: string
+        pattern: '[a-f0-9]{40}'
+        minLength: 40
+        maxLength: 40
+        description: SHA-1 hash of data, in hex encoding
+        example: e9dd75237c94b209dc3ccd52722de6931a310ba3
+      content:
+        type: string
+        example: <jats:p>Some abstract thing goes here</jats:p>
+        description: 'Abstract content. May be encoded, as per `mimetype` field, but only
+
+          string/text content may be included.
+
+          '
+      mimetype:
+        type: string
+        example: application/xml+jats
+        description: 'Mimetype of abstract contents. `text/plain` is the default if content
+
+          isn''t encoded.
+
+          '
+      lang:
+        type: string
+        example: en
+        description: 'ISO language code of the abstract. Same semantics as release `language` field.
+
+          '
+  editgroup:
+    type: object
+    properties:
+      editgroup_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Fatcat identifier for this editgroup. Assigned on creation.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      editor_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Fatcat identifier of editor that created this editgroup.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      editor:
+        $ref: '#/definitions/editor'
+        description: 'Complete editor object identified by `container_id` field. Only
+
+          included in GET responses.
+
+          '
+      changelog_index:
+        type: integer
+        example: 1048576
+        format: int64
+        description: 'For accepted/merged editgroups, the changelog index that the accept
+
+          occurred at. WARNING: not populated in all contexts that an editgroup
+
+          could be included in a response.
+
+          '
+      created:
+        type: string
+        format: date-time
+        description: 'Timestamp when this editgroup was first created.
+
+          '
+      submitted:
+        type: string
+        format: date-time
+        description: 'Timestamp when this editgroup was most recently submitted for review.
+
+          If withdrawn, or never submitted, will be `null`.
+
+          '
+      description:
+        type: string
+        description: 'Comment describing the changes in this editgroup. Can be updated with
+
+          PUT request.
+
+          '
+      extra:
+        type: object
+        additionalProperties: {}
+        description: 'Free-form JSON metadata attached to this editgroup. Eg, metadata
+
+          provenance, or script user-agent details. See guide for (unenforced)
+
+          schema norms.
+
+          '
+      annotations:
+        type: array
+        items:
+          $ref: '#/definitions/editgroup_annotation'
+        description: 'Only included in GET responses, and not in all contexts. Do not
+
+          include this field in PUT or POST requests.
+
+          '
+      edits:
+        type: object
+        description: 'Only included in GET responses, and not in all contexts. Do not
+
+          include this field in PUT or POST requests.
+
+          '
+        properties:
+          containers:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+          creators:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+          files:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+          filesets:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+          webcaptures:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+          releases:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+          works:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+  fileset_url:
+    type: object
+    required:
+    - url
+    - rel
+    properties:
+      url:
+        type: string
+        format: url
+        example: https://example.edu/~frau/prcding.pdf
+      rel:
+        type: string
+        example: webarchive
+        description: 'Indicates type of host this URL points to. See guide for list of
+
+          acceptable values.
+
+          '
+  release_entity:
+    type: object
+    required:
+    - ext_ids
+    properties:
+      state:
+        type: string
+        enum:
+        - wip
+        - active
+        - redirect
+        - deleted
+        example: active
+      ident:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: base32-encoded unique identifier
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      revision:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      redirect:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: base32-encoded unique identifier
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      extra:
+        type: object
+        description: 'Free-form JSON metadata that will be stored with the other entity
+
+          metadata. See guide for (unenforced) schema conventions.
+
+          '
+        additionalProperties: {}
+      edit_extra:
+        type: object
+        description: 'Free-form JSON metadata that will be stored with specific entity edits
+
+          (eg, creation/update/delete).
+
+          '
+        additionalProperties: {}
+      title:
+        type: string
+        description: 'Required for valid entities. The title used in citations and for
+
+          display. Sometimes the English translation of title e even if release
+
+          content is not English.
+
+          '
+      subtitle:
+        type: string
+        description: 'Subtitle of release. In many cases, better to merge with title than
+
+          include as separate field (unless combined title would be very long).
+
+          See guide for details.
+
+          '
+      original_title:
+        type: string
+        description: 'Title in original language if `title` field has been translated. See
+
+          guide for details.
+
+          '
+      work_id:
+        type: string
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+        description: 'Identifier of work this release is part of. In creation (POST)
+
+          requests, a work entity will be created automatically if this field
+
+          is not set.
+
+          '
+      container:
+        $ref: '#/definitions/container_entity'
+        description: 'Complete container entity identified by `container_id` field. Only
+
+          included in GET responses when `container` included in `expand`
+
+          parameter; ignored in PUT or POST requests.
+
+          '
+      files:
+        type: array
+        items:
+          $ref: '#/definitions/file_entity'
+        description: 'Complete file entities identified by `file_ids` field. Only
+
+          included in GET responses when `files` included in `expand` parameter;
+
+          ignored in PUT or POST requests.
+
+          '
+      filesets:
+        type: array
+        items:
+          $ref: '#/definitions/fileset_entity'
+        description: 'Complete file entities identified by `filesets_ids` field. Only
+
+          included in GET responses when `filesets` included in `expand`
+
+          parameter; ignored in PUT or POST requests.
+
+          '
+      webcaptures:
+        type: array
+        items:
+          $ref: '#/definitions/webcapture_entity'
+        description: 'Complete webcapture entities identified by `webcapture_ids` field.
+
+          Only included in GET responses when `webcaptures` included in `expand`
+
+          parameter; ignored in PUT or POST requests.
+
+          '
+      container_id:
+        type: string
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+        description: 'Used to link this release to a container entity that the release was
+
+          published as part of.
+
+          '
+      release_type:
+        type: string
+        example: book
+        description: '"Type" or "medium" that this release is published as. See guide for
+
+          valid values.
+
+          '
+      release_stage:
+        type: string
+        example: preprint
+        description: 'The stage of publication of this specific release. See guide for
+
+          valid values and semantics.
+
+          '
+      release_date:
+        type: string
+        format: date
+        description: 'Full date when this release was formally published. ISO format, like
+
+          `2019-03-05`. See guide for semantics.
+
+          '
+      release_year:
+        type: integer
+        example: 2014
+        format: int64
+        description: 'Year when this release was formally published. Must match
+
+          `release_date` if that field is set; this field exists because
+
+          sometimes only the year is known.
+
+          '
+      withdrawn_status:
+        type: string
+        example: retracted
+        description: 'Type of withdrawal or retraction of this release, if applicable. If
+
+          release has not been withdrawn, should be `null` (aka, not set, not
+
+          the string "null" or an empty string).
+
+          '
+      withdrawn_date:
+        type: string
+        format: date
+        description: 'Full date when this release was formally withdrawn (if applicable).
+
+          ISO format, like `release_date`.
+
+          '
+      withdrawn_year:
+        type: integer
+        example: 2014
+        format: int64
+        description: 'Year corresponding with `withdrawn_date` like
+
+          `release_year`/`release_date`.
+
+          '
+      ext_ids:
+        $ref: '#/definitions/release_ext_ids'
+        description: 'Set of external identifiers for this release.
+
+          '
+      volume:
+        type: string
+        example: '3'
+        description: 'Volume number of container that this release was published in. Often
+
+          corresponds to the "Nth" year of publication, but can be any string.
+
+          See guide.
+
+          '
+      issue:
+        type: string
+        example: '12'
+        description: 'Issue number of volume/container that this release was published in.
+
+          Sometimes corresponds to a month number in the year, but can be any
+
+          string. See guide.
+
+          '
+      pages:
+        type: string
+        example: 340-345
+        description: 'Either a single page number ("first page") or a range of pages
+
+          separated by a dash ("-"). See guide for details.
+
+          '
+      number:
+        type: string
+        example: RFC1337
+        description: 'For, eg, technical reports, which are published in series or
+
+          assigned some other institutional or container-specific identifier.
+
+          '
+      version:
+        type: string
+        example: '3'
+        description: 'For, eg, updated technical reports or software packages, where
+
+          the version string may be the only field disambiguating between
+
+          releases.
+
+          '
+      publisher:
+        type: string
+        example: Elsevier
+        description: 'Name, usually English, of the entity or institution responsible for
+
+          publication of this release. Not necessarily the imprint/brand. See
+
+          guide.
+
+          '
+      language:
+        type: string
+        example: en
+        description: 'Primary language of the content of the full release. Two-letter
+
+          RFC1766/ISO639-1 language code, with some custom
+
+          extensions/additions. See guide.
+
+          '
+      license_slug:
+        type: string
+        example: CC-BY
+        description: 'Short string (slug) name of license under which release is openly
+
+          published (if applicable).
+
+          '
+      contribs:
+        type: array
+        items:
+          $ref: '#/definitions/release_contrib'
+      refs:
+        type: array
+        items:
+          $ref: '#/definitions/release_ref'
+      abstracts:
+        type: array
+        items:
+          $ref: '#/definitions/release_abstract'
+  changelog_entry:
+    type: object
+    required:
+    - index
+    - editgroup_id
+    - timestamp
+    properties:
+      index:
+        type: integer
+        format: int64
+        description: 'Monotonically increasing sequence number of this changelog entry.
+
+          '
+      editgroup_id:
+        type: string
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+        description: 'Identifier of editgroup accepted/merged in this changelog entry.
+
+          '
+      timestamp:
+        type: string
+        format: date-time
+        description: 'Date and time when the editgroup was accpeted.
+
+          '
+      editgroup:
+        $ref: '#/definitions/editgroup'
+  webcapture_auto_batch:
+    type: object
+    required:
+    - editgroup
+    - entity_list
+    properties:
+      editgroup:
+        $ref: '#/definitions/editgroup'
+      entity_list:
+        type: array
+        items:
+          $ref: '#/definitions/webcapture_entity'
+  webcapture_entity:
+    type: object
+    properties:
+      state:
+        type: string
+        enum:
+        - wip
+        - active
+        - redirect
+        - deleted
+        example: active
+      ident:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: base32-encoded unique identifier
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      revision:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      redirect:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: base32-encoded unique identifier
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      extra:
+        type: object
+        description: 'Free-form JSON metadata that will be stored with the other entity
+
+          metadata. See guide for (unenforced) schema conventions.
+
+          '
+        additionalProperties: {}
+      edit_extra:
+        type: object
+        description: 'Free-form JSON metadata that will be stored with specific entity edits
+
+          (eg, creation/update/delete).
+
+          '
+        additionalProperties: {}
+      cdx:
+        type: array
+        items:
+          $ref: '#/definitions/webcapture_cdx_line'
+      archive_urls:
+        type: array
+        items:
+          $ref: '#/definitions/webcapture_url'
+      original_url:
+        type: string
+        format: url
+        example: http://asheesh.org
+        description: Base URL of the primary resource this is a capture of
+      timestamp:
+        type: string
+        format: date-time
+        description: 'Same format as CDX line timestamp (UTC, etc). Corresponds to the
+
+          overall capture timestamp. Should generally be the timestamp of
+
+          capture of the primary resource URL.
+
+          '
+      content_scope:
+        type: string
+        example: landing-page
+      release_ids:
+        type: array
+        items:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: base32-encoded unique identifier
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        description: 'Set of identifier of release entities this fileset represents a full
+
+          manifestation of. Usually a single release.
+
+          '
+      releases:
+        type: array
+        items:
+          $ref: '#/definitions/release_entity'
+        description: 'Full release entities, included in GET responses when `releases`
+
+          included in `expand` parameter. Ignored if included in PUT or POST
+
+          requests.
+
+          '
+  entity_history_entry:
+    type: object
+    required:
+    - edit
+    - editgroup
+    - changelog_entry
+    properties:
+      edit:
+        $ref: '#/definitions/entity_edit'
+      editgroup:
+        $ref: '#/definitions/editgroup'
+      changelog_entry:
+        $ref: '#/definitions/changelog_entry'
+  success:
+    type: object
+    required:
+    - success
+    - message
+    properties:
+      success:
+        type: boolean
+        example: true
+      message:
+        type: string
+        example: The computers did the thing successfully!
+  editgroup_annotation:
+    type: object
+    properties:
+      annotation_id:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      editgroup_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Editgroup that this annotation applies to. Set automatically in
+
+          creations based on URL parameter.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      editor_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Defaults to editor created the annotation via POST request.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      editor:
+        $ref: '#/definitions/editor'
+        description: 'Only included in GET responses; ignored in PUT or POST requests.
+
+          '
+      created:
+        type: string
+        format: date-time
+        description: 'Timestamp when annotation was first created.
+
+          '
+      comment_markdown:
+        type: string
+      extra:
+        type: object
+        additionalProperties: {}
+        description: 'Additional free-form JSON metadata that can be included as part of
+
+          the annotation (or even as the primary annotation itself). See guide
+
+          for details.
+
+          '
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: "The only current API authentication mechanism is HTTP bearer\nauthentication using the `Authorization` HTTP header. The header should\nbe formatted as the string \"Bearer\", then a space, then API token (in the\nusual base64 string encoding).\n\nAn example HTTP request would look on the wire like:\n\n    GET /v0/auth/check HTTP/1.1\n    Accept: */*\n    Accept-Encoding: gzip, deflate\n    Authorization: Bearer AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\n    Connection: keep-alive\n    Host: api.qa.fatcat.wiki\n    User-Agent: HTTPie/0.9.8\n\nHeaders can be passed on the command line using `http` (HTTPie) like:\n\n    http get https://api.qa.fatcat.wiki/v0/auth/check Authorization:\"Bearer AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\"\n\nOr with `curl`:\n\n    curl -H \"Authorization: Bearer AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\" https://qa.fatcat.wiki/v0/auth/check\n"
+x-servers:
+- url: https://api.fatcat.wiki/v0
+  description: Production Server
+- url: https://api.qa.fatcat.wiki/v0
+  description: QA Server
+x-tagGroups:
+- name: Entities
+  tags:
+  - containers
+  - creators
+  - files
+  - filesets
+  - webcaptures
+  - releases
+  - works
+- name: Editing
+  tags:
+  - editors
+  - editgroups
+  - changelog
+- name: Other
+  tags:
+  - auth
+x-fatcat-ident:
+  type: string
+  pattern: '[a-zA-Z2-7]{26}'
+  minLength: 26
+  maxLength: 26
+  description: base32-encoded unique identifier
+x-fatcat-ident-example:
+  example: q3nouwy3nnbsvo3h5klxsx4a7y
+x-fatcat-uuid:
+  type: string
+  pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+  minLength: 36
+  maxLength: 36
+  description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+x-fatcat-uuid-example:
+  example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+x-issn:
+  type: string
+  pattern: \d{4}-\d{3}[0-9X]
+  minLength: 9
+  maxLength: 9
+x-issn-example:
+  example: 1234-5678
+x-orcid:
+  type: string
+  pattern: \d{4}-\d{4}-\d{4}-\d{3}[\dX]
+  minLength: 19
+  maxLength: 19
+  description: ORCiD (https://orcid.org) identifier
+x-orcid-example:
+  example: 0000-0002-1825-0097
+x-md5:
+  type: string
+  pattern: '[a-f0-9]{32}'
+  minLength: 32
+  maxLength: 32
+  description: MD5 hash of data, in hex encoding
+x-md5-example:
+  example: 1b39813549077b2347c0f370c3864b40
+x-sha1:
+  type: string
+  pattern: '[a-f0-9]{40}'
+  minLength: 40
+  maxLength: 40
+  description: SHA-1 hash of data, in hex encoding
+x-sha1-example:
+  example: e9dd75237c94b209dc3ccd52722de6931a310ba3
+x-sha256:
+  type: string
+  pattern: '[a-f0-9]{64}'
+  minLength: 64
+  maxLength: 64
+  description: SHA-256 hash of data, in hex encoding
+x-sha256-example:
+  example: cb1c378f464d5935ddaa8de28446d82638396c61f042295d7fb85e3cccc9e452
+x-entity-props:
+  state:
+    type: string
+    enum:
+    - wip
+    - active
+    - redirect
+    - deleted
+    example: active
+  ident:
+    type: string
+    pattern: '[a-zA-Z2-7]{26}'
+    minLength: 26
+    maxLength: 26
+    description: base32-encoded unique identifier
+    example: q3nouwy3nnbsvo3h5klxsx4a7y
+  revision:
+    type: string
+    pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+    minLength: 36
+    maxLength: 36
+    description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+    example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+  redirect:
+    type: string
+    pattern: '[a-zA-Z2-7]{26}'
+    minLength: 26
+    maxLength: 26
+    description: base32-encoded unique identifier
+    example: q3nouwy3nnbsvo3h5klxsx4a7y
+  extra:
+    type: object
+    description: 'Free-form JSON metadata that will be stored with the other entity
+
+      metadata. See guide for (unenforced) schema conventions.
+
+      '
+    additionalProperties: {}
+  edit_extra:
+    type: object
+    description: 'Free-form JSON metadata that will be stored with specific entity edits
+
+      (eg, creation/update/delete).
+
+      '
+    additionalProperties: {}
+x-auth-responses:
+  401:
+    description: Not Authorized
+    schema:
+      $ref: '#/definitions/error_response'
+    headers:
+      WWW_Authenticate:
+        type: string
+  403:
+    description: Forbidden
+    schema:
+      $ref: '#/definitions/error_response'
+x-entity-responses:
+  400:
+    description: Bad Request
+    schema:
+      $ref: '#/definitions/error_response'
+  404:
+    description: Not Found
+    schema:
+      $ref: '#/definitions/error_response'
+  500:
+    description: Generic Error
+    schema:
+      $ref: '#/definitions/error_response'

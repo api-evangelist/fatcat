@@ -1,0 +1,733 @@
+swagger: '2.0'
+info:
+  title: fatcat auth changelog API
+  version: 0.5.0
+  description: 'Fatcat is a scalable, versioned, API-oriented catalog of bibliographic
+
+    entities and file metadata.
+
+
+    <!-- STARTLONGDESCRIPTION -->
+
+    These API reference documents, along with client software libraries, are
+
+    generated automatically from an OpenAPI 2.0 ("Swagger") definition file.
+
+
+    ## Introduction
+
+
+
+    A higher-level introduction to the API, as well as a description of the
+
+    fatcat data model, are available in ["The Fatcat Guide"](https://guide.fatcat.wiki/).
+
+    The guide also includes a [Cookbook](https://guide.fatcat.wiki/cookbook.html)
+
+    section demonstrating end-to-end tasks like creating entities as part of
+
+    editgroups, or safely merging duplicate entities.
+
+
+    ### Expectations and Best Practices
+
+
+    A test/staging QA API instance of fatcat is available at
+
+    <https://api.qa.fatcat.wiki/v0>. The database backing this instance is
+
+    separate from the production interface, and is periodically rebuilt from
+
+    snapshots of the full production database, meaning that edits on the QA
+
+    server will *NOT* persist, and that semantics like the changelog index
+
+    monotonically increasing *MAY* be broken. Developers are expexcted to test
+
+    their scripts and tools against the QA instance before running against
+
+    production.
+
+
+    NOTE: as of Spring 2021, the QA server is temporarily unavailable.
+
+
+    Fatcat is made available as a gratis (no cost) and libre (freedom
+
+    preserving) service to the public, with limited funding and resources. We
+
+    welcome new and unforeseen uses and contributions, but may need to impose
+
+    restrictions (like rate-limits) to keep the service functional for other
+
+    users, and in extreme cases reserve the option to block accounts and IP
+
+    ranges if necessary to keep the service operational.
+
+
+    The Internet Archive owns and operates it''s own server equipment and data
+
+    centers, and operations are optimized for low-cost, not high-availability.
+
+    Users and partners should expect some downtime on the fatcat API, on the
+
+    order of hours a month.
+
+
+    Periodic metadata exports are available for batch processing, and database
+
+    snapshots can be used to create locally-hosted mirrors of the service for
+
+    more intensive and reliable querying.
+
+
+    ### Other Nitty Gritties
+
+
+    Cross-origin requests are allowed for the API service, to enable third
+
+    parties to build in-browser applications.
+
+
+    A metadata search service is available at <https://search.fatcat.wiki>.
+
+    The API is currently the raw elasticsearch API, with only GET (read)
+
+    requests allowed. This public service is experimental and may be removed or
+
+    limited in the future.
+
+
+    ## Authentication
+
+
+    The API allows basic read-only "GET" HTTP requests with no authentication.
+
+    Proposing changes to the metadata, or other mutating requests ("PUT",
+
+    "POST", "DELETE") all require authentication, and some operations require
+
+    additional account permissions.
+
+
+    End-user account creation and login happens through the web interface. From
+
+    a logged-in editor profile page, you can generate a API token. Tokens are
+
+    "macaroons", similar to JWT tokens, and are used for all API
+
+    authentication. The web interface includes macaroons in browser cookies and
+
+    passes them through to the API to authenticate editor actions.
+
+
+    <!-- ReDoc-Inject: <security-definitions> -->
+
+    <!-- ENDLONGDESCRIPTION -->
+
+    '
+  termsOfService: https://guide.fatcat.wiki/policies.html
+  contact:
+    name: Internet Archive Web Group
+    email: webservices@archive.org
+    url: https://fatcat.wiki
+  x-logo:
+    url: https://fatcat.wiki/static/paper_man_confused.gif
+    altText: Confused Papers Man (Logo)
+    backgroundColor: '#FFFFFF'
+host: api.fatcat.wiki
+basePath: /v0
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+tags:
+- name: changelog
+  x-displayName: Changelog
+  description: 'The **Changelog** is the ordered feed of editgroups which have been  # TAGLINE
+
+    accepted into the catalog.  # TAGLINE
+
+    '
+paths:
+  /changelog:
+    parameters:
+    - name: limit
+      in: query
+      type: integer
+      format: int64
+      required: false
+      description: Maximum count of changelog entries to return in response
+    get:
+      operationId: get_changelog
+      tags:
+      - changelog
+      description: 'Returns a list of the most recent changelog entries accepted (merged)
+
+        into the catalog.
+
+
+        List is sorted by changelog index in descending order. Note that the
+
+        accepted timestamp roughly corresponds to order, but not strictly;
+
+        there exist out-of-order timestamps on the order of several seconds.
+
+
+        As a known database issue, it is technically possible for there to be a
+
+        gap in changelog index numbers (aka, a missing changelog entry). There
+
+        are no currently known gaps and this is considered a bug that will be
+
+        addressed.
+
+
+        There are millions of entries; to paginate through all of them, use
+
+        this method to discover the highest existing entry number, then request
+
+        the entries using `get_changelog_entry` one at a time.
+
+        '
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/changelog_entry'
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error_response'
+        500:
+          description: Generic Error
+          schema:
+            $ref: '#/definitions/error_response'
+  /changelog/{index}:
+    parameters:
+    - name: index
+      in: path
+      type: integer
+      format: int64
+      required: true
+      description: Changelog index of entry to return
+    get:
+      operationId: get_changelog_entry
+      tags:
+      - changelog
+      description: 'Returns a single changelog entry.
+
+
+        As a known database issue, it is technically possible for there to be a
+
+        gap in changelog index numbers (aka, a missing changelog entry). There
+
+        are no currently known gaps and this is considered a bug that will be
+
+        addressed.
+
+        '
+      responses:
+        200:
+          description: Found Changelog Entry
+          schema:
+            $ref: '#/definitions/changelog_entry'
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error_response'
+        404:
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error_response'
+        500:
+          description: Generic Error
+          schema:
+            $ref: '#/definitions/error_response'
+definitions:
+  changelog_entry:
+    type: object
+    required:
+    - index
+    - editgroup_id
+    - timestamp
+    properties:
+      index:
+        type: integer
+        format: int64
+        description: 'Monotonically increasing sequence number of this changelog entry.
+
+          '
+      editgroup_id:
+        type: string
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+        description: 'Identifier of editgroup accepted/merged in this changelog entry.
+
+          '
+      timestamp:
+        type: string
+        format: date-time
+        description: 'Date and time when the editgroup was accpeted.
+
+          '
+      editgroup:
+        $ref: '#/definitions/editgroup'
+  error_response:
+    type: object
+    required:
+    - success
+    - error
+    - message
+    properties:
+      success:
+        type: boolean
+        example: false
+      error:
+        type: string
+        example: unexpected-thing
+      message:
+        type: string
+        example: A really confusing, totally unexpected thing happened
+  entity_edit:
+    type: object
+    required:
+    - edit_id
+    - ident
+    - editgroup_id
+    properties:
+      edit_id:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: 'Unique UUID for this specific edit object.
+
+          '
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      ident:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Fatcat identifier of the entity this edit is mutating.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      revision:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: 'Entity revision that this edit will set the entity to. May be
+
+          `null` in the case of deletions.
+
+          '
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      prev_revision:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: 'Revision of entity just before this edit. May be used in the future
+
+          to prevent edit race conditions.
+
+          '
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      redirect_ident:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'When an edit is to merge entities (redirect one to another), this
+
+          is the entity fatcat identifier for the target entity.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      editgroup_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Editgroup identifier that this edit is part of.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      extra:
+        type: object
+        additionalProperties: {}
+  editgroup:
+    type: object
+    properties:
+      editgroup_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Fatcat identifier for this editgroup. Assigned on creation.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      editor_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Fatcat identifier of editor that created this editgroup.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      editor:
+        $ref: '#/definitions/editor'
+        description: 'Complete editor object identified by `container_id` field. Only
+
+          included in GET responses.
+
+          '
+      changelog_index:
+        type: integer
+        example: 1048576
+        format: int64
+        description: 'For accepted/merged editgroups, the changelog index that the accept
+
+          occurred at. WARNING: not populated in all contexts that an editgroup
+
+          could be included in a response.
+
+          '
+      created:
+        type: string
+        format: date-time
+        description: 'Timestamp when this editgroup was first created.
+
+          '
+      submitted:
+        type: string
+        format: date-time
+        description: 'Timestamp when this editgroup was most recently submitted for review.
+
+          If withdrawn, or never submitted, will be `null`.
+
+          '
+      description:
+        type: string
+        description: 'Comment describing the changes in this editgroup. Can be updated with
+
+          PUT request.
+
+          '
+      extra:
+        type: object
+        additionalProperties: {}
+        description: 'Free-form JSON metadata attached to this editgroup. Eg, metadata
+
+          provenance, or script user-agent details. See guide for (unenforced)
+
+          schema norms.
+
+          '
+      annotations:
+        type: array
+        items:
+          $ref: '#/definitions/editgroup_annotation'
+        description: 'Only included in GET responses, and not in all contexts. Do not
+
+          include this field in PUT or POST requests.
+
+          '
+      edits:
+        type: object
+        description: 'Only included in GET responses, and not in all contexts. Do not
+
+          include this field in PUT or POST requests.
+
+          '
+        properties:
+          containers:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+          creators:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+          files:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+          filesets:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+          webcaptures:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+          releases:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+          works:
+            type: array
+            items:
+              $ref: '#/definitions/entity_edit'
+  editgroup_annotation:
+    type: object
+    properties:
+      annotation_id:
+        type: string
+        pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+        minLength: 36
+        maxLength: 36
+        description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+        example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+      editgroup_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Editgroup that this annotation applies to. Set automatically in
+
+          creations based on URL parameter.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      editor_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Defaults to editor created the annotation via POST request.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      editor:
+        $ref: '#/definitions/editor'
+        description: 'Only included in GET responses; ignored in PUT or POST requests.
+
+          '
+      created:
+        type: string
+        format: date-time
+        description: 'Timestamp when annotation was first created.
+
+          '
+      comment_markdown:
+        type: string
+      extra:
+        type: object
+        additionalProperties: {}
+        description: 'Additional free-form JSON metadata that can be included as part of
+
+          the annotation (or even as the primary annotation itself). See guide
+
+          for details.
+
+          '
+  editor:
+    type: object
+    required:
+    - username
+    properties:
+      editor_id:
+        type: string
+        pattern: '[a-zA-Z2-7]{26}'
+        minLength: 26
+        maxLength: 26
+        description: 'Fatcat identifier for the editor. Can not be changed.
+
+          '
+        example: q3nouwy3nnbsvo3h5klxsx4a7y
+      username:
+        type: string
+        example: zerocool93
+        description: 'Username/handle (short slug-like string) to identify this editor. May
+
+          be changed at any time by the editor; use the `editor_id` as a
+
+          persistend identifier.
+
+          '
+      is_admin:
+        type: boolean
+        example: false
+        description: 'Whether this editor has the `admin` role.
+
+          '
+      is_bot:
+        type: boolean
+        example: false
+        description: 'Whether this editor is a bot (as opposed to a human making manual
+
+          edits)
+
+          '
+      is_active:
+        type: boolean
+        example: true
+        description: 'Whether this editor''s account is enabled (if not API tokens and web
+
+          logins will not work).
+
+          '
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: "The only current API authentication mechanism is HTTP bearer\nauthentication using the `Authorization` HTTP header. The header should\nbe formatted as the string \"Bearer\", then a space, then API token (in the\nusual base64 string encoding).\n\nAn example HTTP request would look on the wire like:\n\n    GET /v0/auth/check HTTP/1.1\n    Accept: */*\n    Accept-Encoding: gzip, deflate\n    Authorization: Bearer AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\n    Connection: keep-alive\n    Host: api.qa.fatcat.wiki\n    User-Agent: HTTPie/0.9.8\n\nHeaders can be passed on the command line using `http` (HTTPie) like:\n\n    http get https://api.qa.fatcat.wiki/v0/auth/check Authorization:\"Bearer AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\"\n\nOr with `curl`:\n\n    curl -H \"Authorization: Bearer AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\" https://qa.fatcat.wiki/v0/auth/check\n"
+x-servers:
+- url: https://api.fatcat.wiki/v0
+  description: Production Server
+- url: https://api.qa.fatcat.wiki/v0
+  description: QA Server
+x-tagGroups:
+- name: Entities
+  tags:
+  - containers
+  - creators
+  - files
+  - filesets
+  - webcaptures
+  - releases
+  - works
+- name: Editing
+  tags:
+  - editors
+  - editgroups
+  - changelog
+- name: Other
+  tags:
+  - auth
+x-fatcat-ident:
+  type: string
+  pattern: '[a-zA-Z2-7]{26}'
+  minLength: 26
+  maxLength: 26
+  description: base32-encoded unique identifier
+x-fatcat-ident-example:
+  example: q3nouwy3nnbsvo3h5klxsx4a7y
+x-fatcat-uuid:
+  type: string
+  pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+  minLength: 36
+  maxLength: 36
+  description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+x-fatcat-uuid-example:
+  example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+x-issn:
+  type: string
+  pattern: \d{4}-\d{3}[0-9X]
+  minLength: 9
+  maxLength: 9
+x-issn-example:
+  example: 1234-5678
+x-orcid:
+  type: string
+  pattern: \d{4}-\d{4}-\d{4}-\d{3}[\dX]
+  minLength: 19
+  maxLength: 19
+  description: ORCiD (https://orcid.org) identifier
+x-orcid-example:
+  example: 0000-0002-1825-0097
+x-md5:
+  type: string
+  pattern: '[a-f0-9]{32}'
+  minLength: 32
+  maxLength: 32
+  description: MD5 hash of data, in hex encoding
+x-md5-example:
+  example: 1b39813549077b2347c0f370c3864b40
+x-sha1:
+  type: string
+  pattern: '[a-f0-9]{40}'
+  minLength: 40
+  maxLength: 40
+  description: SHA-1 hash of data, in hex encoding
+x-sha1-example:
+  example: e9dd75237c94b209dc3ccd52722de6931a310ba3
+x-sha256:
+  type: string
+  pattern: '[a-f0-9]{64}'
+  minLength: 64
+  maxLength: 64
+  description: SHA-256 hash of data, in hex encoding
+x-sha256-example:
+  example: cb1c378f464d5935ddaa8de28446d82638396c61f042295d7fb85e3cccc9e452
+x-entity-props:
+  state:
+    type: string
+    enum:
+    - wip
+    - active
+    - redirect
+    - deleted
+    example: active
+  ident:
+    type: string
+    pattern: '[a-zA-Z2-7]{26}'
+    minLength: 26
+    maxLength: 26
+    description: base32-encoded unique identifier
+    example: q3nouwy3nnbsvo3h5klxsx4a7y
+  revision:
+    type: string
+    pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+    minLength: 36
+    maxLength: 36
+    description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+    example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+  redirect:
+    type: string
+    pattern: '[a-zA-Z2-7]{26}'
+    minLength: 26
+    maxLength: 26
+    description: base32-encoded unique identifier
+    example: q3nouwy3nnbsvo3h5klxsx4a7y
+  extra:
+    type: object
+    description: 'Free-form JSON metadata that will be stored with the other entity
+
+      metadata. See guide for (unenforced) schema conventions.
+
+      '
+    additionalProperties: {}
+  edit_extra:
+    type: object
+    description: 'Free-form JSON metadata that will be stored with specific entity edits
+
+      (eg, creation/update/delete).
+
+      '
+    additionalProperties: {}
+x-auth-responses:
+  401:
+    description: Not Authorized
+    schema:
+      $ref: '#/definitions/error_response'
+    headers:
+      WWW_Authenticate:
+        type: string
+  403:
+    description: Forbidden
+    schema:
+      $ref: '#/definitions/error_response'
+x-entity-responses:
+  400:
+    description: Bad Request
+    schema:
+      $ref: '#/definitions/error_response'
+  404:
+    description: Not Found
+    schema:
+      $ref: '#/definitions/error_response'
+  500:
+    description: Generic Error
+    schema:
+      $ref: '#/definitions/error_response'
