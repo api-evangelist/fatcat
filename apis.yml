@@ -1,5 +1,18 @@
 name: Fatcat
 description: Fatcat is a versioned, user-editable open catalog of published research works maintained by the Internet Archive. It tracks bibliographic metadata, links papers to full-text copies, and preserves access to scholarly publications including journal articles, conference proceedings, and datasets across millions of research works.
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://fatcat.wiki/static/fatcat_logo.svg
 url: https://fatcat.wiki/
 tags:
@@ -15,45 +28,398 @@ created: "2026-06-13"
 modified: "2026-06-13"
 specificationVersion: "0.19"
 apis:
-  - name: Fatcat REST API
-    description: RESTful API providing access to Fatcat's open scholarly catalog, enabling lookup and management of bibliographic metadata for research works including releases, containers, creators, files, filesets, and webcaptures across millions of publications.
-    image: https://fatcat.wiki/static/fatcat_logo.svg
-    humanURL: https://api.fatcat.wiki/redoc
-    baseURL: https://api.fatcat.wiki/v0
-    tags:
-      - Scholarly
-      - Research
-      - Bibliographic
-      - Open Access
-      - Metadata
-    properties:
-      - type: Documentation
-        url: https://guide.fatcat.wiki/http_api.html
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/internetarchive/fatcat/master/fatcat-openapi2.yml
-      - type: Redoc
-        url: https://api.fatcat.wiki/redoc
-      - type: GitHubRepository
-        url: https://github.com/internetarchive/fatcat
-      - type: PricingPage
-        url: https://guide.fatcat.wiki/http_api.html
-      - type: Plans
-        url: plans/plans.yml
-      - type: RateLimits
-        url: rate-limits/rate-limits.yml
-      - type: FinOps
-        url: finops/finops.yml
-    contact:
-      - FN: Fatcat / Internet Archive
-        email: ""
-        url: https://gitter.im/internetarchive/fatcat
-    meta:
-      - name: x-authentication-type
-        value: Bearer Token (Macaroon)
-      - name: x-api-version
-        value: v0
-      - name: x-qa-base-url
-        value: https://api.qa.fatcat.wiki/v0
+- aid: fatcat:fatcat-auth-api
+  name: Fatcat auth API
+  description: 'Helper methods and internal APIs for editor authentication.  # TAGLINE'
+  humanURL: https://api.fatcat.wiki/redoc
+  baseURL: https://api.fatcat.wiki/v0
+  tags:
+  - auth
+  properties:
+  - type: OpenAPI
+    url: openapi/fatcat-auth-api-openapi.yml
+  - type: Documentation
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Redoc
+    url: https://api.fatcat.wiki/redoc
+  - type: GitHubRepository
+    url: https://github.com/internetarchive/fatcat
+  - type: PricingPage
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Plans
+    url: plans/plans.yml
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
+- aid: fatcat:fatcat-changelog-api
+  name: Fatcat changelog API
+  description: >-
+    The **Changelog** is the ordered feed of editgroups which have been  # TAGLINE
+
+    accepted into the catalog.  # TAGLINE
+  humanURL: https://api.fatcat.wiki/redoc
+  baseURL: https://api.fatcat.wiki/v0
+  tags:
+  - changelog
+  properties:
+  - type: OpenAPI
+    url: openapi/fatcat-changelog-api-openapi.yml
+  - type: Documentation
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Redoc
+    url: https://api.fatcat.wiki/redoc
+  - type: GitHubRepository
+    url: https://github.com/internetarchive/fatcat
+  - type: PricingPage
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Plans
+    url: plans/plans.yml
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
+- aid: fatcat:fatcat-containers-api
+  name: Fatcat containers API
+  description: >-
+    **Container** entities represent publication venues like journals,  # TAGLINE
+
+    conference proceedings, book series, or blogs. They group publications  # TAGLINE
+
+    ("releases").  # TAGLINE
+
+
+    See the "Catalog Style Guide" section of the guide for details and  # TAGLINE
+
+    semantics of what should be included in specific entity fields.  # TAGLINE
+
+    Specifically, the  # TAGLINE
+
+    [Container Entity Reference](https://guide.fatcat.wiki/entity_container.html).  # TAGLINE
+  humanURL: https://api.fatcat.wiki/redoc
+  baseURL: https://api.fatcat.wiki/v0
+  tags:
+  - containers
+  properties:
+  - type: OpenAPI
+    url: openapi/fatcat-containers-api-openapi.yml
+  - type: Documentation
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Redoc
+    url: https://api.fatcat.wiki/redoc
+  - type: GitHubRepository
+    url: https://github.com/internetarchive/fatcat
+  - type: PricingPage
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Plans
+    url: plans/plans.yml
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
+- aid: fatcat:fatcat-creators-api
+  name: Fatcat creators API
+  description: >-
+    **Creator** entities represent individuals (or organizations, or other  # TAGLINE
+
+    agents) who contribute to the creation of specific releases  # TAGLINE
+
+    (publications).  # TAGLINE
+
+
+    See the "Catalog Style Guide" section of the guide for details and  # TAGLINE
+
+    semantics of what should be included in specific entity fields.  # TAGLINE
+
+    Specifically, the  # TAGLINE
+
+    [Creator Entity Reference](https://guide.fatcat.wiki/entity_creator.html).  # TAGLINE
+  humanURL: https://api.fatcat.wiki/redoc
+  baseURL: https://api.fatcat.wiki/v0
+  tags:
+  - creators
+  properties:
+  - type: OpenAPI
+    url: openapi/fatcat-creators-api-openapi.yml
+  - type: Documentation
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Redoc
+    url: https://api.fatcat.wiki/redoc
+  - type: GitHubRepository
+    url: https://github.com/internetarchive/fatcat
+  - type: PricingPage
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Plans
+    url: plans/plans.yml
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
+- aid: fatcat:fatcat-editgroups-api
+  name: Fatcat editgroups API
+  description: >-
+    **Editgroups** are sets of changes, each to individual entities in the  # TAGLINE
+
+    catalog. Every edit must be part of an editgroup which is reviewed and  # TAGLINE
+
+    accepted (merged) as a whole.  # TAGLINE
+  humanURL: https://api.fatcat.wiki/redoc
+  baseURL: https://api.fatcat.wiki/v0
+  tags:
+  - editgroups
+  properties:
+  - type: OpenAPI
+    url: openapi/fatcat-editgroups-api-openapi.yml
+  - type: Documentation
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Redoc
+    url: https://api.fatcat.wiki/redoc
+  - type: GitHubRepository
+    url: https://github.com/internetarchive/fatcat
+  - type: PricingPage
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Plans
+    url: plans/plans.yml
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
+- aid: fatcat:fatcat-editors-api
+  name: Fatcat editors API
+  description: >-
+    **Editors** are human user accounts and bots that make changes to the  # TAGLINE
+
+    Fatcat catalog.  # TAGLINE
+
+
+    The API allows fetching (and updating) metadata about individual editors,  # TAGLINE
+
+    as well as fetching editor's annotation and edit history.  # TAGLINE
+  humanURL: https://api.fatcat.wiki/redoc
+  baseURL: https://api.fatcat.wiki/v0
+  tags:
+  - editors
+  properties:
+  - type: OpenAPI
+    url: openapi/fatcat-editors-api-openapi.yml
+  - type: Documentation
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Redoc
+    url: https://api.fatcat.wiki/redoc
+  - type: GitHubRepository
+    url: https://github.com/internetarchive/fatcat
+  - type: PricingPage
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Plans
+    url: plans/plans.yml
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
+- aid: fatcat:fatcat-files-api
+  name: Fatcat files API
+  description: >-
+    **File** entities represent unique digital files which are full  # TAGLINE
+
+    manifestations of specific releases (publications), such as fulltext PDF  # TAGLINE
+
+    files, JATS XML documents, or video files. File entities also include a  # TAGLINE
+
+    set of locations where they can be found on the public web.  # TAGLINE
+
+
+    See the "Catalog Style Guide" section of the guide for details and  # TAGLINE
+
+    semantics of what should be included in specific entity fields.  # TAGLINE
+
+    Specifically, the  # TAGLINE
+
+    [File Entity Reference](https://guide.fatcat.wiki/entity_file.html).  # TAGLINE
+  humanURL: https://api.fatcat.wiki/redoc
+  baseURL: https://api.fatcat.wiki/v0
+  tags:
+  - files
+  properties:
+  - type: OpenAPI
+    url: openapi/fatcat-files-api-openapi.yml
+  - type: Documentation
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Redoc
+    url: https://api.fatcat.wiki/redoc
+  - type: GitHubRepository
+    url: https://github.com/internetarchive/fatcat
+  - type: PricingPage
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Plans
+    url: plans/plans.yml
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
+- aid: fatcat:fatcat-filesets-api
+  name: Fatcat filesets API
+  description: >-
+    **Fileset** entities represent sets of digital files, as well as locations  # TAGLINE
+
+    where they can be found on the public web. Filesets most commonly  # TAGLINE
+
+    represent datasets consisting of several data and metadata files.  # TAGLINE
+
+
+    See the "Catalog Style Guide" section of the guide for details and  # TAGLINE
+
+    semantics of what should be included in specific entity fields.  # TAGLINE
+
+    Specifically, the  # TAGLINE
+
+    [Fileset Entity Reference](https://guide.fatcat.wiki/entity_fileset.html).  # TAGLINE
+  humanURL: https://api.fatcat.wiki/redoc
+  baseURL: https://api.fatcat.wiki/v0
+  tags:
+  - filesets
+  properties:
+  - type: OpenAPI
+    url: openapi/fatcat-filesets-api-openapi.yml
+  - type: Documentation
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Redoc
+    url: https://api.fatcat.wiki/redoc
+  - type: GitHubRepository
+    url: https://github.com/internetarchive/fatcat
+  - type: PricingPage
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Plans
+    url: plans/plans.yml
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
+- aid: fatcat:fatcat-releases-api
+  name: Fatcat releases API
+  description: >-
+    **Release** entities represent specific published versions of a research  # TAGLINE
+
+    work, such as a pre-print, a journal article, a book (or chapter), or a  # TAGLINE
+
+    scholarly blog post. Releases are always grouped together under Works;  # TAGLINE
+
+    they may be published in a specific Container; they may have known  # TAGLINE
+
+    Creators; and there may exist known File/Fileset/WebCapture digital copies  # TAGLINE
+
+    of the release.  # TAGLINE
+
+
+    See the "Catalog Style Guide" section of the guide for details and  # TAGLINE
+
+    semantics of what should be included in specific entity fields.  # TAGLINE
+
+    Specifically, the  # TAGLINE
+
+    [Release Entity Reference](https://guide.fatcat.wiki/entity_release.html).  # TAGLINE
+  humanURL: https://api.fatcat.wiki/redoc
+  baseURL: https://api.fatcat.wiki/v0
+  tags:
+  - releases
+  properties:
+  - type: OpenAPI
+    url: openapi/fatcat-releases-api-openapi.yml
+  - type: Documentation
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Redoc
+    url: https://api.fatcat.wiki/redoc
+  - type: GitHubRepository
+    url: https://github.com/internetarchive/fatcat
+  - type: PricingPage
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Plans
+    url: plans/plans.yml
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
+- aid: fatcat:fatcat-webcaptures-api
+  name: Fatcat webcaptures API
+  description: >-
+    **Web Capture** entities represent archival snapshots of web pages (or  # TAGLINE
+
+    other web resources), which are usually complete manifestations of a  # TAGLINE
+
+    specific release entity. Web Captures also include a set of locations  # TAGLINE
+
+    (wayback replay instances or WARC files) where the capture can be found.  # TAGLINE
+
+
+    See the "Catalog Style Guide" section of the guide for details and  # TAGLINE
+
+    semantics of what should be included in specific entity fields.  # TAGLINE
+
+    Specifically, the  # TAGLINE
+
+    [Web Capture Entity Reference](https://guide.fatcat.wiki/entity_webcapture.html).  # TAGLINE
+  humanURL: https://api.fatcat.wiki/redoc
+  baseURL: https://api.fatcat.wiki/v0
+  tags:
+  - webcaptures
+  properties:
+  - type: OpenAPI
+    url: openapi/fatcat-webcaptures-api-openapi.yml
+  - type: Documentation
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Redoc
+    url: https://api.fatcat.wiki/redoc
+  - type: GitHubRepository
+    url: https://github.com/internetarchive/fatcat
+  - type: PricingPage
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Plans
+    url: plans/plans.yml
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
+- aid: fatcat:fatcat-works-api
+  name: Fatcat works API
+  description: >-
+    **Work** entities group several Release entities which are different  # TAGLINE
+
+    versions of the same abstract piece of research. For example, three  # TAGLINE
+
+    release entities representing the pre-print, published article, and  # TAGLINE
+
+    retraction stages of the same journal paper would be grouped under a  # TAGLINE
+
+    single work.  # TAGLINE
+
+
+    See the "Catalog Style Guide" section of the guide for details and  # TAGLINE
+
+    semantics of what should be included in specific entity fields.  # TAGLINE
+
+    Specifically, the  # TAGLINE
+
+    [Work Entity Reference](https://guide.fatcat.wiki/entity_work.html).  # TAGLINE
+  humanURL: https://api.fatcat.wiki/redoc
+  baseURL: https://api.fatcat.wiki/v0
+  tags:
+  - works
+  properties:
+  - type: OpenAPI
+    url: openapi/fatcat-works-api-openapi.yml
+  - type: Documentation
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Redoc
+    url: https://api.fatcat.wiki/redoc
+  - type: GitHubRepository
+    url: https://github.com/internetarchive/fatcat
+  - type: PricingPage
+    url: https://guide.fatcat.wiki/http_api.html
+  - type: Plans
+    url: plans/plans.yml
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
 maintainers:
   - FN: Internet Archive
     url: https://archive.org/
