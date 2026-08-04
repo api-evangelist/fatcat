@@ -1,0 +1,34 @@
+{
+  "provider": "fatcat",
+  "sources": [
+    "fatcat-auth-api-openapi.yml",
+    "fatcat-changelog-api-openapi.yml",
+    "fatcat-containers-api-openapi.yml",
+    "fatcat-creators-api-openapi.yml",
+    "fatcat-editgroups-api-openapi.yml",
+    "fatcat-editors-api-openapi.yml",
+    "fatcat-files-api-openapi.yml",
+    "fatcat-filesets-api-openapi.yml",
+    "fatcat-releases-api-openapi.yml",
+    "fatcat-webcaptures-api-openapi.yml",
+    "fatcat-works-api-openapi.yml"
+  ],
+  "outputs": [
+    "fatcat-auth-api-openapi.yml",
+    "fatcat-changelog-api-openapi.yml",
+    "fatcat-containers-api-openapi.yml",
+    "fatcat-creators-api-openapi.yml",
+    "fatcat-editgroups-api-openapi.yml",
+    "fatcat-editors-api-openapi.yml",
+    "fatcat-files-api-openapi.yml",
+    "fatcat-filesets-api-openapi.yml",
+    "fatcat-releases-api-openapi.yml",
+    "fatcat-webcaptures-api-openapi.yml",
+    "fatcat-works-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
