@@ -425,6 +425,10 @@ maintainers:
     url: https://archive.org/
     email: info@archive.org
 common:
+- type: IssueTracker
+  url: https://github.com/internetarchive/fatcat/issues
+- type: Releases
+  url: https://github.com/internetarchive/fatcat/releases
 - type: AgenticAccess
   url: agentic-access/fatcat-agentic-access.yml
 - type: Authentication
