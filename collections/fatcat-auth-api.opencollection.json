@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "fatcat auth API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "auth_oidc",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/oidc"
+          },
+          "docs": "Login or create editor account using OIDC metadata (internal method).\n\nThis method is used by privileged front-end tools (like the web\ninterface service) to process editor logins using OpenID Connect (OIDC)\nand/or OAuth. Most accounts (including tool and bot accounts) do not\nhave sufficient privileges to call this method, which requires the\n`admin` role.\n\nThe method returns an API token; the HTTP status code indicates whether\nan existing account was logged in, or a new account was created.\n"
+        },
+        {
+          "info": {
+            "name": "auth_check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/auth/check",
+            "params": [
+              {
+                "name": "role",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Verify that authentication (API token) is working as expected. The\noptional `role` parameter can be used to verify that the current\naccount (editor) has permissions for the given role.\n"
+        },
+        {
+          "info": {
+            "name": "create_auth_token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/token/:editor_id",
+            "params": [
+              {
+                "name": "editor_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "duration_seconds",
+                "value": "",
+                "type": "query",
+                "description": "How long API token should be valid for (in seconds)"
+              }
+            ]
+          },
+          "docs": "Generate a new auth token for a given editor (internal method).\n\nThis method is used by the web interface to generate API tokens for\nusers. It can not be called by editors (human or bot) to generate new\ntokens for themselves, at least at this time.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

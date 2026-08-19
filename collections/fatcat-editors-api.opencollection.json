@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "fatcat auth editors API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "editors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_editor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/editor/:editor_id",
+            "params": [
+              {
+                "name": "editor_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an editor object, including metadata such as the username,\ntype, and role of editor.\n"
+        },
+        {
+          "info": {
+            "name": "update_editor",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/editor/:editor_id",
+            "params": [
+              {
+                "name": "editor_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Allows metadata changes to some editor fields, such as the username.\n\nChanges require authentication and permissions. An editor can change\ntheir own username; changes to role flags require the `admin` role by\nthe editor making the request.\n"
+        },
+        {
+          "info": {
+            "name": "get_editor_editgroups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/editor/:editor_id/editgroups",
+            "params": [
+              {
+                "name": "editor_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Return only editgroups created *before* the given timestamp (not\ninclusive). Editgroups will be sorted by creation time in\ndescending order (most recent first). For use in pagination.\n"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Return only editgroups created *after* the given timestamp (not\ninclusive). Editgroups will be sorted by creation time in ascending\norder (most recent last). For use in pagination.\n"
+              }
+            ]
+          },
+          "docs": "Returns a set of editgroups created by the given editor, regardless of\nthe status (accepted/submitted) of the editgroups.\n"
+        },
+        {
+          "info": {
+            "name": "get_editor_annotations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/editor/:editor_id/annotations",
+            "params": [
+              {
+                "name": "editor_id",
+                "value": "",
+                "type": "path",
+                "description": "base32-encoded unique identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number (count) of annotations to return in response"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Return only annotations made *before* the given timestamp (not\ninclusive). Annotations will be sorted by creation time in\ndescending order (most recent first). For use in pagination.\n"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Return only annotations made *after* the given timestamp (not\ninclusive). Annotations will be sorted by creation time in\nascending order (most recent last). For use in pagination.\n"
+              }
+            ]
+          },
+          "docs": "Fetches a list of annotations made by a particular editor.\n"
+        },
+        {
+          "info": {
+            "name": "lookup_editor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/editor/lookup",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetches editor by, eg, username.\n\nOne (and only one) lookup identifier should be specified per request.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2522 @@
+{
+  "item": [
+    {
+      "id": "96b1b169-c9de-42d3-87a6-40494f6d198e",
+      "name": "editgroups",
+      "description": {
+        "content": "**Editgroups** are sets of changes, each to individual entities in the  # TAGLINE\ncatalog. Every edit must be part of an editgroup which is reviewed and  # TAGLINE\naccepted (merged) as a whole.  # TAGLINE\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3eb59135-7f8b-47bc-a9ca-fff37bfd47b2",
+          "name": "create editgroup",
+          "request": {
+            "name": "create editgroup",
+            "description": {
+              "content": "Creates a new editgroup. By default the editor making this request will\nbe the author of the editgroup.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editgroup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"editgroup_id\": \"<string>\",\n  \"editor_id\": \"<string>\",\n  \"editor\": {\n    \"username\": \"<string>\",\n    \"editor_id\": \"<string>\",\n    \"is_admin\": \"<boolean>\",\n    \"is_bot\": \"<boolean>\",\n    \"is_active\": \"<boolean>\"\n  },\n  \"changelog_index\": \"<long>\",\n  \"created\": \"<dateTime>\",\n  \"submitted\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"extra\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {},\n    \"key_3\": {}\n  },\n  \"annotations\": [\n    {\n      \"annotation_id\": \"<string>\",\n      \"editgroup_id\": \"<string>\",\n      \"editor_id\": \"<string>\",\n      \"editor\": {\n        \"username\": \"<string>\",\n        \"editor_id\": \"<string>\",\n        \"is_admin\": \"<boolean>\",\n        \"is_bot\": \"<boolean>\",\n        \"is_active\": \"<boolean>\"\n      },\n      \"created\": \"<dateTime>\",\n      \"comment_markdown\": \"<string>\",\n      \"extra\": {\n        \"key_0\": {}\n      }\n    },\n    {\n      \"annotation_id\": \"<string>\",\n      \"editgroup_id\": \"<string>\",\n      \"editor_id\": \"<string>\",\n      \"editor\": {\n        \"username\": \"<string>\",\n        \"editor_id\": \"<string>\",\n        \"is_admin\": \"<boolean>\",\n        \"is_bot\": \"<boolean>\",\n        \"is_active\": \"<boolean>\"\n      },\n      \"created\": \"<dateTime>\",\n      \"comment_markdown\": \"<string>\",\n      \"extra\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    }\n  ],\n  \"edits\": {\n    \"containers\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      }\n    ],\n    \"creators\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"files\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      }\n    ],\n    \"filesets\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      }\n    ],\n    \"webcaptures\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      }\n    ],\n    \"releases\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      }\n    ],\n    \"works\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        }\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d5661e25-c9e9-4cce-99d4-21f789c9f1b8",
+              "name": "Successfully Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor\": {\n    \"username\": \"zerocool93\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"is_admin\": false,\n    \"is_bot\": false,\n    \"is_active\": true\n  },\n  \"changelog_index\": 1048576,\n  \"created\": \"<dateTime>\",\n  \"submitted\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"extra\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"annotations\": [\n    {\n      \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n      \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor\": {\n        \"username\": \"zerocool93\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"is_admin\": false,\n        \"is_bot\": false,\n        \"is_active\": true\n      },\n      \"created\": \"<dateTime>\",\n      \"comment_markdown\": \"<string>\",\n      \"extra\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    {\n      \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n      \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor\": {\n        \"username\": \"zerocool93\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"is_admin\": false,\n        \"is_bot\": false,\n        \"is_active\": true\n      },\n      \"created\": \"<dateTime>\",\n      \"comment_markdown\": \"<string>\",\n      \"extra\": {\n        \"key_0\": {}\n      }\n    }\n  ],\n  \"edits\": {\n    \"containers\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"creators\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"files\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"filesets\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"webcaptures\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        }\n      }\n    ],\n    \"releases\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"works\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b439dc7c-e17d-4dfd-b1f6-01672247cb17",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0cff600d-b3be-4635-8062-cdb39dfe1717",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "WWW_Authenticate",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c977847-a36c-423b-87ab-53d199a4963d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d66aa793-b9ae-489e-8337-c7501ae8b023",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ba98feb-31d2-47a4-a721-7e516c6c5b8c",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e00f26f2-b470-4fd6-a1cf-01423abbe0d5",
+          "name": "get editgroup",
+          "request": {
+            "name": "get editgroup",
+            "description": {
+              "content": "Returns a single editgroup object.\n\nUnlike some similar methods, this method will return a full/expanded\neditgroup object, which includes edit lists of each entity type (though\nwill not include the complete entity objects).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editgroup",
+                ":editgroup_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "editgroup_id",
+                  "description": "(Required) base32-encoded unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30e51aa0-e520-4a1d-9301-fe2965bbbbe7",
+              "name": "Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor\": {\n    \"username\": \"zerocool93\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"is_admin\": false,\n    \"is_bot\": false,\n    \"is_active\": true\n  },\n  \"changelog_index\": 1048576,\n  \"created\": \"<dateTime>\",\n  \"submitted\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"extra\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"annotations\": [\n    {\n      \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n      \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor\": {\n        \"username\": \"zerocool93\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"is_admin\": false,\n        \"is_bot\": false,\n        \"is_active\": true\n      },\n      \"created\": \"<dateTime>\",\n      \"comment_markdown\": \"<string>\",\n      \"extra\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    {\n      \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n      \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor\": {\n        \"username\": \"zerocool93\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"is_admin\": false,\n        \"is_bot\": false,\n        \"is_active\": true\n      },\n      \"created\": \"<dateTime>\",\n      \"comment_markdown\": \"<string>\",\n      \"extra\": {\n        \"key_0\": {}\n      }\n    }\n  ],\n  \"edits\": {\n    \"containers\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"creators\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"files\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"filesets\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"webcaptures\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        }\n      }\n    ],\n    \"releases\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"works\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd409a19-6e2d-40d4-865f-28b35f6a0817",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff2f417a-be4c-4d49-b5cb-cf5daeb1f6d2",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7ac9f83-aac4-4b72-a916-16df013246f0",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d197b0bf-a207-4574-9b05-1d934e1dd586",
+          "name": "update editgroup",
+          "request": {
+            "name": "update editgroup",
+            "description": {
+              "content": "Updates metadata for a single editgroup object. Note that only metadata\nfields such as the `description` or `extra` metadata can be changed\nwith this method; it does not allow adding or removing edits to the\neditgroup (for that use the individual entity create/update/delete\nmethods).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editgroup",
+                ":editgroup_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "submit",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "editgroup_id",
+                  "description": "(Required) base32-encoded unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"editgroup_id\": \"<string>\",\n  \"editor_id\": \"<string>\",\n  \"editor\": {\n    \"username\": \"<string>\",\n    \"editor_id\": \"<string>\",\n    \"is_admin\": \"<boolean>\",\n    \"is_bot\": \"<boolean>\",\n    \"is_active\": \"<boolean>\"\n  },\n  \"changelog_index\": \"<long>\",\n  \"created\": \"<dateTime>\",\n  \"submitted\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"extra\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"annotations\": [\n    {\n      \"annotation_id\": \"<string>\",\n      \"editgroup_id\": \"<string>\",\n      \"editor_id\": \"<string>\",\n      \"editor\": {\n        \"username\": \"<string>\",\n        \"editor_id\": \"<string>\",\n        \"is_admin\": \"<boolean>\",\n        \"is_bot\": \"<boolean>\",\n        \"is_active\": \"<boolean>\"\n      },\n      \"created\": \"<dateTime>\",\n      \"comment_markdown\": \"<string>\",\n      \"extra\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    {\n      \"annotation_id\": \"<string>\",\n      \"editgroup_id\": \"<string>\",\n      \"editor_id\": \"<string>\",\n      \"editor\": {\n        \"username\": \"<string>\",\n        \"editor_id\": \"<string>\",\n        \"is_admin\": \"<boolean>\",\n        \"is_bot\": \"<boolean>\",\n        \"is_active\": \"<boolean>\"\n      },\n      \"created\": \"<dateTime>\",\n      \"comment_markdown\": \"<string>\",\n      \"extra\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    }\n  ],\n  \"edits\": {\n    \"containers\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"creators\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      }\n    ],\n    \"files\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        }\n      }\n    ],\n    \"filesets\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"webcaptures\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        }\n      }\n    ],\n    \"releases\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        }\n      }\n    ],\n    \"works\": [\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"<string>\",\n        \"ident\": \"<string>\",\n        \"editgroup_id\": \"<string>\",\n        \"revision\": \"<string>\",\n        \"prev_revision\": \"<string>\",\n        \"redirect_ident\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8938c92e-4653-43c6-839b-b9b663b11857",
+              "name": "Updated Editgroup",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submit",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor\": {\n    \"username\": \"zerocool93\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"is_admin\": false,\n    \"is_bot\": false,\n    \"is_active\": true\n  },\n  \"changelog_index\": 1048576,\n  \"created\": \"<dateTime>\",\n  \"submitted\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"extra\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"annotations\": [\n    {\n      \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n      \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor\": {\n        \"username\": \"zerocool93\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"is_admin\": false,\n        \"is_bot\": false,\n        \"is_active\": true\n      },\n      \"created\": \"<dateTime>\",\n      \"comment_markdown\": \"<string>\",\n      \"extra\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    {\n      \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n      \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor\": {\n        \"username\": \"zerocool93\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"is_admin\": false,\n        \"is_bot\": false,\n        \"is_active\": true\n      },\n      \"created\": \"<dateTime>\",\n      \"comment_markdown\": \"<string>\",\n      \"extra\": {\n        \"key_0\": {}\n      }\n    }\n  ],\n  \"edits\": {\n    \"containers\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"creators\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"files\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"filesets\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"webcaptures\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        }\n      }\n    ],\n    \"releases\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"works\": [\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3490b1f9-a7d4-43b4-9761-b8dd43ae0611",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submit",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aefcf3c6-2133-42b5-be49-9311f33fec4d",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submit",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "WWW_Authenticate",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d34758e5-0262-4e2e-9875-66f3f1621f47",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submit",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4be32ed-1970-43a4-9345-241e09b63438",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submit",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8785aa0-fa15-4e93-b1f3-21bc7b6c104c",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submit",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d080ac6-5607-4bf8-ae84-916d7442abf8",
+          "name": "accept editgroup",
+          "request": {
+            "name": "accept editgroup",
+            "description": {
+              "content": "Accept (\"merge\") the given editgroup into the catalog. The editgroup\nmust be open (not already accepted), and the editor making this request\nmust have the `admin` role.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editgroup",
+                ":editgroup_id",
+                "accept"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "editgroup_id",
+                  "description": "(Required) base32-encoded unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c0aa864c-5444-4cab-8690-6785a0254b97",
+              "name": "Merged Successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"The computers did the thing successfully!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddf0b9ed-c7bb-466d-aa33-332b0ad1fd02",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4f6fbdc-09d7-4b2e-8bef-aa8b29babaaa",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "WWW_Authenticate",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "459568d3-14fe-4200-a628-a08c52f64eb6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff3baa0a-07d2-4d46-a209-a997ea06e872",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd591f9b-abb0-4230-bbaf-42348080a2a8",
+              "name": "Edit Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ded2ff7-0297-4cea-8736-1073eb9f5702",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34a66004-abf3-44bd-9412-c018fe9e2507",
+          "name": "get editgroup annotations",
+          "request": {
+            "name": "get editgroup annotations",
+            "description": {
+              "content": "Returns a list of annotations made to a specific editgroup.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editgroup",
+                ":editgroup_id",
+                "annotations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "List of sub-entities to expand in response. For editgroup annotations: 'editors'"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "editgroup_id",
+                  "description": "(Required) base32-encoded unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "41afdd02-d64b-4be0-8bf3-7ef5a9c8a07b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n    \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor\": {\n      \"username\": \"zerocool93\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"is_admin\": false,\n      \"is_bot\": false,\n      \"is_active\": true\n    },\n    \"created\": \"<dateTime>\",\n    \"comment_markdown\": \"<string>\",\n    \"extra\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  },\n  {\n    \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n    \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor\": {\n      \"username\": \"zerocool93\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"is_admin\": false,\n      \"is_bot\": false,\n      \"is_active\": true\n    },\n    \"created\": \"<dateTime>\",\n    \"comment_markdown\": \"<string>\",\n    \"extra\": {\n      \"key_0\": {}\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ed58c7d-57ae-4474-94ac-ec984667775b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6151216e-dfe1-461e-8419-4d2c5bc39900",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "WWW_Authenticate",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81e6bf0c-5a87-4fb4-9861-09696eca1b16",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "786bbc59-4048-4d7c-8ed3-fdc202855b02",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72424a66-ac04-4388-aaa5-d0a537e4452a",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64cebc3d-eee8-41c9-a576-4834faba396c",
+          "name": "create editgroup annotation",
+          "request": {
+            "name": "create editgroup annotation",
+            "description": {
+              "content": "Submits a new annotation to the specified editgroup.\n\nThe editgroup must be open (not already accepted). The annotation will\nautomatically have authorship of the editor making this request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editgroup",
+                ":editgroup_id",
+                "annotation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "editgroup_id",
+                  "description": "(Required) base32-encoded unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"annotation_id\": \"<string>\",\n  \"editgroup_id\": \"<string>\",\n  \"editor_id\": \"<string>\",\n  \"editor\": {\n    \"username\": \"<string>\",\n    \"editor_id\": \"<string>\",\n    \"is_admin\": \"<boolean>\",\n    \"is_bot\": \"<boolean>\",\n    \"is_active\": \"<boolean>\"\n  },\n  \"created\": \"<dateTime>\",\n  \"comment_markdown\": \"<string>\",\n  \"extra\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4042a1e7-ae28-405a-a2af-b4ddbe31c103",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "annotation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n  \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor\": {\n    \"username\": \"zerocool93\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"is_admin\": false,\n    \"is_bot\": false,\n    \"is_active\": true\n  },\n  \"created\": \"<dateTime>\",\n  \"comment_markdown\": \"<string>\",\n  \"extra\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n  \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor\": {\n    \"username\": \"zerocool93\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"is_admin\": false,\n    \"is_bot\": false,\n    \"is_active\": true\n  },\n  \"created\": \"<dateTime>\",\n  \"comment_markdown\": \"<string>\",\n  \"extra\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f574e72b-3d49-4724-96cc-3127d71065b5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "annotation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n  \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor\": {\n    \"username\": \"zerocool93\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"is_admin\": false,\n    \"is_bot\": false,\n    \"is_active\": true\n  },\n  \"created\": \"<dateTime>\",\n  \"comment_markdown\": \"<string>\",\n  \"extra\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd8489c5-5146-4d76-bebb-e0aaf1cb2f7e",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "annotation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n  \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor\": {\n    \"username\": \"zerocool93\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"is_admin\": false,\n    \"is_bot\": false,\n    \"is_active\": true\n  },\n  \"created\": \"<dateTime>\",\n  \"comment_markdown\": \"<string>\",\n  \"extra\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "WWW_Authenticate",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f6d4414-ccf3-4451-bfe8-8a7758b693c7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "annotation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n  \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor\": {\n    \"username\": \"zerocool93\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"is_admin\": false,\n    \"is_bot\": false,\n    \"is_active\": true\n  },\n  \"created\": \"<dateTime>\",\n  \"comment_markdown\": \"<string>\",\n  \"extra\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abe5b513-12a3-4485-b9b9-0df937b9e784",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "annotation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n  \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor\": {\n    \"username\": \"zerocool93\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"is_admin\": false,\n    \"is_bot\": false,\n    \"is_active\": true\n  },\n  \"created\": \"<dateTime>\",\n  \"comment_markdown\": \"<string>\",\n  \"extra\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0dc58a18-53ef-486d-a766-4804012bd0d7",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    ":editgroup_id",
+                    "annotation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editgroup_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n  \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"editor\": {\n    \"username\": \"zerocool93\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"is_admin\": false,\n    \"is_bot\": false,\n    \"is_active\": true\n  },\n  \"created\": \"<dateTime>\",\n  \"comment_markdown\": \"<string>\",\n  \"extra\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89783006-17ad-4ca5-8aef-e38cbac2c93c",
+          "name": "get editgroups reviewable",
+          "request": {
+            "name": "get editgroups reviewable",
+            "description": {
+              "content": "Returns a set of editgroups which have been submitted but not yet accepted.\n\nQuery parameters can be used to sort and paginate the list returned.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editgroup",
+                "reviewable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "List of sub-entities to expand in response. For editgroups: 'editors'"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>",
+                  "description": "Maximum number of reviewable editgroups to return in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<dateTime>",
+                  "description": "Return only reviewable editgroups submitted *before* the given\ntimestamp (not inclusive). Editgroups will be sorted by submission\ntime in descending order (most recent first). For use in pagination.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<dateTime>",
+                  "description": "Return only reviewable editgroups submitted *after* the given\ntimestamp (not inclusive). Editgroups will be sorted by submission\ntime in ascending order (most recent last). For use in pagination.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d5f90898-c4a5-4f01-b6dd-bb504718c26c",
+              "name": "Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    "reviewable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor\": {\n      \"username\": \"zerocool93\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"is_admin\": false,\n      \"is_bot\": false,\n      \"is_active\": true\n    },\n    \"changelog_index\": 1048576,\n    \"created\": \"<dateTime>\",\n    \"submitted\": \"<dateTime>\",\n    \"description\": \"<string>\",\n    \"extra\": {\n      \"key_0\": {}\n    },\n    \"annotations\": [\n      {\n        \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor\": {\n          \"username\": \"zerocool93\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"is_admin\": false,\n          \"is_bot\": false,\n          \"is_active\": true\n        },\n        \"created\": \"<dateTime>\",\n        \"comment_markdown\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor\": {\n          \"username\": \"zerocool93\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"is_admin\": false,\n          \"is_bot\": false,\n          \"is_active\": true\n        },\n        \"created\": \"<dateTime>\",\n        \"comment_markdown\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      }\n    ],\n    \"edits\": {\n      \"containers\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        }\n      ],\n      \"creators\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {},\n            \"key_3\": {}\n          }\n        }\n      ],\n      \"files\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        }\n      ],\n      \"filesets\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {},\n            \"key_3\": {}\n          }\n        }\n      ],\n      \"webcaptures\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        }\n      ],\n      \"releases\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        }\n      ],\n      \"works\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor\": {\n      \"username\": \"zerocool93\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"is_admin\": false,\n      \"is_bot\": false,\n      \"is_active\": true\n    },\n    \"changelog_index\": 1048576,\n    \"created\": \"<dateTime>\",\n    \"submitted\": \"<dateTime>\",\n    \"description\": \"<string>\",\n    \"extra\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"annotations\": [\n      {\n        \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor\": {\n          \"username\": \"zerocool93\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"is_admin\": false,\n          \"is_bot\": false,\n          \"is_active\": true\n        },\n        \"created\": \"<dateTime>\",\n        \"comment_markdown\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor\": {\n          \"username\": \"zerocool93\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"is_admin\": false,\n          \"is_bot\": false,\n          \"is_active\": true\n        },\n        \"created\": \"<dateTime>\",\n        \"comment_markdown\": \"<string>\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"edits\": {\n      \"containers\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        }\n      ],\n      \"creators\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        }\n      ],\n      \"files\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        }\n      ],\n      \"filesets\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        }\n      ],\n      \"webcaptures\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        }\n      ],\n      \"releases\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        }\n      ],\n      \"works\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfc785e9-1b6a-4e44-8b3f-d08f0bbbfbe5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    "reviewable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a27c863e-8382-4d2e-9eab-7b870c0ffbd6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    "reviewable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e550fe41-db71-4fa5-823b-f40206303544",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editgroup",
+                    "reviewable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fatcat.wiki/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "86666ba9-b824-4a52-bc06-c2b3a098cb3c",
+    "name": "fatcat auth editgroups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fatcat is a scalable, versioned, API-oriented catalog of bibliographic\nentities and file metadata.\n\n<!-- STARTLONGDESCRIPTION -->\nThese API reference documents, along with client software libraries, are\ngenerated automatically from an OpenAPI 2.0 (\"Swagger\") definition file.\n\n## Introduction\n\n\nA higher-level introduction to the API, as well as a description of the\nfatcat data model, are available in [\"The Fatcat Guide\"](https://guide.fatcat.wiki/).\nThe guide also includes a [Cookbook](https://guide.fatcat.wiki/cookbook.html)\nsection demonstrating end-to-end tasks like creating entities as part of\neditgroups, or safely merging duplicate entities.\n\n### Expectations and Best Practices\n\nA test/staging QA API instance of fatcat is available at\n<https://api.qa.fatcat.wiki/v0>. The database backing this instance is\nseparate from the production interface, and is periodically rebuilt from\nsnapshots of the full production database, meaning that edits on the QA\nserver will *NOT* persist, and that semantics like the changelog index\nmonotonically increasing *MAY* be broken. Developers are expexcted to test\ntheir scripts and tools against the QA instance before running against\nproduction.\n\nNOTE: as of Spring 2021, the QA server is temporarily unavailable.\n\nFatcat is made available as a gratis (no cost) and libre (freedom\npreserving) service to the public, with limited funding and resources. We\nwelcome new and unforeseen uses and contributions, but may need to impose\nrestrictions (like rate-limits) to keep the service functional for other\nusers, and in extreme cases reserve the option to block accounts and IP\nranges if necessary to keep the service operational.\n\nThe Internet Archive owns and operates it's own server equipment and data\ncenters, and operations are optimized for low-cost, not high-availability.\nUsers and partners should expect some downtime on the fatcat API, on the\norder of hours a month.\n\nPeriodic metadata exports are available for batch processing, and database\nsnapshots can be used to create locally-hosted mirrors of the service for\nmore intensive and reliable querying.\n\n### Other Nitty Gritties\n\nCross-origin requests are allowed for the API service, to enable third\nparties to build in-browser applications.\n\nA metadata search service is available at <https://search.fatcat.wiki>.\nThe API is currently the raw elasticsearch API, with only GET (read)\nrequests allowed. This public service is experimental and may be removed or\nlimited in the future.\n\n## Authentication\n\nThe API allows basic read-only \"GET\" HTTP requests with no authentication.\nProposing changes to the metadata, or other mutating requests (\"PUT\",\n\"POST\", \"DELETE\") all require authentication, and some operations require\nadditional account permissions.\n\nEnd-user account creation and login happens through the web interface. From\na logged-in editor profile page, you can generate a API token. Tokens are\n\"macaroons\", similar to JWT tokens, and are used for all API\nauthentication. The web interface includes macaroons in browser cookies and\npasses them through to the API to authenticate editor actions.\n\n<!-- ReDoc-Inject: <security-definitions> -->\n<!-- ENDLONGDESCRIPTION -->\n\n\nContact Support:\n Name: Internet Archive Web Group\n Email: webservices@archive.org",
+      "type": "text/plain"
+    }
+  }
+}

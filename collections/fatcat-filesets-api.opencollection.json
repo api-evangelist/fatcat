@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "fatcat auth filesets API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "filesets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "create_fileset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/fileset",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "create_fileset_auto_batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/auto/fileset/batch"
+          }
+        },
+        {
+          "info": {
+            "name": "get_fileset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/fileset/:ident",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. For filesets, `releases` is accepted."
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. For filesets, 'manifest' is accepted."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "update_fileset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/fileset/:ident",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_fileset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/fileset/:ident",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_fileset_revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/fileset/rev/:rev_id",
+            "params": [
+              {
+                "name": "rev_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. See `get_fileset`."
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. See `get_fileset`."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_fileset_history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/fileset/:ident/history",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_fileset_redirects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/fileset/:ident/redirects",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_fileset_edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/fileset/edit/:edit_id",
+            "params": [
+              {
+                "name": "edit_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_fileset_edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/fileset/edit/:edit_id",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "edit_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

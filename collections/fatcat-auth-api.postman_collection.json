@@ -1,0 +1,1140 @@
+{
+  "item": [
+    {
+      "id": "48213153-fa35-4311-a3da-86cc050848d2",
+      "name": "auth",
+      "description": {
+        "content": "Helper methods and internal APIs for editor authentication.  # TAGLINE\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "822dab62-974f-4653-b40d-4bb6eb96ff23",
+          "name": "auth oidc",
+          "request": {
+            "name": "auth oidc",
+            "description": {
+              "content": "Login or create editor account using OIDC metadata (internal method).\n\nThis method is used by privileged front-end tools (like the web\ninterface service) to process editor logins using OpenID Connect (OIDC)\nand/or OAuth. Most accounts (including tool and bot accounts) do not\nhave sufficient privileges to call this method, which requires the\n`admin` role.\n\nThe method returns an API token; the HTTP status code indicates whether\nan existing account was logged in, or a new account was created.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "oidc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"provider\": \"<string>\",\n  \"sub\": \"<string>\",\n  \"iss\": \"<string>\",\n  \"preferred_username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c18672ef-66ac-4507-8e6b-ab9162643d7d",
+              "name": "Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "oidc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"orcid\",\n  \"sub\": \"https://orcid.org\",\n  \"iss\": \"0000-0002-8593-9468\",\n  \"preferred_username\": \"bnewbold\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"editor\": {\n    \"username\": \"zerocool93\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"is_admin\": false,\n    \"is_bot\": false,\n    \"is_active\": true\n  },\n  \"token\": \"AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f555620-5f21-4371-bd5b-ce5ee87f5437",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "oidc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"orcid\",\n  \"sub\": \"https://orcid.org\",\n  \"iss\": \"0000-0002-8593-9468\",\n  \"preferred_username\": \"bnewbold\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"editor\": {\n    \"username\": \"zerocool93\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"is_admin\": false,\n    \"is_bot\": false,\n    \"is_active\": true\n  },\n  \"token\": \"AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a4ed2c0-e289-458e-84a3-c7668476bdfa",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "oidc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"orcid\",\n  \"sub\": \"https://orcid.org\",\n  \"iss\": \"0000-0002-8593-9468\",\n  \"preferred_username\": \"bnewbold\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fa1cedc-10b5-46de-88ab-5138a0dfcdc4",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "oidc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"orcid\",\n  \"sub\": \"https://orcid.org\",\n  \"iss\": \"0000-0002-8593-9468\",\n  \"preferred_username\": \"bnewbold\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "WWW_Authenticate",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ecacffa-e46f-4ffa-bb69-2b7598e85702",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "oidc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"orcid\",\n  \"sub\": \"https://orcid.org\",\n  \"iss\": \"0000-0002-8593-9468\",\n  \"preferred_username\": \"bnewbold\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41229363-f15b-4fa1-9060-497d3c6eeebf",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "oidc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"orcid\",\n  \"sub\": \"https://orcid.org\",\n  \"iss\": \"0000-0002-8593-9468\",\n  \"preferred_username\": \"bnewbold\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5af930a0-10d1-4b8c-bfe4-79a80ffe6365",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "oidc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"orcid\",\n  \"sub\": \"https://orcid.org\",\n  \"iss\": \"0000-0002-8593-9468\",\n  \"preferred_username\": \"bnewbold\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd7683f9-cdf4-49a2-ae0a-0043a9ac7174",
+          "name": "auth check",
+          "request": {
+            "name": "auth check",
+            "description": {
+              "content": "Verify that authentication (API token) is working as expected. The\noptional `role` parameter can be used to verify that the current\naccount (editor) has permissions for the given role.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5e10df4b-b55f-4b7b-ac21-81e4521ded74",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "role",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"The computers did the thing successfully!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5ce828f-133a-4877-b0e4-559eaa99fdad",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "role",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4fd811c-fed9-4a48-96ca-fb14c9915577",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "role",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "WWW_Authenticate",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d17e6b35-3c08-4c77-8504-f272b8441aaa",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "role",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83f521a2-5ab6-4e33-8ea8-4e53e33dcdf8",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "role",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06f6388e-276f-40dc-80ef-ef056d85c773",
+          "name": "create auth token",
+          "request": {
+            "name": "create auth token",
+            "description": {
+              "content": "Generate a new auth token for a given editor (internal method).\n\nThis method is used by the web interface to generate API tokens for\nusers. It can not be called by editors (human or bot) to generate new\ntokens for themselves, at least at this time.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "token",
+                ":editor_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "duration_seconds",
+                  "value": "<integer>",
+                  "description": "How long API token should be valid for (in seconds)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "editor_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7246b609-55f7-4e3a-8501-0c0323ed7520",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "token",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "duration_seconds",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11dcb221-af52-4111-8ec5-46429a61a7af",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "token",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "duration_seconds",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf02c0ce-a4d7-426e-bd20-256a2decba8d",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "token",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "duration_seconds",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "WWW_Authenticate",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82ea81f2-fdf6-4d15-994c-267748597694",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "token",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "duration_seconds",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1cc8854-c763-4b84-8f48-bb0280de6517",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "token",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "duration_seconds",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fatcat.wiki/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "345c441e-5224-45ac-a0f0-29f17d073040",
+    "name": "fatcat auth API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fatcat is a scalable, versioned, API-oriented catalog of bibliographic\nentities and file metadata.\n\n<!-- STARTLONGDESCRIPTION -->\nThese API reference documents, along with client software libraries, are\ngenerated automatically from an OpenAPI 2.0 (\"Swagger\") definition file.\n\n## Introduction\n\n\nA higher-level introduction to the API, as well as a description of the\nfatcat data model, are available in [\"The Fatcat Guide\"](https://guide.fatcat.wiki/).\nThe guide also includes a [Cookbook](https://guide.fatcat.wiki/cookbook.html)\nsection demonstrating end-to-end tasks like creating entities as part of\neditgroups, or safely merging duplicate entities.\n\n### Expectations and Best Practices\n\nA test/staging QA API instance of fatcat is available at\n<https://api.qa.fatcat.wiki/v0>. The database backing this instance is\nseparate from the production interface, and is periodically rebuilt from\nsnapshots of the full production database, meaning that edits on the QA\nserver will *NOT* persist, and that semantics like the changelog index\nmonotonically increasing *MAY* be broken. Developers are expexcted to test\ntheir scripts and tools against the QA instance before running against\nproduction.\n\nNOTE: as of Spring 2021, the QA server is temporarily unavailable.\n\nFatcat is made available as a gratis (no cost) and libre (freedom\npreserving) service to the public, with limited funding and resources. We\nwelcome new and unforeseen uses and contributions, but may need to impose\nrestrictions (like rate-limits) to keep the service functional for other\nusers, and in extreme cases reserve the option to block accounts and IP\nranges if necessary to keep the service operational.\n\nThe Internet Archive owns and operates it's own server equipment and data\ncenters, and operations are optimized for low-cost, not high-availability.\nUsers and partners should expect some downtime on the fatcat API, on the\norder of hours a month.\n\nPeriodic metadata exports are available for batch processing, and database\nsnapshots can be used to create locally-hosted mirrors of the service for\nmore intensive and reliable querying.\n\n### Other Nitty Gritties\n\nCross-origin requests are allowed for the API service, to enable third\nparties to build in-browser applications.\n\nA metadata search service is available at <https://search.fatcat.wiki>.\nThe API is currently the raw elasticsearch API, with only GET (read)\nrequests allowed. This public service is experimental and may be removed or\nlimited in the future.\n\n## Authentication\n\nThe API allows basic read-only \"GET\" HTTP requests with no authentication.\nProposing changes to the metadata, or other mutating requests (\"PUT\",\n\"POST\", \"DELETE\") all require authentication, and some operations require\nadditional account permissions.\n\nEnd-user account creation and login happens through the web interface. From\na logged-in editor profile page, you can generate a API token. Tokens are\n\"macaroons\", similar to JWT tokens, and are used for all API\nauthentication. The web interface includes macaroons in browser cookies and\npasses them through to the API to authenticate editor actions.\n\n<!-- ReDoc-Inject: <security-definitions> -->\n<!-- ENDLONGDESCRIPTION -->\n\n\nContact Support:\n Name: Internet Archive Web Group\n Email: webservices@archive.org",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1610 @@
+{
+  "item": [
+    {
+      "id": "79eb2076-35f6-48cc-9d91-e4d259982722",
+      "name": "editors",
+      "description": {
+        "content": "**Editors** are human user accounts and bots that make changes to the  # TAGLINE\nFatcat catalog.  # TAGLINE\n\nThe API allows fetching (and updating) metadata about individual editors,  # TAGLINE\nas well as fetching editor's annotation and edit history.  # TAGLINE\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "18bb819f-796d-4b59-b440-db274cc9e351",
+          "name": "get editor",
+          "request": {
+            "name": "get editor",
+            "description": {
+              "content": "Returns an editor object, including metadata such as the username,\ntype, and role of editor.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editor",
+                ":editor_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "editor_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f302dcd-e85a-440c-95bc-4cd407a4b966",
+              "name": "Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"zerocool93\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"is_admin\": false,\n  \"is_bot\": false,\n  \"is_active\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "256a6d1a-91aa-4241-8700-b1130f014011",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3dded7df-9aa7-4d1e-935f-c5a926e5f6bc",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c75799c-5b77-4086-ad10-9ca3288e62cd",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "610fe35d-86e3-431d-b2aa-4f0151484a8d",
+          "name": "update editor",
+          "request": {
+            "name": "update editor",
+            "description": {
+              "content": "Allows metadata changes to some editor fields, such as the username.\n\nChanges require authentication and permissions. An editor can change\ntheir own username; changes to role flags require the `admin` role by\nthe editor making the request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editor",
+                ":editor_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "editor_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"editor_id\": \"<string>\",\n  \"is_admin\": \"<boolean>\",\n  \"is_bot\": \"<boolean>\",\n  \"is_active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f596fcf-87e7-45a7-b960-9ad9a6e5fd7c",
+              "name": "Updated Editor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"zerocool93\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"is_admin\": false,\n  \"is_bot\": false,\n  \"is_active\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"zerocool93\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"is_admin\": false,\n  \"is_bot\": false,\n  \"is_active\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0e8a8fa-bfac-4250-8065-200c82936d88",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"zerocool93\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"is_admin\": false,\n  \"is_bot\": false,\n  \"is_active\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35556567-5e6d-40d8-804c-b5e629b3c661",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"zerocool93\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"is_admin\": false,\n  \"is_bot\": false,\n  \"is_active\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "WWW_Authenticate",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab17b6c9-6389-46c9-b93b-331d594a8ce3",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"zerocool93\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"is_admin\": false,\n  \"is_bot\": false,\n  \"is_active\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8669a9c0-d776-4302-9796-830232c3108c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"zerocool93\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"is_admin\": false,\n  \"is_bot\": false,\n  \"is_active\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b34a6124-409a-4214-b921-5febe5761ae9",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"zerocool93\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"is_admin\": false,\n  \"is_bot\": false,\n  \"is_active\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0aaf53d9-acb5-4d38-b817-79cbd832a932",
+          "name": "get editor editgroups",
+          "request": {
+            "name": "get editor editgroups",
+            "description": {
+              "content": "Returns a set of editgroups created by the given editor, regardless of\nthe status (accepted/submitted) of the editgroups.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editor",
+                ":editor_id",
+                "editgroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<dateTime>",
+                  "description": "Return only editgroups created *before* the given timestamp (not\ninclusive). Editgroups will be sorted by creation time in\ndescending order (most recent first). For use in pagination.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<dateTime>",
+                  "description": "Return only editgroups created *after* the given timestamp (not\ninclusive). Editgroups will be sorted by creation time in ascending\norder (most recent last). For use in pagination.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "editor_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78abc006-4a5a-4d15-8078-811c5eaee953",
+              "name": "Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id",
+                    "editgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor\": {\n      \"username\": \"zerocool93\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"is_admin\": false,\n      \"is_bot\": false,\n      \"is_active\": true\n    },\n    \"changelog_index\": 1048576,\n    \"created\": \"1995-07-06T15:57:52.879Z\",\n    \"submitted\": \"2022-05-02T13:16:38.767Z\",\n    \"description\": \"string\",\n    \"extra\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"annotations\": [\n      {\n        \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor\": {\n          \"username\": \"zerocool93\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"is_admin\": false,\n          \"is_bot\": false,\n          \"is_active\": true\n        },\n        \"created\": \"1952-06-15T12:20:13.329Z\",\n        \"comment_markdown\": \"string\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor\": {\n          \"username\": \"zerocool93\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"is_admin\": false,\n          \"is_bot\": false,\n          \"is_active\": true\n        },\n        \"created\": \"1980-10-17T18:12:38.163Z\",\n        \"comment_markdown\": \"string\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {},\n          \"key_4\": {}\n        }\n      }\n    ],\n    \"edits\": {\n      \"containers\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        }\n      ],\n      \"creators\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        }\n      ],\n      \"files\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        }\n      ],\n      \"filesets\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {},\n            \"key_3\": {},\n            \"key_4\": {}\n          }\n        }\n      ],\n      \"webcaptures\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        }\n      ],\n      \"releases\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        }\n      ],\n      \"works\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {},\n            \"key_3\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {},\n            \"key_3\": {},\n            \"key_4\": {}\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor\": {\n      \"username\": \"zerocool93\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"is_admin\": false,\n      \"is_bot\": false,\n      \"is_active\": true\n    },\n    \"changelog_index\": 1048576,\n    \"created\": \"1952-12-16T16:49:40.857Z\",\n    \"submitted\": \"2002-08-27T11:50:16.531Z\",\n    \"description\": \"string\",\n    \"extra\": {\n      \"key_0\": {}\n    },\n    \"annotations\": [\n      {\n        \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor\": {\n          \"username\": \"zerocool93\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"is_admin\": false,\n          \"is_bot\": false,\n          \"is_active\": true\n        },\n        \"created\": \"1962-05-30T03:22:23.615Z\",\n        \"comment_markdown\": \"string\",\n        \"extra\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor\": {\n          \"username\": \"zerocool93\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"is_admin\": false,\n          \"is_bot\": false,\n          \"is_active\": true\n        },\n        \"created\": \"2017-02-01T10:22:54.253Z\",\n        \"comment_markdown\": \"string\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"edits\": {\n      \"containers\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {},\n            \"key_3\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        }\n      ],\n      \"creators\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        }\n      ],\n      \"files\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        }\n      ],\n      \"filesets\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        }\n      ],\n      \"webcaptures\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        }\n      ],\n      \"releases\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        }\n      ],\n      \"works\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {},\n            \"key_3\": {}\n          }\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7945673-3853-4383-9376-8b6b12912a5f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id",
+                    "editgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b5462b9-7bdb-4150-8698-eea41c962a62",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id",
+                    "editgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d168296-bfba-4495-8d59-80f7ea6ba4a0",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id",
+                    "editgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ecbd7d71-8643-47df-8731-2963a7eb5f8f",
+          "name": "get editor annotations",
+          "request": {
+            "name": "get editor annotations",
+            "description": {
+              "content": "Fetches a list of annotations made by a particular editor.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editor",
+                ":editor_id",
+                "annotations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>",
+                  "description": "Maximum number (count) of annotations to return in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<dateTime>",
+                  "description": "Return only annotations made *before* the given timestamp (not\ninclusive). Annotations will be sorted by creation time in\ndescending order (most recent first). For use in pagination.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<dateTime>",
+                  "description": "Return only annotations made *after* the given timestamp (not\ninclusive). Annotations will be sorted by creation time in\nascending order (most recent last). For use in pagination.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "editor_id",
+                  "description": "(Required) base32-encoded unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92482be9-66ff-4e37-8e44-a975c55ff3f2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n    \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor\": {\n      \"username\": \"zerocool93\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"is_admin\": false,\n      \"is_bot\": false,\n      \"is_active\": true\n    },\n    \"created\": \"1989-06-10T05:57:14.746Z\",\n    \"comment_markdown\": \"string\",\n    \"extra\": {\n      \"key_0\": {}\n    }\n  },\n  {\n    \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n    \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor\": {\n      \"username\": \"zerocool93\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"is_admin\": false,\n      \"is_bot\": false,\n      \"is_active\": true\n    },\n    \"created\": \"2026-01-12T23:15:10.763Z\",\n    \"comment_markdown\": \"string\",\n    \"extra\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b2df58a-4212-40f2-a042-333d79d10242",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "105b16f3-f425-4351-9633-b6d628930397",
+              "name": "Not Authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "WWW_Authenticate",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90e19ffe-9778-446c-baa1-d812d42aa5b9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb669db0-7899-44cc-973b-fc5c81498969",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43ddeedf-438a-4045-9639-bde260c31f61",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    ":editor_id",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editor_id",
+                      "description": "(Required) base32-encoded unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8efb1ddc-3963-45de-abdd-13294c3f0784",
+          "name": "lookup editor",
+          "request": {
+            "name": "lookup editor",
+            "description": {
+              "content": "Fetches editor by, eg, username.\n\nOne (and only one) lookup identifier should be specified per request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editor",
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cac67308-1242-4f66-a30a-484bd20e0f5d",
+              "name": "Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"zerocool93\",\n  \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"is_admin\": false,\n  \"is_bot\": false,\n  \"is_active\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e68df7f-57e6-48f8-aca5-7f506c784f1e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e9a19e5-9d68-4c1d-b9e0-d7adc26ff871",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b87faa4-8afa-4ead-9015-44ad28394a3e",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editor",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fatcat.wiki/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "97919f96-0c60-4afa-b7b0-c6efc82730c8",
+    "name": "fatcat auth editors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fatcat is a scalable, versioned, API-oriented catalog of bibliographic\nentities and file metadata.\n\n<!-- STARTLONGDESCRIPTION -->\nThese API reference documents, along with client software libraries, are\ngenerated automatically from an OpenAPI 2.0 (\"Swagger\") definition file.\n\n## Introduction\n\n\nA higher-level introduction to the API, as well as a description of the\nfatcat data model, are available in [\"The Fatcat Guide\"](https://guide.fatcat.wiki/).\nThe guide also includes a [Cookbook](https://guide.fatcat.wiki/cookbook.html)\nsection demonstrating end-to-end tasks like creating entities as part of\neditgroups, or safely merging duplicate entities.\n\n### Expectations and Best Practices\n\nA test/staging QA API instance of fatcat is available at\n<https://api.qa.fatcat.wiki/v0>. The database backing this instance is\nseparate from the production interface, and is periodically rebuilt from\nsnapshots of the full production database, meaning that edits on the QA\nserver will *NOT* persist, and that semantics like the changelog index\nmonotonically increasing *MAY* be broken. Developers are expexcted to test\ntheir scripts and tools against the QA instance before running against\nproduction.\n\nNOTE: as of Spring 2021, the QA server is temporarily unavailable.\n\nFatcat is made available as a gratis (no cost) and libre (freedom\npreserving) service to the public, with limited funding and resources. We\nwelcome new and unforeseen uses and contributions, but may need to impose\nrestrictions (like rate-limits) to keep the service functional for other\nusers, and in extreme cases reserve the option to block accounts and IP\nranges if necessary to keep the service operational.\n\nThe Internet Archive owns and operates it's own server equipment and data\ncenters, and operations are optimized for low-cost, not high-availability.\nUsers and partners should expect some downtime on the fatcat API, on the\norder of hours a month.\n\nPeriodic metadata exports are available for batch processing, and database\nsnapshots can be used to create locally-hosted mirrors of the service for\nmore intensive and reliable querying.\n\n### Other Nitty Gritties\n\nCross-origin requests are allowed for the API service, to enable third\nparties to build in-browser applications.\n\nA metadata search service is available at <https://search.fatcat.wiki>.\nThe API is currently the raw elasticsearch API, with only GET (read)\nrequests allowed. This public service is experimental and may be removed or\nlimited in the future.\n\n## Authentication\n\nThe API allows basic read-only \"GET\" HTTP requests with no authentication.\nProposing changes to the metadata, or other mutating requests (\"PUT\",\n\"POST\", \"DELETE\") all require authentication, and some operations require\nadditional account permissions.\n\nEnd-user account creation and login happens through the web interface. From\na logged-in editor profile page, you can generate a API token. Tokens are\n\"macaroons\", similar to JWT tokens, and are used for all API\nauthentication. The web interface includes macaroons in browser cookies and\npasses them through to the API to authenticate editor actions.\n\n<!-- ReDoc-Inject: <security-definitions> -->\n<!-- ENDLONGDESCRIPTION -->\n\n\nContact Support:\n Name: Internet Archive Web Group\n Email: webservices@archive.org",
+      "type": "text/plain"
+    }
+  }
+}

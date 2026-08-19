@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "fatcat auth webcaptures API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "webcaptures",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "create_webcapture",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/webcapture",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "create_webcapture_auto_batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/auto/webcapture/batch"
+          }
+        },
+        {
+          "info": {
+            "name": "get_webcapture",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/webcapture/:ident",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. For webcaptures, `releases` is accepted."
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. For webcaptures, 'cdx' is accepted."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "update_webcapture",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/webcapture/:ident",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_webcapture",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/webcapture/:ident",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_webcapture_revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/webcapture/rev/:rev_id",
+            "params": [
+              {
+                "name": "rev_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. See `get_webcapture`."
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. See `get_webcapture`."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_webcapture_history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/webcapture/:ident/history",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_webcapture_redirects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/webcapture/:ident/redirects",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_webcapture_edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/webcapture/edit/:edit_id",
+            "params": [
+              {
+                "name": "edit_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_webcapture_edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/webcapture/edit/:edit_id",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "edit_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

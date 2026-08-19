@@ -1,0 +1,172 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "fatcat auth editgroups API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "editgroups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "create_editgroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup"
+          },
+          "docs": "Creates a new editgroup. By default the editor making this request will\nbe the author of the editgroup.\n"
+        },
+        {
+          "info": {
+            "name": "get_editgroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path",
+                "description": "base32-encoded unique identifier"
+              }
+            ]
+          },
+          "docs": "Returns a single editgroup object.\n\nUnlike some similar methods, this method will return a full/expanded\neditgroup object, which includes edit lists of each entity type (though\nwill not include the complete entity objects).\n"
+        },
+        {
+          "info": {
+            "name": "update_editgroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path",
+                "description": "base32-encoded unique identifier"
+              },
+              {
+                "name": "submit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Updates metadata for a single editgroup object. Note that only metadata\nfields such as the `description` or `extra` metadata can be changed\nwith this method; it does not allow adding or removing edits to the\neditgroup (for that use the individual entity create/update/delete\nmethods).\n"
+        },
+        {
+          "info": {
+            "name": "accept_editgroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/accept",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path",
+                "description": "base32-encoded unique identifier"
+              }
+            ]
+          },
+          "docs": "Accept (\"merge\") the given editgroup into the catalog. The editgroup\nmust be open (not already accepted), and the editor making this request\nmust have the `admin` role.\n"
+        },
+        {
+          "info": {
+            "name": "get_editgroup_annotations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/annotations",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path",
+                "description": "base32-encoded unique identifier"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. For editgroup annotations: 'editors'"
+              }
+            ]
+          },
+          "docs": "Returns a list of annotations made to a specific editgroup."
+        },
+        {
+          "info": {
+            "name": "create_editgroup_annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/annotation",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path",
+                "description": "base32-encoded unique identifier"
+              }
+            ]
+          },
+          "docs": "Submits a new annotation to the specified editgroup.\n\nThe editgroup must be open (not already accepted). The annotation will\nautomatically have authorship of the editor making this request.\n"
+        },
+        {
+          "info": {
+            "name": "get_editgroups_reviewable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/editgroup/reviewable",
+            "params": [
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. For editgroups: 'editors'"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of reviewable editgroups to return in response"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Return only reviewable editgroups submitted *before* the given\ntimestamp (not inclusive). Editgroups will be sorted by submission\ntime in descending order (most recent first). For use in pagination.\n"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Return only reviewable editgroups submitted *after* the given\ntimestamp (not inclusive). Editgroups will be sorted by submission\ntime in ascending order (most recent last). For use in pagination.\n"
+              }
+            ]
+          },
+          "docs": "Returns a set of editgroups which have been submitted but not yet accepted.\n\nQuery parameters can be used to sort and paginate the list returned.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

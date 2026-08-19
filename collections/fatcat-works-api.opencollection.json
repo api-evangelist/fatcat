@@ -1,0 +1,252 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "fatcat auth works API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "works",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "create_work",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/work",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "create_work_auto_batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/auto/work/batch"
+          }
+        },
+        {
+          "info": {
+            "name": "get_work",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/work/:ident",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. For works, none accepted (yet)."
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. For works, none accepted (yet)."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "update_work",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/work/:ident",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_work",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/work/:ident",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_work_revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/work/rev/:rev_id",
+            "params": [
+              {
+                "name": "rev_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. See `get_work`, though note that identifier-based expansions like `releases` will always be empty for revisions."
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. See `get_work`."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_work_history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/work/:ident/history",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_work_redirects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/work/:ident/redirects",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_work_releases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/work/:ident/releases",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. See `get_release`."
+              }
+            ]
+          },
+          "docs": "Returns the set of release entities that are part of this work (aka,\nhave `work_id` pointing to this work entity).\n"
+        },
+        {
+          "info": {
+            "name": "get_work_edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/work/edit/:edit_id",
+            "params": [
+              {
+                "name": "edit_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_work_edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/work/edit/:edit_id",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "edit_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

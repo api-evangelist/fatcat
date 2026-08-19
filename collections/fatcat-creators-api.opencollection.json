@@ -1,0 +1,287 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "fatcat auth creators API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "creators",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "create_creator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/creator",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "create_creator_auto_batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/auto/creator/batch"
+          }
+        },
+        {
+          "info": {
+            "name": "get_creator",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/creator/:ident",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. For creators, none accepted (yet)."
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. For creators, none accepted (yet)."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "update_creator",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/creator/:ident",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_creator",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/creator/:ident",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_creator_revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/creator/rev/:rev_id",
+            "params": [
+              {
+                "name": "rev_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. See `get_creator`,\nthough note that identifier-based expansions (like `releases`) will\nalways be empty for revisions.\n"
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. See `get_creator`."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_creator_history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/creator/:ident/history",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_creator_releases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/creator/:ident/releases",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. See `get_release`."
+              }
+            ]
+          },
+          "docs": "Returns the set of Release entities having a `contrib` entry pointing\nto the creator entity.\n"
+        },
+        {
+          "info": {
+            "name": "get_creator_redirects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/creator/:ident/redirects",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "lookup_creator",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/creator/lookup",
+            "params": [
+              {
+                "name": "orcid",
+                "value": "",
+                "type": "query",
+                "description": "ORCiD (https://orcid.org) identifier"
+              },
+              {
+                "name": "wikidata_qid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. See `get_creator`."
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. See `get_creator`."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_creator_edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/creator/edit/:edit_id",
+            "params": [
+              {
+                "name": "edit_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_creator_edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/creator/edit/:edit_id",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "edit_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

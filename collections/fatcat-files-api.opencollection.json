@@ -1,0 +1,270 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "fatcat auth files API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "create_file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/file",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "create_file_auto_batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/auto/file/batch"
+          }
+        },
+        {
+          "info": {
+            "name": "get_file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/file/:ident",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. For files, `releases` is accepted."
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. For files, none accepted (yet)."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "update_file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/file/:ident",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/file/:ident",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_file_revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/file/rev/:rev_id",
+            "params": [
+              {
+                "name": "rev_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. See `get_file`."
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. See `get_file`."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_file_history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/file/:ident/history",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_file_redirects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/file/:ident/redirects",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "lookup_file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/file/lookup",
+            "params": [
+              {
+                "name": "md5",
+                "value": "",
+                "type": "query",
+                "description": "MD5 hash of data, in hex encoding"
+              },
+              {
+                "name": "sha1",
+                "value": "",
+                "type": "query",
+                "description": "SHA-1 hash of data, in hex encoding"
+              },
+              {
+                "name": "sha256",
+                "value": "",
+                "type": "query",
+                "description": "SHA-256 hash of data, in hex encoding"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. See `get_file`."
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. See `get_file`."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "get_file_edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/file/edit/:edit_id",
+            "params": [
+              {
+                "name": "edit_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "delete_file_edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/file/edit/:edit_id",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "edit_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

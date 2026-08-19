@@ -1,0 +1,414 @@
+{
+  "item": [
+    {
+      "id": "2fb65685-f89b-4c96-8462-145eff41094e",
+      "name": "changelog",
+      "description": {
+        "content": "The **Changelog** is the ordered feed of editgroups which have been  # TAGLINE\naccepted into the catalog.  # TAGLINE\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "00f3e4b4-e7e5-4286-ae9a-83dd2049f031",
+          "name": "get changelog",
+          "request": {
+            "name": "get changelog",
+            "description": {
+              "content": "Returns a list of the most recent changelog entries accepted (merged)\ninto the catalog.\n\nList is sorted by changelog index in descending order. Note that the\naccepted timestamp roughly corresponds to order, but not strictly;\nthere exist out-of-order timestamps on the order of several seconds.\n\nAs a known database issue, it is technically possible for there to be a\ngap in changelog index numbers (aka, a missing changelog entry). There\nare no currently known gaps and this is considered a bug that will be\naddressed.\n\nThere are millions of entries; to paginate through all of them, use\nthis method to discover the highest existing entry number, then request\nthe entries using `get_changelog_entry` one at a time.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "changelog"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>",
+                  "description": "Maximum count of changelog entries to return in response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "40c7fdc5-50f7-4061-bd55-e33326512fd6",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "changelog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"index\": 6179,\n    \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"timestamp\": \"1967-01-21T14:37:06.724Z\",\n    \"editgroup\": {\n      \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor\": {\n        \"username\": \"zerocool93\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"is_admin\": false,\n        \"is_bot\": false,\n        \"is_active\": true\n      },\n      \"changelog_index\": 1048576,\n      \"created\": \"1956-01-25T18:06:42.276Z\",\n      \"submitted\": \"1956-10-15T14:45:00.044Z\",\n      \"description\": \"string\",\n      \"extra\": {\n        \"key_0\": {}\n      },\n      \"annotations\": [\n        {\n          \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editor\": {\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"editor_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_admin\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created\": \"1967-12-04T09:07:59.571Z\",\n          \"comment_markdown\": \"string\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editor\": {\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"editor_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_admin\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created\": \"1985-01-01T01:28:23.793Z\",\n          \"comment_markdown\": \"string\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        }\n      ],\n      \"edits\": {\n        \"containers\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"creators\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"files\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"filesets\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"webcaptures\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"releases\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"works\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_3\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"index\": 6173,\n    \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"timestamp\": \"1978-07-05T22:48:05.284Z\",\n    \"editgroup\": {\n      \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"editor\": {\n        \"username\": \"zerocool93\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"is_admin\": false,\n        \"is_bot\": false,\n        \"is_active\": true\n      },\n      \"changelog_index\": 1048576,\n      \"created\": \"1976-12-07T22:37:33.633Z\",\n      \"submitted\": \"1969-08-15T06:06:19.197Z\",\n      \"description\": \"string\",\n      \"extra\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      },\n      \"annotations\": [\n        {\n          \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editor\": {\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"editor_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_admin\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created\": \"1956-04-18T14:16:11.330Z\",\n          \"comment_markdown\": \"string\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        },\n        {\n          \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editor\": {\n            \"username\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"editor_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_admin\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_bot\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_active\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created\": \"2016-04-11T04:44:50.640Z\",\n          \"comment_markdown\": \"string\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        }\n      ],\n      \"edits\": {\n        \"containers\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"creators\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"files\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"filesets\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"webcaptures\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"releases\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"works\": [\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n            \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n            \"extra\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ]\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f94a53c2-0eea-44e6-a06f-2f2fb8835e3e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "changelog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12bcc094-e3c5-46f0-8c62-84b0a0633c50",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "changelog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13377690-294f-4132-8026-3cbd54b4c715",
+          "name": "get changelog entry",
+          "request": {
+            "name": "get changelog entry",
+            "description": {
+              "content": "Returns a single changelog entry.\n\nAs a known database issue, it is technically possible for there to be a\ngap in changelog index numbers (aka, a missing changelog entry). There\nare no currently known gaps and this is considered a bug that will be\naddressed.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "changelog",
+                ":index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "index",
+                  "description": "(Required) Changelog index of entry to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c926816-2c37-4d27-a486-0f21b3c6ec79",
+              "name": "Found Changelog Entry",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "changelog",
+                    ":index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "index",
+                      "description": "(Required) Changelog index of entry to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"index\": 49,\n  \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n  \"timestamp\": \"1950-05-22T13:30:16.362Z\",\n  \"editgroup\": {\n    \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n    \"editor\": {\n      \"username\": \"zerocool93\",\n      \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n      \"is_admin\": false,\n      \"is_bot\": false,\n      \"is_active\": true\n    },\n    \"changelog_index\": 1048576,\n    \"created\": \"2023-05-29T19:17:00.362Z\",\n    \"submitted\": \"2018-07-13T05:09:30.783Z\",\n    \"description\": \"string\",\n    \"extra\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"annotations\": [\n      {\n        \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor\": {\n          \"username\": \"zerocool93\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"is_admin\": false,\n          \"is_bot\": false,\n          \"is_active\": true\n        },\n        \"created\": \"1988-04-19T05:03:27.650Z\",\n        \"comment_markdown\": \"string\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      },\n      {\n        \"annotation_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n        \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n        \"editor\": {\n          \"username\": \"zerocool93\",\n          \"editor_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"is_admin\": false,\n          \"is_bot\": false,\n          \"is_active\": true\n        },\n        \"created\": \"1961-10-19T07:56:09.869Z\",\n        \"comment_markdown\": \"string\",\n        \"extra\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"edits\": {\n      \"containers\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        }\n      ],\n      \"creators\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        }\n      ],\n      \"files\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        }\n      ],\n      \"filesets\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        }\n      ],\n      \"webcaptures\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        }\n      ],\n      \"releases\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        }\n      ],\n      \"works\": [\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        },\n        {\n          \"edit_id\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"editgroup_id\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"prev_revision\": \"86daea5b-1b6b-432a-bb67-ea97795f80fe\",\n          \"redirect_ident\": \"q3nouwy3nnbsvo3h5klxsx4a7y\",\n          \"extra\": {\n            \"key_0\": {}\n          }\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "253753ce-e5ce-46ec-8fa3-1d9afc0b0065",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "changelog",
+                    ":index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "index",
+                      "description": "(Required) Changelog index of entry to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76bd8f32-a66d-4386-b7e5-f3560696f689",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "changelog",
+                    ":index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "index",
+                      "description": "(Required) Changelog index of entry to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c73434c-4436-4cae-8717-2cffd4d9f42c",
+              "name": "Generic Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "changelog",
+                    ":index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "index",
+                      "description": "(Required) Changelog index of entry to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": \"unexpected-thing\",\n  \"message\": \"A really confusing, totally unexpected thing happened\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fatcat.wiki/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "08680ba3-9bbc-41a2-855b-9fee09fff74a",
+    "name": "fatcat auth changelog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fatcat is a scalable, versioned, API-oriented catalog of bibliographic\nentities and file metadata.\n\n<!-- STARTLONGDESCRIPTION -->\nThese API reference documents, along with client software libraries, are\ngenerated automatically from an OpenAPI 2.0 (\"Swagger\") definition file.\n\n## Introduction\n\n\nA higher-level introduction to the API, as well as a description of the\nfatcat data model, are available in [\"The Fatcat Guide\"](https://guide.fatcat.wiki/).\nThe guide also includes a [Cookbook](https://guide.fatcat.wiki/cookbook.html)\nsection demonstrating end-to-end tasks like creating entities as part of\neditgroups, or safely merging duplicate entities.\n\n### Expectations and Best Practices\n\nA test/staging QA API instance of fatcat is available at\n<https://api.qa.fatcat.wiki/v0>. The database backing this instance is\nseparate from the production interface, and is periodically rebuilt from\nsnapshots of the full production database, meaning that edits on the QA\nserver will *NOT* persist, and that semantics like the changelog index\nmonotonically increasing *MAY* be broken. Developers are expexcted to test\ntheir scripts and tools against the QA instance before running against\nproduction.\n\nNOTE: as of Spring 2021, the QA server is temporarily unavailable.\n\nFatcat is made available as a gratis (no cost) and libre (freedom\npreserving) service to the public, with limited funding and resources. We\nwelcome new and unforeseen uses and contributions, but may need to impose\nrestrictions (like rate-limits) to keep the service functional for other\nusers, and in extreme cases reserve the option to block accounts and IP\nranges if necessary to keep the service operational.\n\nThe Internet Archive owns and operates it's own server equipment and data\ncenters, and operations are optimized for low-cost, not high-availability.\nUsers and partners should expect some downtime on the fatcat API, on the\norder of hours a month.\n\nPeriodic metadata exports are available for batch processing, and database\nsnapshots can be used to create locally-hosted mirrors of the service for\nmore intensive and reliable querying.\n\n### Other Nitty Gritties\n\nCross-origin requests are allowed for the API service, to enable third\nparties to build in-browser applications.\n\nA metadata search service is available at <https://search.fatcat.wiki>.\nThe API is currently the raw elasticsearch API, with only GET (read)\nrequests allowed. This public service is experimental and may be removed or\nlimited in the future.\n\n## Authentication\n\nThe API allows basic read-only \"GET\" HTTP requests with no authentication.\nProposing changes to the metadata, or other mutating requests (\"PUT\",\n\"POST\", \"DELETE\") all require authentication, and some operations require\nadditional account permissions.\n\nEnd-user account creation and login happens through the web interface. From\na logged-in editor profile page, you can generate a API token. Tokens are\n\"macaroons\", similar to JWT tokens, and are used for all API\nauthentication. The web interface includes macaroons in browser cookies and\npasses them through to the API to authenticate editor actions.\n\n<!-- ReDoc-Inject: <security-definitions> -->\n<!-- ENDLONGDESCRIPTION -->\n\n\nContact Support:\n Name: Internet Archive Web Group\n Email: webservices@archive.org",
+      "type": "text/plain"
+    }
+  }
+}

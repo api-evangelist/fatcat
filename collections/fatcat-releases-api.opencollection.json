@@ -1,0 +1,405 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "fatcat auth releases API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "releases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "create_release",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/release",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a single Release entity as part of an existing editgroup. If the\n`work_id` field is not set, a work entity will be created automatically\nand this field set pointing to the new work.\n\nEditgroup must be mutable (aka, not accepted) and editor must have\npermission (aka, have created the editgrou p or have `admin` role).\n"
+        },
+        {
+          "info": {
+            "name": "create_release_auto_batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/editgroup/auto/release/batch"
+          },
+          "docs": "Create a set of Release entities as part of a new editgroup, and\naccept that editgroup in the same atomic request.\n\nThis method is mostly useful for bulk import of new entities by\ncarefully written bots. This method is more efficient than creating an\neditgroup, several entities, then accepting the editgroup, both in\nterms of API requests required and database load. Requires `admin`\nrole.\n"
+        },
+        {
+          "info": {
+            "name": "get_release",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/release/:ident",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. For releases, 'files',\n'filesets, 'webcaptures', 'container', and 'creators' are valid.\n"
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response (for efficiency). For\nreleases, 'abstracts', 'refs', and 'contribs' are valid.\n"
+              }
+            ]
+          },
+          "docs": "Fetches a single Release entity from the catalog.\n"
+        },
+        {
+          "info": {
+            "name": "update_release",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/release/:ident",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Updates an existing entity as part of a specific (existing) editgroup.\nThe editgroup must be open for updates (aka, not accepted/merged), and\nthe editor making the request must have permissions (aka, must have\ncreated the editgroup or have `admin` role).\n\nThis method can also be used to update an existing entity edit as part\nof an editgroup. For example, if an entity was created in this\neditgroup, an editor could make changes to the new entity's metadata\nbefore merging.\n"
+        },
+        {
+          "info": {
+            "name": "delete_release",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/release/:ident",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Creates a new \"deletion\" edit for a specific entity as part of an\nexisting editgroup.\n\nThis is not the method to use to remove an edit from an editgroup; for\nthat use `delete_release_edit`.\n"
+        },
+        {
+          "info": {
+            "name": "get_release_revision",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/release/rev/:rev_id",
+            "params": [
+              {
+                "name": "rev_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. See `get_release`, though note that identifier-based exapansions like `file` will always be empty for revisions."
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. See `get_release`."
+              }
+            ]
+          },
+          "docs": "Fetches a specific entity revision. Note that the returned revision\nwill not be associated with any particular fatcat identifier (even if\none or more identifiers do currently point to this revision). The\nrevision may even be part of an un-merged editgroup.\n\nRevisions are immutable and can not be deleted or updated.\n"
+        },
+        {
+          "info": {
+            "name": "get_release_history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/release/:ident/history",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetches the history of accepted edits (changelog entries) for a\nspecific entity fatcat identifier.\n"
+        },
+        {
+          "info": {
+            "name": "get_release_files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/release/:ident/files",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. See `get_file`."
+              }
+            ]
+          },
+          "docs": "Returns the set of File entities that have a `release_id` pointing to\nthis release entity.\n"
+        },
+        {
+          "info": {
+            "name": "get_release_filesets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/release/:ident/filesets",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. See `get_fileset`."
+              }
+            ]
+          },
+          "docs": "Returns the set of Fileset entities that have a `release_id` pointing to\nthis release entity.\n"
+        },
+        {
+          "info": {
+            "name": "get_release_webcaptures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/release/:ident/webcaptures",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of entity fields to elide in response. See `get_webcapture`."
+              }
+            ]
+          },
+          "docs": "Returns the set of Web Capture entities that have a `release_id`\npointing to this release entity.\n"
+        },
+        {
+          "info": {
+            "name": "get_release_redirects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/release/:ident/redirects",
+            "params": [
+              {
+                "name": "ident",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the set of entity identifiers which currently redirect to this\nidentifier.\n"
+        },
+        {
+          "info": {
+            "name": "lookup_release",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/release/lookup",
+            "params": [
+              {
+                "name": "doi",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "wikidata_qid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isbn13",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pmid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pmcid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "core",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "arxiv",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "jstor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ark",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mag",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "doaj",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dblp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "oai",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "hdl",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to expand in response. See `get_release`."
+              },
+              {
+                "name": "hide",
+                "value": "",
+                "type": "query",
+                "description": "List of sub-entities to elide in response. See `get_release`."
+              }
+            ]
+          },
+          "docs": "Looks for an active entity with the given external identifier. If any\nsuch entity is found, returns a single complete entity. If multiple\nentities have the same external identifier, this is considered a soft\ncatalog error, and the behavior of which entity is returned is\nundefined.\n\nOne (and only one) external identifier should be specified per request.\n"
+        },
+        {
+          "info": {
+            "name": "get_release_edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/release/edit/:edit_id",
+            "params": [
+              {
+                "name": "edit_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              }
+            ]
+          },
+          "docs": "Returns the entity edit object with the given identifier. This method\nis expected to be used rarely.\n"
+        },
+        {
+          "info": {
+            "name": "delete_release_edit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/editgroup/:editgroup_id/release/edit/:edit_id",
+            "params": [
+              {
+                "name": "editgroup_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "edit_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID (lower-case, dash-separated, hex-encoded 128-bit)"
+              }
+            ]
+          },
+          "docs": "Removes a single edit from the specified editgroup. The editgroup must\nbe mutable (aka, not accepted/merged), and the editor making this\nrequest must have permission (aka, have created the editgroup or hold\nthe `admin` role).\n\nNot to be confused with the `delete_container` method, which *creates*\na new edit in the given editgroup.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

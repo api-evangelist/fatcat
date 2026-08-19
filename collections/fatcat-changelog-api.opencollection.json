@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "fatcat auth changelog API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "changelog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_changelog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/changelog",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum count of changelog entries to return in response"
+              }
+            ]
+          },
+          "docs": "Returns a list of the most recent changelog entries accepted (merged)\ninto the catalog.\n\nList is sorted by changelog index in descending order. Note that the\naccepted timestamp roughly corresponds to order, but not strictly;\nthere exist out-of-order timestamps on the order of several seconds.\n\nAs a known database issue, it is technically possible for there to be a\ngap in changelog index numbers (aka, a missing changelog entry). There\nare no currently known gaps and this is considered a bug that "
+        },
+        {
+          "info": {
+            "name": "get_changelog_entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/changelog/:index",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "Changelog index of entry to return"
+              }
+            ]
+          },
+          "docs": "Returns a single changelog entry.\n\nAs a known database issue, it is technically possible for there to be a\ngap in changelog index numbers (aka, a missing changelog entry). There\nare no currently known gaps and this is considered a bug that will be\naddressed.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
