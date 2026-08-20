@@ -34,6 +34,8 @@ apis:
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
+  - Authentication
+  tags_raw:
   - auth
   properties:
   - type: OpenAPI
@@ -61,6 +63,8 @@ apis:
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
+  - Changelog
+  tags_raw:
   - changelog
   properties:
   - type: OpenAPI
@@ -99,6 +103,8 @@ apis:
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
+  - Containers
+  tags_raw:
   - containers
   properties:
   - type: OpenAPI
@@ -137,6 +143,8 @@ apis:
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
+  - Creators
+  tags_raw:
   - creators
   properties:
   - type: OpenAPI
@@ -198,6 +206,8 @@ apis:
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
+  - Editors
+  tags_raw:
   - editors
   properties:
   - type: OpenAPI
@@ -238,6 +248,8 @@ apis:
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
+  - File
+  tags_raw:
   - files
   properties:
   - type: OpenAPI
@@ -320,6 +332,8 @@ apis:
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
+  - Releases
+  tags_raw:
   - releases
   properties:
   - type: OpenAPI
@@ -402,6 +416,8 @@ apis:
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
+  - Works
+  tags_raw:
   - works
   properties:
   - type: OpenAPI
