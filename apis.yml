@@ -454,6 +454,9 @@ maintainers:
     url: https://archive.org/
     email: info@archive.org
 common:
+- type: CapabilityMap
+  url: capabilities/fatcat-capability-edges.yml
+  name: Fatcat Business Capability Map
 - type: IssueTracker
   url: https://github.com/internetarchive/fatcat/issues
 - type: Releases

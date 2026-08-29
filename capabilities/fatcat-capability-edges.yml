@@ -1,0 +1,45 @@
+slug: fatcat
+provider: Fatcat
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Education
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: releases
+  spec_file: fatcat-releases-api-openapi.yml
+  capability_id: BC-4780.40
+  capability_id_l1: BC-4780
+  capability_name: Scholarly Output & Publication Management
+  confidence: 0.75
+  evidence: POST /editgroup/{editgroup_id}/release create_release; GET /release/lookup lookup_release;
+    schemas release_ext_ids, release_abstract, release_contrib, container_entity
+  reason: Releases are the published research works themselves (journal articles, proceedings) with external
+    persistent identifiers, abstracts, contributors and container journals — clearly scholarly output
+    and publication metadata stewardship.
+- tag: auth
+  spec_file: fatcat-auth-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /auth/oidc  auth_oidc; POST /auth/token/{editor_id}  create_auth_token
+  reason: OIDC login and API token issuance for editors — authentication plumbing; if mapped at all it
+    is identity and access management, not a domain capability.
+- tag: works
+  spec_file: fatcat-works-api-openapi.yml
+  capability_id: BC-4780.40
+  capability_id_l1: BC-4780
+  capability_name: Scholarly Output & Publication Management
+  confidence: 0.72
+  evidence: POST /editgroup/{editgroup_id}/work create_work; GET /work/{ident}/releases get_work_releases;
+    schema work_entity
+  reason: Work entities group the releases (versions) of a single scholarly publication in the bibliographic
+    catalog — management of the scholarly publication record.
