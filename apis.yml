@@ -156,7 +156,7 @@ apis:
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
-  - creators
+  - Creators
   tags_raw:
   - creators
   properties:
@@ -219,7 +219,7 @@ apis:
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
-  - editors
+  - Editors
   tags_raw:
   - editors
   properties:
@@ -345,7 +345,7 @@ apis:
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
-  - releases
+  - Releases
   tags_raw:
   - releases
   properties:
@@ -429,7 +429,7 @@ apis:
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
-  - works
+  - Works
   tags_raw:
   - works
   properties:
