@@ -1,5 +1,8 @@
 name: Fatcat
-description: Fatcat is a versioned, user-editable open catalog of published research works maintained by the Internet Archive. It tracks bibliographic metadata, links papers to full-text copies, and preserves access to scholarly publications including journal articles, conference proceedings, and datasets across millions of research works.
+description: Fatcat is a versioned, user-editable open catalog of published research works maintained
+  by the Internet Archive. It tracks bibliographic metadata, links papers to full-text copies, and preserves
+  access to scholarly publications including journal articles, conference proceedings, and datasets across
+  millions of research works.
 deliveryModel:
   model: unknown
   open_source: unknown
@@ -29,16 +32,16 @@ accessModel:
 image: https://fatcat.wiki/static/fatcat_logo.svg
 url: https://fatcat.wiki/
 tags:
-  - Scholarly
-  - Research
-  - Academic
-  - Open Access
-  - Bibliographic
-  - Publications
-  - Metadata
-  - Internet Archive
-created: "2026-06-13"
-modified: "2026-06-13"
+- Scholarly
+- Research
+- Academic
+- Open Access
+- Bibliographic
+- Publications
+- Metadata
+- Internet Archive
+created: '2026-06-13'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: fatcat:fatcat-auth-api
@@ -69,10 +72,9 @@ apis:
     url: finops/finops.yml
 - aid: fatcat:fatcat-changelog-api
   name: Fatcat changelog API
-  description: >-
-    The **Changelog** is the ordered feed of editgroups which have been  # TAGLINE
+  description: 'The **Changelog** is the ordered feed of editgroups which have been  # TAGLINE
 
-    accepted into the catalog.  # TAGLINE
+    accepted into the catalog.  # TAGLINE'
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
@@ -98,8 +100,7 @@ apis:
     url: finops/finops.yml
 - aid: fatcat:fatcat-containers-api
   name: Fatcat containers API
-  description: >-
-    **Container** entities represent publication venues like journals,  # TAGLINE
+  description: '**Container** entities represent publication venues like journals,  # TAGLINE
 
     conference proceedings, book series, or blogs. They group publications  # TAGLINE
 
@@ -112,7 +113,7 @@ apis:
 
     Specifically, the  # TAGLINE
 
-    [Container Entity Reference](https://guide.fatcat.wiki/entity_container.html).  # TAGLINE
+    [Container Entity Reference](https://guide.fatcat.wiki/entity_container.html).  # TAGLINE'
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
@@ -138,8 +139,7 @@ apis:
     url: finops/finops.yml
 - aid: fatcat:fatcat-creators-api
   name: Fatcat creators API
-  description: >-
-    **Creator** entities represent individuals (or organizations, or other  # TAGLINE
+  description: '**Creator** entities represent individuals (or organizations, or other  # TAGLINE
 
     agents) who contribute to the creation of specific releases  # TAGLINE
 
@@ -152,7 +152,7 @@ apis:
 
     Specifically, the  # TAGLINE
 
-    [Creator Entity Reference](https://guide.fatcat.wiki/entity_creator.html).  # TAGLINE
+    [Creator Entity Reference](https://guide.fatcat.wiki/entity_creator.html).  # TAGLINE'
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
@@ -178,12 +178,11 @@ apis:
     url: finops/finops.yml
 - aid: fatcat:fatcat-editgroups-api
   name: Fatcat editgroups API
-  description: >-
-    **Editgroups** are sets of changes, each to individual entities in the  # TAGLINE
+  description: '**Editgroups** are sets of changes, each to individual entities in the  # TAGLINE
 
     catalog. Every edit must be part of an editgroup which is reviewed and  # TAGLINE
 
-    accepted (merged) as a whole.  # TAGLINE
+    accepted (merged) as a whole.  # TAGLINE'
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
@@ -207,15 +206,14 @@ apis:
     url: finops/finops.yml
 - aid: fatcat:fatcat-editors-api
   name: Fatcat editors API
-  description: >-
-    **Editors** are human user accounts and bots that make changes to the  # TAGLINE
+  description: '**Editors** are human user accounts and bots that make changes to the  # TAGLINE
 
     Fatcat catalog.  # TAGLINE
 
 
     The API allows fetching (and updating) metadata about individual editors,  # TAGLINE
 
-    as well as fetching editor's annotation and edit history.  # TAGLINE
+    as well as fetching editor''s annotation and edit history.  # TAGLINE'
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
@@ -241,8 +239,7 @@ apis:
     url: finops/finops.yml
 - aid: fatcat:fatcat-files-api
   name: Fatcat files API
-  description: >-
-    **File** entities represent unique digital files which are full  # TAGLINE
+  description: '**File** entities represent unique digital files which are full  # TAGLINE
 
     manifestations of specific releases (publications), such as fulltext PDF  # TAGLINE
 
@@ -257,7 +254,7 @@ apis:
 
     Specifically, the  # TAGLINE
 
-    [File Entity Reference](https://guide.fatcat.wiki/entity_file.html).  # TAGLINE
+    [File Entity Reference](https://guide.fatcat.wiki/entity_file.html).  # TAGLINE'
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
@@ -283,8 +280,7 @@ apis:
     url: finops/finops.yml
 - aid: fatcat:fatcat-filesets-api
   name: Fatcat filesets API
-  description: >-
-    **Fileset** entities represent sets of digital files, as well as locations  # TAGLINE
+  description: '**Fileset** entities represent sets of digital files, as well as locations  # TAGLINE
 
     where they can be found on the public web. Filesets most commonly  # TAGLINE
 
@@ -297,7 +293,7 @@ apis:
 
     Specifically, the  # TAGLINE
 
-    [Fileset Entity Reference](https://guide.fatcat.wiki/entity_fileset.html).  # TAGLINE
+    [Fileset Entity Reference](https://guide.fatcat.wiki/entity_fileset.html).  # TAGLINE'
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
@@ -321,8 +317,7 @@ apis:
     url: finops/finops.yml
 - aid: fatcat:fatcat-releases-api
   name: Fatcat releases API
-  description: >-
-    **Release** entities represent specific published versions of a research  # TAGLINE
+  description: '**Release** entities represent specific published versions of a research  # TAGLINE
 
     work, such as a pre-print, a journal article, a book (or chapter), or a  # TAGLINE
 
@@ -341,7 +336,7 @@ apis:
 
     Specifically, the  # TAGLINE
 
-    [Release Entity Reference](https://guide.fatcat.wiki/entity_release.html).  # TAGLINE
+    [Release Entity Reference](https://guide.fatcat.wiki/entity_release.html).  # TAGLINE'
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
@@ -367,8 +362,7 @@ apis:
     url: finops/finops.yml
 - aid: fatcat:fatcat-webcaptures-api
   name: Fatcat webcaptures API
-  description: >-
-    **Web Capture** entities represent archival snapshots of web pages (or  # TAGLINE
+  description: '**Web Capture** entities represent archival snapshots of web pages (or  # TAGLINE
 
     other web resources), which are usually complete manifestations of a  # TAGLINE
 
@@ -383,7 +377,7 @@ apis:
 
     Specifically, the  # TAGLINE
 
-    [Web Capture Entity Reference](https://guide.fatcat.wiki/entity_webcapture.html).  # TAGLINE
+    [Web Capture Entity Reference](https://guide.fatcat.wiki/entity_webcapture.html).  # TAGLINE'
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
@@ -407,8 +401,7 @@ apis:
     url: finops/finops.yml
 - aid: fatcat:fatcat-works-api
   name: Fatcat works API
-  description: >-
-    **Work** entities group several Release entities which are different  # TAGLINE
+  description: '**Work** entities group several Release entities which are different  # TAGLINE
 
     versions of the same abstract piece of research. For example, three  # TAGLINE
 
@@ -425,7 +418,7 @@ apis:
 
     Specifically, the  # TAGLINE
 
-    [Work Entity Reference](https://guide.fatcat.wiki/entity_work.html).  # TAGLINE
+    [Work Entity Reference](https://guide.fatcat.wiki/entity_work.html).  # TAGLINE'
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
@@ -450,10 +443,12 @@ apis:
   - type: FinOps
     url: finops/finops.yml
 maintainers:
-  - FN: Internet Archive
-    url: https://archive.org/
-    email: info@archive.org
+- FN: Internet Archive
+  url: https://archive.org/
+  email: info@archive.org
 common:
+- type: Website
+  url: https://fatcat.wiki
 - type: CapabilityMap
   url: capabilities/fatcat-capability-edges.yml
   name: Fatcat Business Capability Map
