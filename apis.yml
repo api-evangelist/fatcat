@@ -217,7 +217,7 @@ apis:
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
   tags:
-  - Editors
+  - Editor
   tags_raw:
   - editors
   properties:
