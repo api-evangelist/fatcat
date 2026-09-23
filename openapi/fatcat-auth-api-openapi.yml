@@ -1,131 +1,10 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  title: fatcat auth API
+  title: fatcat Auth API
   version: 0.5.0
   description: 'Fatcat is a scalable, versioned, API-oriented catalog of bibliographic
 
-    entities and file metadata.
-
-
-    <!-- STARTLONGDESCRIPTION -->
-
-    These API reference documents, along with client software libraries, are
-
-    generated automatically from an OpenAPI 2.0 ("Swagger") definition file.
-
-
-    ## Introduction
-
-
-
-    A higher-level introduction to the API, as well as a description of the
-
-    fatcat data model, are available in ["The Fatcat Guide"](https://guide.fatcat.wiki/).
-
-    The guide also includes a [Cookbook](https://guide.fatcat.wiki/cookbook.html)
-
-    section demonstrating end-to-end tasks like creating entities as part of
-
-    editgroups, or safely merging duplicate entities.
-
-
-    ### Expectations and Best Practices
-
-
-    A test/staging QA API instance of fatcat is available at
-
-    <https://api.qa.fatcat.wiki/v0>. The database backing this instance is
-
-    separate from the production interface, and is periodically rebuilt from
-
-    snapshots of the full production database, meaning that edits on the QA
-
-    server will *NOT* persist, and that semantics like the changelog index
-
-    monotonically increasing *MAY* be broken. Developers are expexcted to test
-
-    their scripts and tools against the QA instance before running against
-
-    production.
-
-
-    NOTE: as of Spring 2021, the QA server is temporarily unavailable.
-
-
-    Fatcat is made available as a gratis (no cost) and libre (freedom
-
-    preserving) service to the public, with limited funding and resources. We
-
-    welcome new and unforeseen uses and contributions, but may need to impose
-
-    restrictions (like rate-limits) to keep the service functional for other
-
-    users, and in extreme cases reserve the option to block accounts and IP
-
-    ranges if necessary to keep the service operational.
-
-
-    The Internet Archive owns and operates it''s own server equipment and data
-
-    centers, and operations are optimized for low-cost, not high-availability.
-
-    Users and partners should expect some downtime on the fatcat API, on the
-
-    order of hours a month.
-
-
-    Periodic metadata exports are available for batch processing, and database
-
-    snapshots can be used to create locally-hosted mirrors of the service for
-
-    more intensive and reliable querying.
-
-
-    ### Other Nitty Gritties
-
-
-    Cross-origin requests are allowed for the API service, to enable third
-
-    parties to build in-browser applications.
-
-
-    A metadata search service is available at <https://search.fatcat.wiki>.
-
-    The API is currently the raw elasticsearch API, with only GET (read)
-
-    requests allowed. This public service is experimental and may be removed or
-
-    limited in the future.
-
-
-    ## Authentication
-
-
-    The API allows basic read-only "GET" HTTP requests with no authentication.
-
-    Proposing changes to the metadata, or other mutating requests ("PUT",
-
-    "POST", "DELETE") all require authentication, and some operations require
-
-    additional account permissions.
-
-
-    End-user account creation and login happens through the web interface. From
-
-    a logged-in editor profile page, you can generate a API token. Tokens are
-
-    "macaroons", similar to JWT tokens, and are used for all API
-
-    authentication. The web interface includes macaroons in browser cookies and
-
-    passes them through to the API to authenticate editor actions.
-
-
-    <!-- ReDoc-Inject: <security-definitions> -->
-
-    <!-- ENDLONGDESCRIPTION -->
-
-    '
+    entities and file metadata.'
   termsOfService: https://guide.fatcat.wiki/policies.html
   contact:
     name: Internet Archive Web Group
@@ -135,26 +14,18 @@ info:
     url: https://fatcat.wiki/static/paper_man_confused.gif
     altText: Confused Papers Man (Logo)
     backgroundColor: '#FFFFFF'
-host: api.fatcat.wiki
-basePath: /v0
-schemes:
-- https
-consumes:
-- application/json
-produces:
-- application/json
+servers:
+- url: https://api.fatcat.wiki/v0
 tags:
-- name: auth
+- name: Auth
   x-displayName: Auth Methods
-  description: 'Helper methods and internal APIs for editor authentication.  # TAGLINE
-
-    '
+  description: 'Helper methods and internal APIs for editor authentication. # TAGLINE'
 paths:
   /auth/oidc:
     post:
       operationId: auth_oidc
       tags:
-      - auth
+      - Auth
       description: 'Login or create editor account using OIDC metadata (internal method).
 
 
@@ -171,102 +42,130 @@ paths:
 
         The method returns an API token; the HTTP status code indicates whether
 
-        an existing account was logged in, or a new account was created.
-
-        '
+        an existing account was logged in, or a new account was created.'
       security:
       - Bearer: []
-      parameters:
-      - name: oidc_params
-        in: body
-        required: true
-        schema:
-          $ref: '#/definitions/auth_oidc'
       responses:
         401:
           description: Not Authorized
-          schema:
-            $ref: '#/definitions/error_response'
           headers:
             WWW_Authenticate:
-              type: string
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
         403:
           description: Forbidden
-          schema:
-            $ref: '#/definitions/error_response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
         200:
           description: Found
-          schema:
-            $ref: '#/definitions/auth_oidc_result'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/auth_oidc_result'
         201:
           description: Created
-          schema:
-            $ref: '#/definitions/auth_oidc_result'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/auth_oidc_result'
         400:
           description: Bad Request
-          schema:
-            $ref: '#/definitions/error_response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
         409:
           description: Conflict
-          schema:
-            $ref: '#/definitions/error_response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
         500:
           description: Generic Error
-          schema:
-            $ref: '#/definitions/error_response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/auth_oidc'
+        required: true
+      summary: Auth oidc
+      x-summary-source: derived
   /auth/check:
     get:
       operationId: auth_check
       tags:
-      - auth
+      - Auth
       description: 'Verify that authentication (API token) is working as expected. The
 
         optional `role` parameter can be used to verify that the current
 
-        account (editor) has permissions for the given role.
-
-        '
+        account (editor) has permissions for the given role.'
       security:
       - Bearer: []
       parameters:
       - name: role
         in: query
         required: false
-        type: string
+        schema:
+          type: string
       responses:
         401:
           description: Not Authorized
-          schema:
-            $ref: '#/definitions/error_response'
           headers:
             WWW_Authenticate:
-              type: string
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
         403:
           description: Forbidden
-          schema:
-            $ref: '#/definitions/error_response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
         200:
           description: Success
-          schema:
-            $ref: '#/definitions/success'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
         400:
           description: Bad Request
-          schema:
-            $ref: '#/definitions/error_response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
         500:
           description: Generic Error
-          schema:
-            $ref: '#/definitions/error_response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
+      summary: Auth check
+      x-summary-source: derived
   /auth/token/{editor_id}:
     parameters:
     - name: editor_id
       in: path
-      type: string
       required: true
+      schema:
+        type: string
     post:
       operationId: create_auth_token
       tags:
-      - auth
+      - Auth
       description: 'Generate a new auth token for a given editor (internal method).
 
 
@@ -274,177 +173,190 @@ paths:
 
         users. It can not be called by editors (human or bot) to generate new
 
-        tokens for themselves, at least at this time.
-
-        '
+        tokens for themselves, at least at this time.'
       security:
       - Bearer: []
       parameters:
       - name: duration_seconds
         in: query
-        type: integer
         required: false
         description: How long API token should be valid for (in seconds)
+        schema:
+          type: integer
       responses:
         401:
           description: Not Authorized
-          schema:
-            $ref: '#/definitions/error_response'
           headers:
             WWW_Authenticate:
-              type: string
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
         403:
           description: Forbidden
-          schema:
-            $ref: '#/definitions/error_response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
         200:
           description: Success
-          schema:
-            $ref: '#/definitions/auth_token_result'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/auth_token_result'
         400:
           description: Bad Request
-          schema:
-            $ref: '#/definitions/error_response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
         500:
           description: Generic Error
-          schema:
-            $ref: '#/definitions/error_response'
-definitions:
-  auth_oidc_result:
-    type: object
-    required:
-    - editor
-    - token
-    properties:
-      editor:
-        $ref: '#/definitions/editor'
-      token:
-        type: string
-        example: AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=
-  auth_token_result:
-    type: object
-    required:
-    - token
-    properties:
-      token:
-        type: string
-        example: AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=
-  error_response:
-    type: object
-    required:
-    - success
-    - error
-    - message
-    properties:
-      success:
-        type: boolean
-        example: false
-      error:
-        type: string
-        example: unexpected-thing
-      message:
-        type: string
-        example: A really confusing, totally unexpected thing happened
-  success:
-    type: object
-    required:
-    - success
-    - message
-    properties:
-      success:
-        type: boolean
-        example: true
-      message:
-        type: string
-        example: The computers did the thing successfully!
-  editor:
-    type: object
-    required:
-    - username
-    properties:
-      editor_id:
-        type: string
-        pattern: '[a-zA-Z2-7]{26}'
-        minLength: 26
-        maxLength: 26
-        description: 'Fatcat identifier for the editor. Can not be changed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
+      summary: Create auth token
+      x-summary-source: derived
+components:
+  schemas:
+    success:
+      type: object
+      required:
+      - success
+      - message
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: The computers did the thing successfully!
+    auth_token_result:
+      type: object
+      required:
+      - token
+      properties:
+        token:
+          type: string
+          example: AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=
+    auth_oidc:
+      type: object
+      required:
+      - provider
+      - sub
+      - iss
+      - preferred_username
+      properties:
+        provider:
+          type: string
+          example: orcid
+          description: 'Fatcat-specific short name (slug) for remote service being used for
 
-          '
-        example: q3nouwy3nnbsvo3h5klxsx4a7y
-      username:
-        type: string
-        example: zerocool93
-        description: 'Username/handle (short slug-like string) to identify this editor. May
+            authentication.
 
-          be changed at any time by the editor; use the `editor_id` as a
+            '
+        sub:
+          type: string
+          description: '`SUB` from OIDC protocol. Usually a URL.'
+          example: https://orcid.org
+        iss:
+          type: string
+          description: '`ISS` from OIDC protocol. Usually a stable account username, number, or identifier.'
+          example: 0000-0002-8593-9468
+        preferred_username:
+          type: string
+          description: 'What it sounds like; returned by OIDC, and used as a hint when
 
-          persistend identifier.
+            creating new editor accounts. Fatcat usernames are usually this
 
-          '
-      is_admin:
-        type: boolean
-        example: false
-        description: 'Whether this editor has the `admin` role.
+            string with the `provider` slug as a suffix, though some munging may
 
-          '
-      is_bot:
-        type: boolean
-        example: false
-        description: 'Whether this editor is a bot (as opposed to a human making manual
+            occur.
 
-          edits)
+            '
+          example: bnewbold
+    error_response:
+      type: object
+      required:
+      - success
+      - error
+      - message
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          example: unexpected-thing
+        message:
+          type: string
+          example: A really confusing, totally unexpected thing happened
+    editor:
+      type: object
+      required:
+      - username
+      properties:
+        editor_id:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'Fatcat identifier for the editor. Can not be changed.
 
-          '
-      is_active:
-        type: boolean
-        example: true
-        description: 'Whether this editor''s account is enabled (if not API tokens and web
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        username:
+          type: string
+          example: zerocool93
+          description: 'Username/handle (short slug-like string) to identify this editor. May
 
-          logins will not work).
+            be changed at any time by the editor; use the `editor_id` as a
 
-          '
-  auth_oidc:
-    type: object
-    required:
-    - provider
-    - sub
-    - iss
-    - preferred_username
-    properties:
-      provider:
-        type: string
-        example: orcid
-        description: 'Fatcat-specific short name (slug) for remote service being used for
+            persistend identifier.
 
-          authentication.
+            '
+        is_admin:
+          type: boolean
+          example: false
+          description: 'Whether this editor has the `admin` role.
 
-          '
-      sub:
-        type: string
-        description: '`SUB` from OIDC protocol. Usually a URL.'
-        example: https://orcid.org
-      iss:
-        type: string
-        description: '`ISS` from OIDC protocol. Usually a stable account username, number, or identifier.'
-        example: 0000-0002-8593-9468
-      preferred_username:
-        type: string
-        description: 'What it sounds like; returned by OIDC, and used as a hint when
+            '
+        is_bot:
+          type: boolean
+          example: false
+          description: 'Whether this editor is a bot (as opposed to a human making manual
 
-          creating new editor accounts. Fatcat usernames are usually this
+            edits)
 
-          string with the `provider` slug as a suffix, though some munging may
+            '
+        is_active:
+          type: boolean
+          example: true
+          description: 'Whether this editor''s account is enabled (if not API tokens and web
 
-          occur.
+            logins will not work).
 
-          '
-        example: bnewbold
-securityDefinitions:
-  Bearer:
-    type: apiKey
-    name: Authorization
-    in: header
-    description: "The only current API authentication mechanism is HTTP bearer\nauthentication using the `Authorization` HTTP header. The header should\nbe formatted as the string \"Bearer\", then a space, then API token (in the\nusual base64 string encoding).\n\nAn example HTTP request would look on the wire like:\n\n    GET /v0/auth/check HTTP/1.1\n    Accept: */*\n    Accept-Encoding: gzip, deflate\n    Authorization: Bearer AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\n    Connection: keep-alive\n    Host: api.qa.fatcat.wiki\n    User-Agent: HTTPie/0.9.8\n\nHeaders can be passed on the command line using `http` (HTTPie) like:\n\n    http get https://api.qa.fatcat.wiki/v0/auth/check Authorization:\"Bearer AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\"\n\nOr with `curl`:\n\n    curl -H \"Authorization: Bearer AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\" https://qa.fatcat.wiki/v0/auth/check\n"
+            '
+    auth_oidc_result:
+      type: object
+      required:
+      - editor
+      - token
+      properties:
+        editor:
+          $ref: '#/components/schemas/editor'
+        token:
+          type: string
+          example: AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: "The only current API authentication mechanism is HTTP bearer\nauthentication using the `Authorization` HTTP header. The header should\nbe formatted as the string \"Bearer\", then a space, then API token (in the\nusual base64 string encoding).\n\nAn example HTTP request would look on the wire like:\n\n    GET /v0/auth/check HTTP/1.1\n    Accept: */*\n    Accept-Encoding: gzip, deflate\n    Authorization: Bearer AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\n    Connection: keep-alive\n    Host: api.qa.fatcat.wiki\n    User-Agent: HTTPie/0.9.8\n\nHeaders can be passed on the command line using `http` (HTTPie) like:\n\n    http get https://api.qa.fatcat.wiki/v0/auth/check Authorization:\"Bearer AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\"\n\nOr with `curl`:\n\n    curl -H \"Authorization: Bearer AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=\" https://qa.fatcat.wiki/v0/auth/check\n"
 x-servers:
 - url: https://api.fatcat.wiki/v0
   description: Production Server
@@ -573,24 +485,24 @@ x-auth-responses:
   401:
     description: Not Authorized
     schema:
-      $ref: '#/definitions/error_response'
+      $ref: '#/components/schemas/error_response'
     headers:
       WWW_Authenticate:
         type: string
   403:
     description: Forbidden
     schema:
-      $ref: '#/definitions/error_response'
+      $ref: '#/components/schemas/error_response'
 x-entity-responses:
   400:
     description: Bad Request
     schema:
-      $ref: '#/definitions/error_response'
+      $ref: '#/components/schemas/error_response'
   404:
     description: Not Found
     schema:
-      $ref: '#/definitions/error_response'
+      $ref: '#/components/schemas/error_response'
   500:
     description: Generic Error
     schema:
-      $ref: '#/definitions/error_response'
+      $ref: '#/components/schemas/error_response'

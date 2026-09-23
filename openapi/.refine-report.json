@@ -1,17 +1,7 @@
 {
   "provider": "fatcat",
   "sources": [
-    "fatcat-auth-api-openapi.yml",
-    "fatcat-changelog-api-openapi.yml",
-    "fatcat-containers-api-openapi.yml",
-    "fatcat-creators-api-openapi.yml",
-    "fatcat-editgroups-api-openapi.yml",
-    "fatcat-editors-api-openapi.yml",
-    "fatcat-files-api-openapi.yml",
-    "fatcat-filesets-api-openapi.yml",
-    "fatcat-releases-api-openapi.yml",
-    "fatcat-webcaptures-api-openapi.yml",
-    "fatcat-works-api-openapi.yml"
+    "_original/openapi.yml"
   ],
   "outputs": [
     "fatcat-auth-api-openapi.yml",
@@ -29,6 +19,22 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "fatcat-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fatcat-changelog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fatcat-containers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fatcat-creators-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fatcat-editgroups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fatcat-editors-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fatcat-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fatcat-filesets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fatcat-releases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fatcat-webcaptures-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fatcat-works-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
