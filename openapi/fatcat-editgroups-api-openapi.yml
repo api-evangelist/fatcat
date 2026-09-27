@@ -495,18 +495,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    success:
-      type: object
-      required:
-      - success
-      - message
-      properties:
-        success:
-          type: boolean
-          example: true
-        message:
-          type: string
-          example: The computers did the thing successfully!
     editgroup:
       type: object
       properties:
@@ -622,68 +610,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/entity_edit'
-    error_response:
-      type: object
-      required:
-      - success
-      - error
-      - message
-      properties:
-        success:
-          type: boolean
-          example: false
-        error:
-          type: string
-          example: unexpected-thing
-        message:
-          type: string
-          example: A really confusing, totally unexpected thing happened
-    editor:
-      type: object
-      required:
-      - username
-      properties:
-        editor_id:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Fatcat identifier for the editor. Can not be changed.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        username:
-          type: string
-          example: zerocool93
-          description: 'Username/handle (short slug-like string) to identify this editor. May
-
-            be changed at any time by the editor; use the `editor_id` as a
-
-            persistend identifier.
-
-            '
-        is_admin:
-          type: boolean
-          example: false
-          description: 'Whether this editor has the `admin` role.
-
-            '
-        is_bot:
-          type: boolean
-          example: false
-          description: 'Whether this editor is a bot (as opposed to a human making manual
-
-            edits)
-
-            '
-        is_active:
-          type: boolean
-          example: true
-          description: 'Whether this editor''s account is enabled (if not API tokens and web
-
-            logins will not work).
-
-            '
     editgroup_annotation:
       type: object
       properties:
@@ -737,6 +663,68 @@ components:
             for details.
 
             '
+    editor:
+      type: object
+      required:
+      - username
+      properties:
+        editor_id:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'Fatcat identifier for the editor. Can not be changed.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        username:
+          type: string
+          example: zerocool93
+          description: 'Username/handle (short slug-like string) to identify this editor. May
+
+            be changed at any time by the editor; use the `editor_id` as a
+
+            persistend identifier.
+
+            '
+        is_admin:
+          type: boolean
+          example: false
+          description: 'Whether this editor has the `admin` role.
+
+            '
+        is_bot:
+          type: boolean
+          example: false
+          description: 'Whether this editor is a bot (as opposed to a human making manual
+
+            edits)
+
+            '
+        is_active:
+          type: boolean
+          example: true
+          description: 'Whether this editor''s account is enabled (if not API tokens and web
+
+            logins will not work).
+
+            '
+    error_response:
+      type: object
+      required:
+      - success
+      - error
+      - message
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          example: unexpected-thing
+        message:
+          type: string
+          example: A really confusing, totally unexpected thing happened
     entity_edit:
       type: object
       required:
@@ -807,6 +795,18 @@ components:
         extra:
           type: object
           additionalProperties: {}
+    success:
+      type: object
+      required:
+      - success
+      - message
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: The computers did the thing successfully!
   securitySchemes:
     Bearer:
       type: apiKey

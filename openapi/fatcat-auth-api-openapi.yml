@@ -222,23 +222,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    success:
+    auth_oidc_result:
       type: object
       required:
-      - success
-      - message
-      properties:
-        success:
-          type: boolean
-          example: true
-        message:
-          type: string
-          example: The computers did the thing successfully!
-    auth_token_result:
-      type: object
-      required:
+      - editor
       - token
       properties:
+        editor:
+          $ref: '#/components/schemas/editor'
         token:
           type: string
           example: AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=
@@ -278,22 +269,6 @@ components:
 
             '
           example: bnewbold
-    error_response:
-      type: object
-      required:
-      - success
-      - error
-      - message
-      properties:
-        success:
-          type: boolean
-          example: false
-        error:
-          type: string
-          example: unexpected-thing
-        message:
-          type: string
-          example: A really confusing, totally unexpected thing happened
     editor:
       type: object
       required:
@@ -340,17 +315,42 @@ components:
             logins will not work).
 
             '
-    auth_oidc_result:
+    error_response:
       type: object
       required:
-      - editor
+      - success
+      - error
+      - message
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          example: unexpected-thing
+        message:
+          type: string
+          example: A really confusing, totally unexpected thing happened
+    auth_token_result:
+      type: object
+      required:
       - token
       properties:
-        editor:
-          $ref: '#/components/schemas/editor'
         token:
           type: string
           example: AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=
+    success:
+      type: object
+      required:
+      - success
+      - message
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: The computers did the thing successfully!
   securitySchemes:
     Bearer:
       type: apiKey

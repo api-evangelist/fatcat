@@ -5,6 +5,10 @@ description: Fatcat is a versioned, user-editable open catalog of published rese
   millions of research works.
 deliveryModel:
   model: unknown
+  license_evidence:
+    repo: internetarchive/fatcat
+    spdx: NOASSERTION
+    stars: 121
   open_source: unknown
   commercial: true
   callable_host: true
@@ -14,7 +18,7 @@ deliveryModel:
   - openapi
   - pricing
   - repository-unlicensed
-  generated: '2026-08-28'
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: free
@@ -45,7 +49,7 @@ modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: fatcat:fatcat-auth-api
-  name: Fatcat auth API
+  name: Fatcat Auth API
   description: 'Helper methods and internal APIs for editor authentication.  # TAGLINE'
   humanURL: https://api.fatcat.wiki/redoc
   baseURL: https://api.fatcat.wiki/v0
@@ -71,7 +75,7 @@ apis:
   - type: FinOps
     url: finops/finops.yml
 - aid: fatcat:fatcat-changelog-api
-  name: Fatcat changelog API
+  name: Fatcat Changelog API
   description: 'The **Changelog** is the ordered feed of editgroups which have been  # TAGLINE
 
     accepted into the catalog.  # TAGLINE'
@@ -99,7 +103,7 @@ apis:
   - type: FinOps
     url: finops/finops.yml
 - aid: fatcat:fatcat-containers-api
-  name: Fatcat containers API
+  name: Fatcat Containers API
   description: '**Container** entities represent publication venues like journals,  # TAGLINE
 
     conference proceedings, book series, or blogs. They group publications  # TAGLINE
@@ -138,7 +142,7 @@ apis:
   - type: FinOps
     url: finops/finops.yml
 - aid: fatcat:fatcat-creators-api
-  name: Fatcat creators API
+  name: Fatcat Creators API
   description: '**Creator** entities represent individuals (or organizations, or other  # TAGLINE
 
     agents) who contribute to the creation of specific releases  # TAGLINE
@@ -177,7 +181,7 @@ apis:
   - type: FinOps
     url: finops/finops.yml
 - aid: fatcat:fatcat-editgroups-api
-  name: Fatcat editgroups API
+  name: Fatcat Editgroups API
   description: '**Editgroups** are sets of changes, each to individual entities in the  # TAGLINE
 
     catalog. Every edit must be part of an editgroup which is reviewed and  # TAGLINE
@@ -205,7 +209,7 @@ apis:
   - type: FinOps
     url: finops/finops.yml
 - aid: fatcat:fatcat-editors-api
-  name: Fatcat editors API
+  name: Fatcat Editors API
   description: '**Editors** are human user accounts and bots that make changes to the  # TAGLINE
 
     Fatcat catalog.  # TAGLINE
@@ -238,7 +242,7 @@ apis:
   - type: FinOps
     url: finops/finops.yml
 - aid: fatcat:fatcat-files-api
-  name: Fatcat files API
+  name: Fatcat Files API
   description: '**File** entities represent unique digital files which are full  # TAGLINE
 
     manifestations of specific releases (publications), such as fulltext PDF  # TAGLINE
@@ -279,7 +283,7 @@ apis:
   - type: FinOps
     url: finops/finops.yml
 - aid: fatcat:fatcat-filesets-api
-  name: Fatcat filesets API
+  name: Fatcat Filesets API
   description: '**Fileset** entities represent sets of digital files, as well as locations  # TAGLINE
 
     where they can be found on the public web. Filesets most commonly  # TAGLINE
@@ -316,7 +320,7 @@ apis:
   - type: FinOps
     url: finops/finops.yml
 - aid: fatcat:fatcat-releases-api
-  name: Fatcat releases API
+  name: Fatcat Releases API
   description: '**Release** entities represent specific published versions of a research  # TAGLINE
 
     work, such as a pre-print, a journal article, a book (or chapter), or a  # TAGLINE
@@ -361,7 +365,7 @@ apis:
   - type: FinOps
     url: finops/finops.yml
 - aid: fatcat:fatcat-webcaptures-api
-  name: Fatcat webcaptures API
+  name: Fatcat Webcaptures API
   description: '**Web Capture** entities represent archival snapshots of web pages (or  # TAGLINE
 
     other web resources), which are usually complete manifestations of a  # TAGLINE
@@ -400,7 +404,7 @@ apis:
   - type: FinOps
     url: finops/finops.yml
 - aid: fatcat:fatcat-works-api
-  name: Fatcat works API
+  name: Fatcat Works API
   description: '**Work** entities group several Release entities which are different  # TAGLINE
 
     versions of the same abstract piece of research. For example, three  # TAGLINE
