@@ -347,6 +347,191 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    error_response:
+      type: object
+      required:
+      - success
+      - error
+      - message
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          example: unexpected-thing
+        message:
+          type: string
+          example: A really confusing, totally unexpected thing happened
+    editgroup_annotation:
+      type: object
+      properties:
+        annotation_id:
+          type: string
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          minLength: 36
+          maxLength: 36
+          description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+        editgroup_id:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'Editgroup that this annotation applies to. Set automatically in
+
+            creations based on URL parameter.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        editor_id:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'Defaults to editor created the annotation via POST request.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        editor:
+          $ref: '#/components/schemas/editor'
+          description: 'Only included in GET responses; ignored in PUT or POST requests.
+
+            '
+        created:
+          type: string
+          format: date-time
+          description: 'Timestamp when annotation was first created.
+
+            '
+        comment_markdown:
+          type: string
+        extra:
+          type: object
+          additionalProperties: {}
+          description: 'Additional free-form JSON metadata that can be included as part of
+
+            the annotation (or even as the primary annotation itself). See guide
+
+            for details.
+
+            '
+    entity_edit:
+      type: object
+      required:
+      - edit_id
+      - ident
+      - editgroup_id
+      properties:
+        edit_id:
+          type: string
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          minLength: 36
+          maxLength: 36
+          description: 'Unique UUID for this specific edit object.
+
+            '
+          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+        ident:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'Fatcat identifier of the entity this edit is mutating.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        revision:
+          type: string
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          minLength: 36
+          maxLength: 36
+          description: 'Entity revision that this edit will set the entity to. May be
+
+            `null` in the case of deletions.
+
+            '
+          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+        prev_revision:
+          type: string
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          minLength: 36
+          maxLength: 36
+          description: 'Revision of entity just before this edit. May be used in the future
+
+            to prevent edit race conditions.
+
+            '
+          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+        redirect_ident:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'When an edit is to merge entities (redirect one to another), this
+
+            is the entity fatcat identifier for the target entity.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        editgroup_id:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'Editgroup identifier that this edit is part of.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        extra:
+          type: object
+          additionalProperties: {}
+    editor:
+      type: object
+      required:
+      - username
+      properties:
+        editor_id:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'Fatcat identifier for the editor. Can not be changed.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        username:
+          type: string
+          example: zerocool93
+          description: 'Username/handle (short slug-like string) to identify this editor. May
+
+            be changed at any time by the editor; use the `editor_id` as a
+
+            persistend identifier.
+
+            '
+        is_admin:
+          type: boolean
+          example: false
+          description: 'Whether this editor has the `admin` role.
+
+            '
+        is_bot:
+          type: boolean
+          example: false
+          description: 'Whether this editor is a bot (as opposed to a human making manual
+
+            edits)
+
+            '
+        is_active:
+          type: boolean
+          example: true
+          description: 'Whether this editor''s account is enabled (if not API tokens and web
+
+            logins will not work).
+
+            '
     editgroup:
       type: object
       properties:
@@ -462,191 +647,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/entity_edit'
-    editgroup_annotation:
-      type: object
-      properties:
-        annotation_id:
-          type: string
-          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
-          minLength: 36
-          maxLength: 36
-          description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
-          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
-        editgroup_id:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Editgroup that this annotation applies to. Set automatically in
-
-            creations based on URL parameter.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        editor_id:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Defaults to editor created the annotation via POST request.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        editor:
-          $ref: '#/components/schemas/editor'
-          description: 'Only included in GET responses; ignored in PUT or POST requests.
-
-            '
-        created:
-          type: string
-          format: date-time
-          description: 'Timestamp when annotation was first created.
-
-            '
-        comment_markdown:
-          type: string
-        extra:
-          type: object
-          additionalProperties: {}
-          description: 'Additional free-form JSON metadata that can be included as part of
-
-            the annotation (or even as the primary annotation itself). See guide
-
-            for details.
-
-            '
-    editor:
-      type: object
-      required:
-      - username
-      properties:
-        editor_id:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Fatcat identifier for the editor. Can not be changed.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        username:
-          type: string
-          example: zerocool93
-          description: 'Username/handle (short slug-like string) to identify this editor. May
-
-            be changed at any time by the editor; use the `editor_id` as a
-
-            persistend identifier.
-
-            '
-        is_admin:
-          type: boolean
-          example: false
-          description: 'Whether this editor has the `admin` role.
-
-            '
-        is_bot:
-          type: boolean
-          example: false
-          description: 'Whether this editor is a bot (as opposed to a human making manual
-
-            edits)
-
-            '
-        is_active:
-          type: boolean
-          example: true
-          description: 'Whether this editor''s account is enabled (if not API tokens and web
-
-            logins will not work).
-
-            '
-    error_response:
-      type: object
-      required:
-      - success
-      - error
-      - message
-      properties:
-        success:
-          type: boolean
-          example: false
-        error:
-          type: string
-          example: unexpected-thing
-        message:
-          type: string
-          example: A really confusing, totally unexpected thing happened
-    entity_edit:
-      type: object
-      required:
-      - edit_id
-      - ident
-      - editgroup_id
-      properties:
-        edit_id:
-          type: string
-          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
-          minLength: 36
-          maxLength: 36
-          description: 'Unique UUID for this specific edit object.
-
-            '
-          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
-        ident:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Fatcat identifier of the entity this edit is mutating.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        revision:
-          type: string
-          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
-          minLength: 36
-          maxLength: 36
-          description: 'Entity revision that this edit will set the entity to. May be
-
-            `null` in the case of deletions.
-
-            '
-          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
-        prev_revision:
-          type: string
-          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
-          minLength: 36
-          maxLength: 36
-          description: 'Revision of entity just before this edit. May be used in the future
-
-            to prevent edit race conditions.
-
-            '
-          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
-        redirect_ident:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'When an edit is to merge entities (redirect one to another), this
-
-            is the entity fatcat identifier for the target entity.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        editgroup_id:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Editgroup identifier that this edit is part of.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        extra:
-          type: object
-          additionalProperties: {}
   securitySchemes:
     Bearer:
       type: apiKey

@@ -564,103 +564,27 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    webcapture_entity:
+    webcapture_url:
       type: object
+      required:
+      - url
+      - rel
       properties:
-        state:
-          type: string
-          enum:
-          - wip
-          - active
-          - redirect
-          - deleted
-          example: active
-        ident:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: base32-encoded unique identifier
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        revision:
-          type: string
-          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
-          minLength: 36
-          maxLength: 36
-          description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
-          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
-        redirect:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: base32-encoded unique identifier
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        extra:
-          type: object
-          description: 'Free-form JSON metadata that will be stored with the other entity
-
-            metadata. See guide for (unenforced) schema conventions.
-
-            '
-          additionalProperties: {}
-        edit_extra:
-          type: object
-          description: 'Free-form JSON metadata that will be stored with specific entity edits
-
-            (eg, creation/update/delete).
-
-            '
-          additionalProperties: {}
-        cdx:
-          type: array
-          items:
-            $ref: '#/components/schemas/webcapture_cdx_line'
-        archive_urls:
-          type: array
-          items:
-            $ref: '#/components/schemas/webcapture_url'
-        original_url:
+        url:
           type: string
           format: url
-          example: http://asheesh.org
-          description: Base URL of the primary resource this is a capture of
-        timestamp:
-          type: string
-          format: date-time
-          description: 'Same format as CDX line timestamp (UTC, etc). Corresponds to the
-
-            overall capture timestamp. Should generally be the timestamp of
-
-            capture of the primary resource URL.
+          example: https://web.archive.org/web/
+          description: 'URL/URI pointing to archive of this web resource.
 
             '
-        content_scope:
+        rel:
           type: string
-          example: landing-page
-        release_ids:
-          type: array
-          items:
-            type: string
-            pattern: '[a-zA-Z2-7]{26}'
-            minLength: 26
-            maxLength: 26
-            description: base32-encoded unique identifier
-            example: q3nouwy3nnbsvo3h5klxsx4a7y
-          description: 'Set of identifier of release entities this fileset represents a full
+          example: wayback
+          description: 'Type of archive endpoint. Usually `wayback` (WBM replay of primary
 
-            manifestation of. Usually a single release.
+            resource), or `warc` (direct URL to a WARC file containing all
 
-            '
-        releases:
-          type: array
-          items:
-            $ref: '#/components/schemas/release_entity'
-          description: 'Full release entities, included in GET responses when `releases`
-
-            included in `expand` parameter. Ignored if included in PUT or POST
-
-            requests.
+            resources of the capture). See guide for full list.
 
             '
     file_url:
@@ -702,173 +626,59 @@ components:
         message:
           type: string
           example: A really confusing, totally unexpected thing happened
-    fileset_entity:
+    editgroup_annotation:
       type: object
       properties:
-        state:
-          type: string
-          enum:
-          - wip
-          - active
-          - redirect
-          - deleted
-          example: active
-        ident:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: base32-encoded unique identifier
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        revision:
+        annotation_id:
           type: string
           pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
           minLength: 36
           maxLength: 36
           description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
           example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
-        redirect:
+        editgroup_id:
           type: string
           pattern: '[a-zA-Z2-7]{26}'
           minLength: 26
           maxLength: 26
-          description: base32-encoded unique identifier
+          description: 'Editgroup that this annotation applies to. Set automatically in
+
+            creations based on URL parameter.
+
+            '
           example: q3nouwy3nnbsvo3h5klxsx4a7y
-        extra:
-          type: object
-          description: 'Free-form JSON metadata that will be stored with the other entity
-
-            metadata. See guide for (unenforced) schema conventions.
-
-            '
-          additionalProperties: {}
-        edit_extra:
-          type: object
-          description: 'Free-form JSON metadata that will be stored with specific entity edits
-
-            (eg, creation/update/delete).
-
-            '
-          additionalProperties: {}
-        content_scope:
-          type: string
-          example: issue
-        manifest:
-          type: array
-          items:
-            $ref: '#/components/schemas/fileset_file'
-        urls:
-          type: array
-          items:
-            $ref: '#/components/schemas/fileset_url'
-        release_ids:
-          type: array
-          items:
-            type: string
-            pattern: '[a-zA-Z2-7]{26}'
-            minLength: 26
-            maxLength: 26
-            description: base32-encoded unique identifier
-            example: q3nouwy3nnbsvo3h5klxsx4a7y
-          description: 'Set of identifier of release entities this fileset represents a full
-
-            manifestation of. Usually a single release.
-
-            '
-        releases:
-          type: array
-          items:
-            $ref: '#/components/schemas/release_entity'
-          description: 'Full release entities, included in GET responses when `releases`
-
-            included in `expand` parameter. Ignored if included in PUT or POST
-
-            requests.
-
-            '
-    release_ref:
-      type: object
-      properties:
-        index:
-          type: integer
-          format: int64
-          description: 'Zero-indexed sequence number of this reference in the list of
-
-            references. Assigned automatically and used internally; don''t confuse
-
-            with `key`.
-
-            '
-        target_release_id:
+        editor_id:
           type: string
           pattern: '[a-zA-Z2-7]{26}'
           minLength: 26
           maxLength: 26
-          description: 'Optional, fatcat identifier of release entity that this reference is
-
-            citing.
+          description: 'Defaults to editor created the annotation via POST request.
 
             '
           example: q3nouwy3nnbsvo3h5klxsx4a7y
+        editor:
+          $ref: '#/components/schemas/editor'
+          description: 'Only included in GET responses; ignored in PUT or POST requests.
+
+            '
+        created:
+          type: string
+          format: date-time
+          description: 'Timestamp when annotation was first created.
+
+            '
+        comment_markdown:
+          type: string
         extra:
           type: object
           additionalProperties: {}
-          description: 'Additional free-form JSON metadata about this citation. Generally
+          description: 'Additional free-form JSON metadata that can be included as part of
 
-            follows Citation Style Language (CSL) JSON schema. See guide for
+            the annotation (or even as the primary annotation itself). See guide
 
-            details.
-
-            '
-        key:
-          type: string
-          example: SMITH2016
-          description: 'Short string used to indicate this reference from within the release
-
-            text; or numbering of references as typeset in the release itself.
-
-            Optional; don''t confuse with `index` field.
+            for details.
 
             '
-        year:
-          type: integer
-          format: int64
-          example: 1972
-          description: 'Year that the cited work was published in.
-
-            '
-        container_name:
-          type: string
-          description: 'Name of the container (eg, journal) that the citation work was
-
-            published as part of. May be an acronym or full name.
-
-            '
-        title:
-          type: string
-          description: Name of the work being cited.
-        locator:
-          type: string
-          example: p123
-          description: 'Page number or other indicator of the specific subset of a work being
-
-            cited. Not to be confused with the first page (or page range) of an
-
-            entire paper or chapter being cited.
-
-            '
-    success:
-      type: object
-      required:
-      - success
-      - message
-      properties:
-        success:
-          type: boolean
-          example: true
-        message:
-          type: string
-          example: The computers did the thing successfully!
     editgroup:
       type: object
       properties:
@@ -1016,51 +826,378 @@ components:
           description: 'ISO language code of the abstract. Same semantics as release `language` field.
 
             '
-    changelog_entry:
+    webcapture_entity:
       type: object
-      required:
-      - index
-      - editgroup_id
-      - timestamp
       properties:
-        index:
-          type: integer
-          format: int64
-          description: 'Monotonically increasing sequence number of this changelog entry.
-
-            '
-        editgroup_id:
+        state:
           type: string
+          enum:
+          - wip
+          - active
+          - redirect
+          - deleted
+          example: active
+        ident:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: base32-encoded unique identifier
           example: q3nouwy3nnbsvo3h5klxsx4a7y
-          description: 'Identifier of editgroup accepted/merged in this changelog entry.
+        revision:
+          type: string
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          minLength: 36
+          maxLength: 36
+          description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+        redirect:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: base32-encoded unique identifier
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        extra:
+          type: object
+          description: 'Free-form JSON metadata that will be stored with the other entity
+
+            metadata. See guide for (unenforced) schema conventions.
 
             '
+          additionalProperties: {}
+        edit_extra:
+          type: object
+          description: 'Free-form JSON metadata that will be stored with specific entity edits
+
+            (eg, creation/update/delete).
+
+            '
+          additionalProperties: {}
+        cdx:
+          type: array
+          items:
+            $ref: '#/components/schemas/webcapture_cdx_line'
+        archive_urls:
+          type: array
+          items:
+            $ref: '#/components/schemas/webcapture_url'
+        original_url:
+          type: string
+          format: url
+          example: http://asheesh.org
+          description: Base URL of the primary resource this is a capture of
         timestamp:
           type: string
           format: date-time
-          description: 'Date and time when the editgroup was accpeted.
+          description: 'Same format as CDX line timestamp (UTC, etc). Corresponds to the
+
+            overall capture timestamp. Should generally be the timestamp of
+
+            capture of the primary resource URL.
 
             '
-        editgroup:
-          $ref: '#/components/schemas/editgroup'
-    fileset_url:
+        content_scope:
+          type: string
+          example: landing-page
+        release_ids:
+          type: array
+          items:
+            type: string
+            pattern: '[a-zA-Z2-7]{26}'
+            minLength: 26
+            maxLength: 26
+            description: base32-encoded unique identifier
+            example: q3nouwy3nnbsvo3h5klxsx4a7y
+          description: 'Set of identifier of release entities this fileset represents a full
+
+            manifestation of. Usually a single release.
+
+            '
+        releases:
+          type: array
+          items:
+            $ref: '#/components/schemas/release_entity'
+          description: 'Full release entities, included in GET responses when `releases`
+
+            included in `expand` parameter. Ignored if included in PUT or POST
+
+            requests.
+
+            '
+    container_entity:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - wip
+          - active
+          - redirect
+          - deleted
+          example: active
+        ident:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: base32-encoded unique identifier
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        revision:
+          type: string
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          minLength: 36
+          maxLength: 36
+          description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+        redirect:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: base32-encoded unique identifier
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        extra:
+          type: object
+          description: 'Free-form JSON metadata that will be stored with the other entity
+
+            metadata. See guide for (unenforced) schema conventions.
+
+            '
+          additionalProperties: {}
+        edit_extra:
+          type: object
+          description: 'Free-form JSON metadata that will be stored with specific entity edits
+
+            (eg, creation/update/delete).
+
+            '
+          additionalProperties: {}
+        name:
+          type: string
+          description: Name of the container (eg, Journal title). Required for entity creation.
+          example: Journal of Important Results
+        container_type:
+          type: string
+          description: Type of container, eg 'journal' or 'proceedings'. See Guide for list of valid types.
+          example: journal
+        publication_status:
+          type: string
+          description: Whether the container is active, discontinued, etc
+          example: active
+        publisher:
+          type: string
+          description: 'Name of the organization or entity responsible for publication. Not
+
+            the complete imprint/brand.
+
+            '
+          example: Society of Curious Students
+        issnl:
+          type: string
+          pattern: \d{4}-\d{3}[0-9X]
+          minLength: 9
+          maxLength: 9
+          example: 1234-5678
+          description: Linking ISSN number (ISSN-L). Should be valid and registered with issn.org
+        issne:
+          type: string
+          pattern: \d{4}-\d{3}[0-9X]
+          minLength: 9
+          maxLength: 9
+          example: 1234-5678
+          description: Electronic ISSN number (ISSN-E). Should be valid and registered with issn.org
+        issnp:
+          type: string
+          pattern: \d{4}-\d{3}[0-9X]
+          minLength: 9
+          maxLength: 9
+          example: 1234-5678
+          description: Print ISSN number (ISSN-P). Should be valid and registered with issn.org
+        wikidata_qid:
+          type: string
+          example: Q42812
+    file_entity:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - wip
+          - active
+          - redirect
+          - deleted
+          example: active
+        ident:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: base32-encoded unique identifier
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        revision:
+          type: string
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          minLength: 36
+          maxLength: 36
+          description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+        redirect:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: base32-encoded unique identifier
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        extra:
+          type: object
+          description: 'Free-form JSON metadata that will be stored with the other entity
+
+            metadata. See guide for (unenforced) schema conventions.
+
+            '
+          additionalProperties: {}
+        edit_extra:
+          type: object
+          description: 'Free-form JSON metadata that will be stored with specific entity edits
+
+            (eg, creation/update/delete).
+
+            '
+          additionalProperties: {}
+        size:
+          type: integer
+          example: 1048576
+          format: int64
+          description: Size of file in bytes. Non-zero.
+        md5:
+          type: string
+          pattern: '[a-f0-9]{32}'
+          minLength: 32
+          maxLength: 32
+          description: MD5 hash of data, in hex encoding
+          example: 1b39813549077b2347c0f370c3864b40
+        sha1:
+          type: string
+          pattern: '[a-f0-9]{40}'
+          minLength: 40
+          maxLength: 40
+          description: SHA-1 hash of data, in hex encoding
+          example: e9dd75237c94b209dc3ccd52722de6931a310ba3
+        sha256:
+          type: string
+          pattern: '[a-f0-9]{64}'
+          minLength: 64
+          maxLength: 64
+          description: SHA-256 hash of data, in hex encoding
+          example: cb1c378f464d5935ddaa8de28446d82638396c61f042295d7fb85e3cccc9e452
+        urls:
+          type: array
+          items:
+            $ref: '#/components/schemas/file_url'
+        mimetype:
+          type: string
+          example: application/pdf
+        content_scope:
+          type: string
+          example: issue
+        release_ids:
+          type: array
+          items:
+            type: string
+            pattern: '[a-zA-Z2-7]{26}'
+            minLength: 26
+            maxLength: 26
+            description: base32-encoded unique identifier
+            example: q3nouwy3nnbsvo3h5klxsx4a7y
+          description: 'Set of identifier of release entities this file represents a full
+
+            manifestation of. Usually a single release, but some files contain
+
+            content of multiple full releases (eg, an issue of a journal).
+
+            '
+        releases:
+          description: 'Full release entities, included in GET responses when `releases`
+
+            included in `expand` parameter. Ignored if included in PUT or POST
+
+            requests.
+
+            '
+          type: array
+          items:
+            $ref: '#/components/schemas/release_entity'
+    entity_edit:
       type: object
       required:
-      - url
-      - rel
+      - edit_id
+      - ident
+      - editgroup_id
       properties:
-        url:
+        edit_id:
           type: string
-          format: url
-          example: https://example.edu/~frau/prcding.pdf
-        rel:
-          type: string
-          example: webarchive
-          description: 'Indicates type of host this URL points to. See guide for list of
-
-            acceptable values.
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          minLength: 36
+          maxLength: 36
+          description: 'Unique UUID for this specific edit object.
 
             '
+          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+        ident:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'Fatcat identifier of the entity this edit is mutating.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        revision:
+          type: string
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          minLength: 36
+          maxLength: 36
+          description: 'Entity revision that this edit will set the entity to. May be
+
+            `null` in the case of deletions.
+
+            '
+          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+        prev_revision:
+          type: string
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          minLength: 36
+          maxLength: 36
+          description: 'Revision of entity just before this edit. May be used in the future
+
+            to prevent edit race conditions.
+
+            '
+          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+        redirect_ident:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'When an edit is to merge entities (redirect one to another), this
+
+            is the entity fatcat identifier for the target entity.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        editgroup_id:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'Editgroup identifier that this edit is part of.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        extra:
+          type: object
+          additionalProperties: {}
     webcapture_auto_batch:
       type: object
       required:
@@ -1191,6 +1328,75 @@ components:
           maxLength: 64
           description: SHA-256 hash of data, in hex encoding
           example: cb1c378f464d5935ddaa8de28446d82638396c61f042295d7fb85e3cccc9e452
+    release_contrib:
+      type: object
+      properties:
+        index:
+          type: integer
+          format: int64
+          example: 0
+          description: 'Internally assigned zero-indexed sequence number of contribution.
+
+            Authors should come first; this encodes the order of attriubtion.
+
+            '
+        creator_id:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'If known, indicates the creator entity this contribution was made by.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        creator:
+          $ref: '#/components/schemas/creator_entity'
+          description: 'Complete creator entity. Only returned in GET responses, and only if
+
+            `contribs` included in the `expand` query parameter.
+
+            '
+        raw_name:
+          type: string
+          example: Jane K. Doe
+          description: 'Full name of the contributor as typeset in the release.
+
+            '
+        given_name:
+          type: string
+          example: Jane
+          description: 'In English commonly the first name, but ordering is context and
+
+            culture specific.
+
+            '
+        surname:
+          type: string
+          example: Doe
+          description: 'In English commonly the last, or family name, but ordering is context
+
+            and culture specific.
+
+            '
+        role:
+          type: string
+          example: author
+          description: 'Short string (slug) indicating type of contribution (eg, "author",
+
+            "translator"). See guide for list of accpeted values.
+
+            '
+        raw_affiliation:
+          type: string
+          description: Raw affiliation string as displayed in text
+        extra:
+          type: object
+          additionalProperties: {}
+          description: 'Additional free-form JSON metadata about this
+
+            contributor/contribution. See guide for normative schema.
+
+            '
     entity_history_entry:
       type: object
       required:
@@ -1204,251 +1410,162 @@ components:
           $ref: '#/components/schemas/editgroup'
         changelog_entry:
           $ref: '#/components/schemas/changelog_entry'
-    creator_entity:
+    release_ref:
       type: object
       properties:
-        state:
-          type: string
-          enum:
-          - wip
-          - active
-          - redirect
-          - deleted
-          example: active
-        ident:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: base32-encoded unique identifier
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        revision:
-          type: string
-          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
-          minLength: 36
-          maxLength: 36
-          description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
-          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
-        redirect:
+        index:
+          type: integer
+          format: int64
+          description: 'Zero-indexed sequence number of this reference in the list of
+
+            references. Assigned automatically and used internally; don''t confuse
+
+            with `key`.
+
+            '
+        target_release_id:
           type: string
           pattern: '[a-zA-Z2-7]{26}'
           minLength: 26
           maxLength: 26
-          description: base32-encoded unique identifier
+          description: 'Optional, fatcat identifier of release entity that this reference is
+
+            citing.
+
+            '
           example: q3nouwy3nnbsvo3h5klxsx4a7y
         extra:
           type: object
-          description: 'Free-form JSON metadata that will be stored with the other entity
-
-            metadata. See guide for (unenforced) schema conventions.
-
-            '
           additionalProperties: {}
-        edit_extra:
-          type: object
-          description: 'Free-form JSON metadata that will be stored with specific entity edits
+          description: 'Additional free-form JSON metadata about this citation. Generally
 
-            (eg, creation/update/delete).
+            follows Citation Style Language (CSL) JSON schema. See guide for
 
-            '
-          additionalProperties: {}
-        display_name:
-          type: string
-          example: Grace Hopper
-          description: 'Name as should be displayed in web interface or in author lists (not
-
-            index/sorted). Required for valid entities.
+            details.
 
             '
-        given_name:
+        key:
           type: string
-          description: 'In English commonly the first name, but ordering is context and
+          example: SMITH2016
+          description: 'Short string used to indicate this reference from within the release
 
-            culture specific.
+            text; or numbering of references as typeset in the release itself.
+
+            Optional; don''t confuse with `index` field.
 
             '
-        surname:
-          type: string
-          description: 'In English commonly the last, or family name, but ordering is context
-
-            and culture specific.
+        year:
+          type: integer
+          format: int64
+          example: 1972
+          description: 'Year that the cited work was published in.
 
             '
-        orcid:
+        container_name:
           type: string
-          pattern: \d{4}-\d{4}-\d{4}-\d{3}[\dX]
-          minLength: 19
-          maxLength: 19
-          description: ORCiD (https://orcid.org) identifier
-          example: 0000-0002-1825-0097
+          description: 'Name of the container (eg, journal) that the citation work was
+
+            published as part of. May be an acronym or full name.
+
+            '
+        title:
+          type: string
+          description: Name of the work being cited.
+        locator:
+          type: string
+          example: p123
+          description: 'Page number or other indicator of the specific subset of a work being
+
+            cited. Not to be confused with the first page (or page range) of an
+
+            entire paper or chapter being cited.
+
+            '
+    changelog_entry:
+      type: object
+      required:
+      - index
+      - editgroup_id
+      - timestamp
+      properties:
+        index:
+          type: integer
+          format: int64
+          description: 'Monotonically increasing sequence number of this changelog entry.
+
+            '
+        editgroup_id:
+          type: string
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+          description: 'Identifier of editgroup accepted/merged in this changelog entry.
+
+            '
+        timestamp:
+          type: string
+          format: date-time
+          description: 'Date and time when the editgroup was accpeted.
+
+            '
+        editgroup:
+          $ref: '#/components/schemas/editgroup'
+    release_ext_ids:
+      type: object
+      properties:
+        doi:
+          type: string
+          example: 10.1234/abcde.789
+          description: 'Digital Object Identifier (DOI), mostly for published papers and
+
+            datasets. Should be registered and resolvable via https://doi.org/
+
+            '
         wikidata_qid:
           type: string
           example: Q42812
           description: Wikidata entity QID
-    file_entity:
-      type: object
-      properties:
-        state:
+        isbn13:
           type: string
-          enum:
-          - wip
-          - active
-          - redirect
-          - deleted
-          example: active
-        ident:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: base32-encoded unique identifier
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        revision:
-          type: string
-          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
-          minLength: 36
-          maxLength: 36
-          description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
-          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
-        redirect:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: base32-encoded unique identifier
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        extra:
-          type: object
-          description: 'Free-form JSON metadata that will be stored with the other entity
+          description: 'ISBN-13, for books. Usually not set for chapters. ISBN-10 should be
 
-            metadata. See guide for (unenforced) schema conventions.
+            converted to ISBN-13.
 
             '
-          additionalProperties: {}
-        edit_extra:
-          type: object
-          description: 'Free-form JSON metadata that will be stored with specific entity edits
-
-            (eg, creation/update/delete).
-
-            '
-          additionalProperties: {}
-        size:
-          type: integer
-          example: 1048576
-          format: int64
-          description: Size of file in bytes. Non-zero.
-        md5:
+        pmid:
           type: string
-          pattern: '[a-f0-9]{32}'
-          minLength: 32
-          maxLength: 32
-          description: MD5 hash of data, in hex encoding
-          example: 1b39813549077b2347c0f370c3864b40
-        sha1:
+          example: '482132'
+          description: PubMed Identifier
+        pmcid:
+          example: PMC7391
           type: string
-          pattern: '[a-f0-9]{40}'
-          minLength: 40
-          maxLength: 40
-          description: SHA-1 hash of data, in hex encoding
-          example: e9dd75237c94b209dc3ccd52722de6931a310ba3
-        sha256:
+          description: PubMed Central Identifier
+        core:
+          example: '9234592'
           type: string
-          pattern: '[a-f0-9]{64}'
-          minLength: 64
-          maxLength: 64
-          description: SHA-256 hash of data, in hex encoding
-          example: cb1c378f464d5935ddaa8de28446d82638396c61f042295d7fb85e3cccc9e452
-        urls:
-          type: array
-          items:
-            $ref: '#/components/schemas/file_url'
-        mimetype:
+          description: CORE (https://core.ac.uk) identifier
+        arxiv:
           type: string
-          example: application/pdf
-        content_scope:
+          description: arXiv (https://arxiv.org) identifier; must include version
+        jstor:
           type: string
-          example: issue
-        release_ids:
-          type: array
-          items:
-            type: string
-            pattern: '[a-zA-Z2-7]{26}'
-            minLength: 26
-            maxLength: 26
-            description: base32-encoded unique identifier
-            example: q3nouwy3nnbsvo3h5klxsx4a7y
-          description: 'Set of identifier of release entities this file represents a full
-
-            manifestation of. Usually a single release, but some files contain
-
-            content of multiple full releases (eg, an issue of a journal).
-
-            '
-        releases:
-          description: 'Full release entities, included in GET responses when `releases`
-
-            included in `expand` parameter. Ignored if included in PUT or POST
-
-            requests.
-
-            '
-          type: array
-          items:
-            $ref: '#/components/schemas/release_entity'
-    editgroup_annotation:
-      type: object
-      properties:
-        annotation_id:
+          description: JSTOR work identifier
+        ark:
           type: string
-          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
-          minLength: 36
-          maxLength: 36
-          description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
-          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
-        editgroup_id:
+          description: ARK identifier
+        mag:
           type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Editgroup that this annotation applies to. Set automatically in
-
-            creations based on URL parameter.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        editor_id:
+          description: Microsoft Academic Graph identifier
+        doaj:
           type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Defaults to editor created the annotation via POST request.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        editor:
-          $ref: '#/components/schemas/editor'
-          description: 'Only included in GET responses; ignored in PUT or POST requests.
-
-            '
-        created:
+          description: DOAJ article-level identifier
+        dblp:
           type: string
-          format: date-time
-          description: 'Timestamp when annotation was first created.
-
-            '
-        comment_markdown:
+          description: dblp (https://dblp.uni-trier.de/) paper identifier; eg for conference proceedings
+        oai:
           type: string
-        extra:
-          type: object
-          additionalProperties: {}
-          description: 'Additional free-form JSON metadata that can be included as part of
-
-            the annotation (or even as the primary annotation itself). See guide
-
-            for details.
-
-            '
+          description: OAI-PMH identifier; only used when an OAI-PMH record is the only authoritative metadata (eg, journal OAI-PMH feeds w/o DOIs)
+        hdl:
+          type: string
+          description: Handle identifier. Do not put DOIs in this field
     release_entity:
       type: object
       required:
@@ -1737,73 +1854,118 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/release_abstract'
-    release_contrib:
+    success:
       type: object
+      required:
+      - success
+      - message
       properties:
-        index:
-          type: integer
-          format: int64
-          example: 0
-          description: 'Internally assigned zero-indexed sequence number of contribution.
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: The computers did the thing successfully!
+    fileset_url:
+      type: object
+      required:
+      - url
+      - rel
+      properties:
+        url:
+          type: string
+          format: url
+          example: https://example.edu/~frau/prcding.pdf
+        rel:
+          type: string
+          example: webarchive
+          description: 'Indicates type of host this URL points to. See guide for list of
 
-            Authors should come first; this encodes the order of attriubtion.
+            acceptable values.
 
             '
-        creator_id:
+    fileset_entity:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - wip
+          - active
+          - redirect
+          - deleted
+          example: active
+        ident:
           type: string
           pattern: '[a-zA-Z2-7]{26}'
           minLength: 26
           maxLength: 26
-          description: 'If known, indicates the creator entity this contribution was made by.
-
-            '
+          description: base32-encoded unique identifier
           example: q3nouwy3nnbsvo3h5klxsx4a7y
-        creator:
-          $ref: '#/components/schemas/creator_entity'
-          description: 'Complete creator entity. Only returned in GET responses, and only if
-
-            `contribs` included in the `expand` query parameter.
-
-            '
-        raw_name:
+        revision:
           type: string
-          example: Jane K. Doe
-          description: 'Full name of the contributor as typeset in the release.
-
-            '
-        given_name:
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          minLength: 36
+          maxLength: 36
+          description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+        redirect:
           type: string
-          example: Jane
-          description: 'In English commonly the first name, but ordering is context and
-
-            culture specific.
-
-            '
-        surname:
-          type: string
-          example: Doe
-          description: 'In English commonly the last, or family name, but ordering is context
-
-            and culture specific.
-
-            '
-        role:
-          type: string
-          example: author
-          description: 'Short string (slug) indicating type of contribution (eg, "author",
-
-            "translator"). See guide for list of accpeted values.
-
-            '
-        raw_affiliation:
-          type: string
-          description: Raw affiliation string as displayed in text
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: base32-encoded unique identifier
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
         extra:
           type: object
-          additionalProperties: {}
-          description: 'Additional free-form JSON metadata about this
+          description: 'Free-form JSON metadata that will be stored with the other entity
 
-            contributor/contribution. See guide for normative schema.
+            metadata. See guide for (unenforced) schema conventions.
+
+            '
+          additionalProperties: {}
+        edit_extra:
+          type: object
+          description: 'Free-form JSON metadata that will be stored with specific entity edits
+
+            (eg, creation/update/delete).
+
+            '
+          additionalProperties: {}
+        content_scope:
+          type: string
+          example: issue
+        manifest:
+          type: array
+          items:
+            $ref: '#/components/schemas/fileset_file'
+        urls:
+          type: array
+          items:
+            $ref: '#/components/schemas/fileset_url'
+        release_ids:
+          type: array
+          items:
+            type: string
+            pattern: '[a-zA-Z2-7]{26}'
+            minLength: 26
+            maxLength: 26
+            description: base32-encoded unique identifier
+            example: q3nouwy3nnbsvo3h5klxsx4a7y
+          description: 'Set of identifier of release entities this fileset represents a full
+
+            manifestation of. Usually a single release.
+
+            '
+        releases:
+          type: array
+          items:
+            $ref: '#/components/schemas/release_entity'
+          description: 'Full release entities, included in GET responses when `releases`
+
+            included in `expand` parameter. Ignored if included in PUT or POST
+
+            requests.
 
             '
     editor:
@@ -1852,7 +2014,7 @@ components:
             logins will not work).
 
             '
-    container_entity:
+    creator_entity:
       type: object
       properties:
         state:
@@ -1900,201 +2062,39 @@ components:
 
             '
           additionalProperties: {}
-        name:
+        display_name:
           type: string
-          description: Name of the container (eg, Journal title). Required for entity creation.
-          example: Journal of Important Results
-        container_type:
-          type: string
-          description: Type of container, eg 'journal' or 'proceedings'. See Guide for list of valid types.
-          example: journal
-        publication_status:
-          type: string
-          description: Whether the container is active, discontinued, etc
-          example: active
-        publisher:
-          type: string
-          description: 'Name of the organization or entity responsible for publication. Not
+          example: Grace Hopper
+          description: 'Name as should be displayed in web interface or in author lists (not
 
-            the complete imprint/brand.
+            index/sorted). Required for valid entities.
 
             '
-          example: Society of Curious Students
-        issnl:
+        given_name:
           type: string
-          pattern: \d{4}-\d{3}[0-9X]
-          minLength: 9
-          maxLength: 9
-          example: 1234-5678
-          description: Linking ISSN number (ISSN-L). Should be valid and registered with issn.org
-        issne:
-          type: string
-          pattern: \d{4}-\d{3}[0-9X]
-          minLength: 9
-          maxLength: 9
-          example: 1234-5678
-          description: Electronic ISSN number (ISSN-E). Should be valid and registered with issn.org
-        issnp:
-          type: string
-          pattern: \d{4}-\d{3}[0-9X]
-          minLength: 9
-          maxLength: 9
-          example: 1234-5678
-          description: Print ISSN number (ISSN-P). Should be valid and registered with issn.org
-        wikidata_qid:
-          type: string
-          example: Q42812
-    release_ext_ids:
-      type: object
-      properties:
-        doi:
-          type: string
-          example: 10.1234/abcde.789
-          description: 'Digital Object Identifier (DOI), mostly for published papers and
+          description: 'In English commonly the first name, but ordering is context and
 
-            datasets. Should be registered and resolvable via https://doi.org/
+            culture specific.
 
             '
+        surname:
+          type: string
+          description: 'In English commonly the last, or family name, but ordering is context
+
+            and culture specific.
+
+            '
+        orcid:
+          type: string
+          pattern: \d{4}-\d{4}-\d{4}-\d{3}[\dX]
+          minLength: 19
+          maxLength: 19
+          description: ORCiD (https://orcid.org) identifier
+          example: 0000-0002-1825-0097
         wikidata_qid:
           type: string
           example: Q42812
           description: Wikidata entity QID
-        isbn13:
-          type: string
-          description: 'ISBN-13, for books. Usually not set for chapters. ISBN-10 should be
-
-            converted to ISBN-13.
-
-            '
-        pmid:
-          type: string
-          example: '482132'
-          description: PubMed Identifier
-        pmcid:
-          example: PMC7391
-          type: string
-          description: PubMed Central Identifier
-        core:
-          example: '9234592'
-          type: string
-          description: CORE (https://core.ac.uk) identifier
-        arxiv:
-          type: string
-          description: arXiv (https://arxiv.org) identifier; must include version
-        jstor:
-          type: string
-          description: JSTOR work identifier
-        ark:
-          type: string
-          description: ARK identifier
-        mag:
-          type: string
-          description: Microsoft Academic Graph identifier
-        doaj:
-          type: string
-          description: DOAJ article-level identifier
-        dblp:
-          type: string
-          description: dblp (https://dblp.uni-trier.de/) paper identifier; eg for conference proceedings
-        oai:
-          type: string
-          description: OAI-PMH identifier; only used when an OAI-PMH record is the only authoritative metadata (eg, journal OAI-PMH feeds w/o DOIs)
-        hdl:
-          type: string
-          description: Handle identifier. Do not put DOIs in this field
-    webcapture_url:
-      type: object
-      required:
-      - url
-      - rel
-      properties:
-        url:
-          type: string
-          format: url
-          example: https://web.archive.org/web/
-          description: 'URL/URI pointing to archive of this web resource.
-
-            '
-        rel:
-          type: string
-          example: wayback
-          description: 'Type of archive endpoint. Usually `wayback` (WBM replay of primary
-
-            resource), or `warc` (direct URL to a WARC file containing all
-
-            resources of the capture). See guide for full list.
-
-            '
-    entity_edit:
-      type: object
-      required:
-      - edit_id
-      - ident
-      - editgroup_id
-      properties:
-        edit_id:
-          type: string
-          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
-          minLength: 36
-          maxLength: 36
-          description: 'Unique UUID for this specific edit object.
-
-            '
-          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
-        ident:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Fatcat identifier of the entity this edit is mutating.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        revision:
-          type: string
-          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
-          minLength: 36
-          maxLength: 36
-          description: 'Entity revision that this edit will set the entity to. May be
-
-            `null` in the case of deletions.
-
-            '
-          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
-        prev_revision:
-          type: string
-          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
-          minLength: 36
-          maxLength: 36
-          description: 'Revision of entity just before this edit. May be used in the future
-
-            to prevent edit race conditions.
-
-            '
-          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
-        redirect_ident:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'When an edit is to merge entities (redirect one to another), this
-
-            is the entity fatcat identifier for the target entity.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        editgroup_id:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Editgroup identifier that this edit is part of.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        extra:
-          type: object
-          additionalProperties: {}
   securitySchemes:
     Bearer:
       type: apiKey
