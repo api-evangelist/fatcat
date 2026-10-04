@@ -495,6 +495,52 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    editor:
+      type: object
+      required:
+      - username
+      properties:
+        editor_id:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'Fatcat identifier for the editor. Can not be changed.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        username:
+          type: string
+          example: zerocool93
+          description: 'Username/handle (short slug-like string) to identify this editor. May
+
+            be changed at any time by the editor; use the `editor_id` as a
+
+            persistend identifier.
+
+            '
+        is_admin:
+          type: boolean
+          example: false
+          description: 'Whether this editor has the `admin` role.
+
+            '
+        is_bot:
+          type: boolean
+          example: false
+          description: 'Whether this editor is a bot (as opposed to a human making manual
+
+            edits)
+
+            '
+        is_active:
+          type: boolean
+          example: true
+          description: 'Whether this editor''s account is enabled (if not API tokens and web
+
+            logins will not work).
+
+            '
     success:
       type: object
       required:
@@ -507,75 +553,6 @@ components:
         message:
           type: string
           example: The computers did the thing successfully!
-    error_response:
-      type: object
-      required:
-      - success
-      - error
-      - message
-      properties:
-        success:
-          type: boolean
-          example: false
-        error:
-          type: string
-          example: unexpected-thing
-        message:
-          type: string
-          example: A really confusing, totally unexpected thing happened
-    editgroup_annotation:
-      type: object
-      properties:
-        annotation_id:
-          type: string
-          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
-          minLength: 36
-          maxLength: 36
-          description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
-          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
-        editgroup_id:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Editgroup that this annotation applies to. Set automatically in
-
-            creations based on URL parameter.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        editor_id:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Defaults to editor created the annotation via POST request.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        editor:
-          $ref: '#/components/schemas/editor'
-          description: 'Only included in GET responses; ignored in PUT or POST requests.
-
-            '
-        created:
-          type: string
-          format: date-time
-          description: 'Timestamp when annotation was first created.
-
-            '
-        comment_markdown:
-          type: string
-        extra:
-          type: object
-          additionalProperties: {}
-          description: 'Additional free-form JSON metadata that can be included as part of
-
-            the annotation (or even as the primary annotation itself). See guide
-
-            for details.
-
-            '
     entity_edit:
       type: object
       required:
@@ -646,52 +623,75 @@ components:
         extra:
           type: object
           additionalProperties: {}
-    editor:
+    editgroup_annotation:
       type: object
-      required:
-      - username
       properties:
+        annotation_id:
+          type: string
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          minLength: 36
+          maxLength: 36
+          description: UUID (lower-case, dash-separated, hex-encoded 128-bit)
+          example: 86daea5b-1b6b-432a-bb67-ea97795f80fe
+        editgroup_id:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'Editgroup that this annotation applies to. Set automatically in
+
+            creations based on URL parameter.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
         editor_id:
           type: string
           pattern: '[a-zA-Z2-7]{26}'
           minLength: 26
           maxLength: 26
-          description: 'Fatcat identifier for the editor. Can not be changed.
+          description: 'Defaults to editor created the annotation via POST request.
 
             '
           example: q3nouwy3nnbsvo3h5klxsx4a7y
-        username:
+        editor:
+          $ref: '#/components/schemas/editor'
+          description: 'Only included in GET responses; ignored in PUT or POST requests.
+
+            '
+        created:
           type: string
-          example: zerocool93
-          description: 'Username/handle (short slug-like string) to identify this editor. May
-
-            be changed at any time by the editor; use the `editor_id` as a
-
-            persistend identifier.
+          format: date-time
+          description: 'Timestamp when annotation was first created.
 
             '
-        is_admin:
+        comment_markdown:
+          type: string
+        extra:
+          type: object
+          additionalProperties: {}
+          description: 'Additional free-form JSON metadata that can be included as part of
+
+            the annotation (or even as the primary annotation itself). See guide
+
+            for details.
+
+            '
+    error_response:
+      type: object
+      required:
+      - success
+      - error
+      - message
+      properties:
+        success:
           type: boolean
           example: false
-          description: 'Whether this editor has the `admin` role.
-
-            '
-        is_bot:
-          type: boolean
-          example: false
-          description: 'Whether this editor is a bot (as opposed to a human making manual
-
-            edits)
-
-            '
-        is_active:
-          type: boolean
-          example: true
-          description: 'Whether this editor''s account is enabled (if not API tokens and web
-
-            logins will not work).
-
-            '
+        error:
+          type: string
+          example: unexpected-thing
+        message:
+          type: string
+          example: A really confusing, totally unexpected thing happened
     editgroup:
       type: object
       properties:
