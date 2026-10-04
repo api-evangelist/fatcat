@@ -1,24 +1,22 @@
-# Kin Score artifact — fatcat — 2026-08-25T143147
+# Kin Score artifact — fatcat — 2026-10-03T024842
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: fatcat
-  schema_version: 0.14.0
-  scored_at: '2026-08-25'
-  run_ts: 2026-08-25T143147
-  composite: 32.7
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T024842
+  composite: 32.0
   band: thin
   facets:
-    discoverability: 81.5
-    contract_quality: 57.1
-    governance: 9.8
-    operational_transparency: 15.8
-    developer_ergonomics: 11.9
-    commercial_clarity: 28.9
+    discoverability: 73.2
+    contract_quality: 55.9
     contract_governance: 9.8
-    access_clarity: 28.9
+    operational_transparency: 21.1
+    developer_ergonomics: 16.7
+    access_clarity: 26.8
   agent_readiness:
-    score: 19.8
+    score: 25.5
     band: agent-aware
     dimensions:
       spec_presence: true
@@ -27,7 +25,7 @@ kin_score:
       mcp_server: false
       auth_clarity: bearer
       idempotency: false
-      error_semantics: false
+      error_semantics: verified
       openapi_examples: false
       rate_limit_signal: documented
       event_surface_described: false
@@ -44,7 +42,7 @@ kin_score:
     applies: true
     regime: Education & Research
     regime_id: education
-    score: 20.4
+    score: 10.8
     matched_via: tags
   provenance:
     agentic_access: derived
