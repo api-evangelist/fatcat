@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 rateLimits:
   - name: General API Rate Limits
     description: Fatcat does not currently publish explicit rate limits. The service is operated as low-cost open scholarly infrastructure and the project notes that rate limits may be imposed in the future if necessary to keep the service functional. Users are encouraged to be considerate of server load.

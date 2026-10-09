@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 plans:
   - name: Free Open Access
     description: Fatcat provides its full REST API at no cost as a free and open scholarly infrastructure project funded by the Internet Archive and the Andrew W. Mellon Foundation. All read and write operations are available to registered editors at no charge.
@@ -16,3 +20,16 @@ plans:
       - No explicit SLA; service may have periodic downtime due to low-cost infrastructure
       - Potential future rate limiting if service load requires it
       - Write access requires account registration via OAuth2 (Internet Archive, ORCID, GitHub, or Wikimedia)
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units: []
+  plans:
+  - name: Free Open Access
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
