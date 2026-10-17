@@ -222,6 +222,73 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    auth_oidc:
+      type: object
+      required:
+      - provider
+      - sub
+      - iss
+      - preferred_username
+      properties:
+        provider:
+          type: string
+          example: orcid
+          description: 'Fatcat-specific short name (slug) for remote service being used for
+
+            authentication.
+
+            '
+        sub:
+          type: string
+          description: '`SUB` from OIDC protocol. Usually a URL.'
+          example: https://orcid.org
+        iss:
+          type: string
+          description: '`ISS` from OIDC protocol. Usually a stable account username, number, or identifier.'
+          example: 0000-0002-8593-9468
+        preferred_username:
+          type: string
+          description: 'What it sounds like; returned by OIDC, and used as a hint when
+
+            creating new editor accounts. Fatcat usernames are usually this
+
+            string with the `provider` slug as a suffix, though some munging may
+
+            occur.
+
+            '
+          example: bnewbold
+    auth_token_result:
+      type: object
+      required:
+      - token
+      properties:
+        token:
+          type: string
+          example: AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=
+    success:
+      type: object
+      required:
+      - success
+      - message
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: The computers did the thing successfully!
+    auth_oidc_result:
+      type: object
+      required:
+      - editor
+      - token
+      properties:
+        editor:
+          $ref: '#/components/schemas/editor'
+        token:
+          type: string
+          example: AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=
     editor:
       type: object
       required:
@@ -268,26 +335,6 @@ components:
             logins will not work).
 
             '
-    success:
-      type: object
-      required:
-      - success
-      - message
-      properties:
-        success:
-          type: boolean
-          example: true
-        message:
-          type: string
-          example: The computers did the thing successfully!
-    auth_token_result:
-      type: object
-      required:
-      - token
-      properties:
-        token:
-          type: string
-          example: AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=
     error_response:
       type: object
       required:
@@ -304,53 +351,6 @@ components:
         message:
           type: string
           example: A really confusing, totally unexpected thing happened
-    auth_oidc:
-      type: object
-      required:
-      - provider
-      - sub
-      - iss
-      - preferred_username
-      properties:
-        provider:
-          type: string
-          example: orcid
-          description: 'Fatcat-specific short name (slug) for remote service being used for
-
-            authentication.
-
-            '
-        sub:
-          type: string
-          description: '`SUB` from OIDC protocol. Usually a URL.'
-          example: https://orcid.org
-        iss:
-          type: string
-          description: '`ISS` from OIDC protocol. Usually a stable account username, number, or identifier.'
-          example: 0000-0002-8593-9468
-        preferred_username:
-          type: string
-          description: 'What it sounds like; returned by OIDC, and used as a hint when
-
-            creating new editor accounts. Fatcat usernames are usually this
-
-            string with the `provider` slug as a suffix, though some munging may
-
-            occur.
-
-            '
-          example: bnewbold
-    auth_oidc_result:
-      type: object
-      required:
-      - editor
-      - token
-      properties:
-        editor:
-          $ref: '#/components/schemas/editor'
-        token:
-          type: string
-          example: AgEPZGV2LmZhdGNhdC53aWtpAhYyMDE5MDEwMS1kZXYtZHVtbXkta2V5AAImZWRpdG9yX2lkID0gYWFhYWFhYWFhYWFhYmt2a2FhYWFhYWFhYWkAAht0aW1lID4gMjAxOS0wMS0wOVQwMDo1Nzo1MloAAAYgnroNha1hSftChtxHGTnLEmM/pY8MeQS/jBSV0UNvXug=
   securitySchemes:
     Bearer:
       type: apiKey

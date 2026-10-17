@@ -347,52 +347,121 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    editor:
+    editgroup:
       type: object
-      required:
-      - username
       properties:
+        editgroup_id:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'Fatcat identifier for this editgroup. Assigned on creation.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
         editor_id:
           type: string
           pattern: '[a-zA-Z2-7]{26}'
           minLength: 26
           maxLength: 26
-          description: 'Fatcat identifier for the editor. Can not be changed.
+          description: 'Fatcat identifier of editor that created this editgroup.
 
             '
           example: q3nouwy3nnbsvo3h5klxsx4a7y
-        username:
+        editor:
+          $ref: '#/components/schemas/editor'
+          description: 'Complete editor object identified by `container_id` field. Only
+
+            included in GET responses.
+
+            '
+        changelog_index:
+          type: integer
+          example: 1048576
+          format: int64
+          description: 'For accepted/merged editgroups, the changelog index that the accept
+
+            occurred at. WARNING: not populated in all contexts that an editgroup
+
+            could be included in a response.
+
+            '
+        created:
           type: string
-          example: zerocool93
-          description: 'Username/handle (short slug-like string) to identify this editor. May
-
-            be changed at any time by the editor; use the `editor_id` as a
-
-            persistend identifier.
+          format: date-time
+          description: 'Timestamp when this editgroup was first created.
 
             '
-        is_admin:
-          type: boolean
-          example: false
-          description: 'Whether this editor has the `admin` role.
+        submitted:
+          type: string
+          format: date-time
+          description: 'Timestamp when this editgroup was most recently submitted for review.
+
+            If withdrawn, or never submitted, will be `null`.
 
             '
-        is_bot:
-          type: boolean
-          example: false
-          description: 'Whether this editor is a bot (as opposed to a human making manual
+        description:
+          type: string
+          description: 'Comment describing the changes in this editgroup. Can be updated with
 
-            edits)
-
-            '
-        is_active:
-          type: boolean
-          example: true
-          description: 'Whether this editor''s account is enabled (if not API tokens and web
-
-            logins will not work).
+            PUT request.
 
             '
+        extra:
+          type: object
+          additionalProperties: {}
+          description: 'Free-form JSON metadata attached to this editgroup. Eg, metadata
+
+            provenance, or script user-agent details. See guide for (unenforced)
+
+            schema norms.
+
+            '
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/editgroup_annotation'
+          description: 'Only included in GET responses, and not in all contexts. Do not
+
+            include this field in PUT or POST requests.
+
+            '
+        edits:
+          type: object
+          description: 'Only included in GET responses, and not in all contexts. Do not
+
+            include this field in PUT or POST requests.
+
+            '
+          properties:
+            containers:
+              type: array
+              items:
+                $ref: '#/components/schemas/entity_edit'
+            creators:
+              type: array
+              items:
+                $ref: '#/components/schemas/entity_edit'
+            files:
+              type: array
+              items:
+                $ref: '#/components/schemas/entity_edit'
+            filesets:
+              type: array
+              items:
+                $ref: '#/components/schemas/entity_edit'
+            webcaptures:
+              type: array
+              items:
+                $ref: '#/components/schemas/entity_edit'
+            releases:
+              type: array
+              items:
+                $ref: '#/components/schemas/entity_edit'
+            works:
+              type: array
+              items:
+                $ref: '#/components/schemas/entity_edit'
     entity_edit:
       type: object
       required:
@@ -516,6 +585,52 @@ components:
             for details.
 
             '
+    editor:
+      type: object
+      required:
+      - username
+      properties:
+        editor_id:
+          type: string
+          pattern: '[a-zA-Z2-7]{26}'
+          minLength: 26
+          maxLength: 26
+          description: 'Fatcat identifier for the editor. Can not be changed.
+
+            '
+          example: q3nouwy3nnbsvo3h5klxsx4a7y
+        username:
+          type: string
+          example: zerocool93
+          description: 'Username/handle (short slug-like string) to identify this editor. May
+
+            be changed at any time by the editor; use the `editor_id` as a
+
+            persistend identifier.
+
+            '
+        is_admin:
+          type: boolean
+          example: false
+          description: 'Whether this editor has the `admin` role.
+
+            '
+        is_bot:
+          type: boolean
+          example: false
+          description: 'Whether this editor is a bot (as opposed to a human making manual
+
+            edits)
+
+            '
+        is_active:
+          type: boolean
+          example: true
+          description: 'Whether this editor''s account is enabled (if not API tokens and web
+
+            logins will not work).
+
+            '
     error_response:
       type: object
       required:
@@ -532,121 +647,6 @@ components:
         message:
           type: string
           example: A really confusing, totally unexpected thing happened
-    editgroup:
-      type: object
-      properties:
-        editgroup_id:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Fatcat identifier for this editgroup. Assigned on creation.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        editor_id:
-          type: string
-          pattern: '[a-zA-Z2-7]{26}'
-          minLength: 26
-          maxLength: 26
-          description: 'Fatcat identifier of editor that created this editgroup.
-
-            '
-          example: q3nouwy3nnbsvo3h5klxsx4a7y
-        editor:
-          $ref: '#/components/schemas/editor'
-          description: 'Complete editor object identified by `container_id` field. Only
-
-            included in GET responses.
-
-            '
-        changelog_index:
-          type: integer
-          example: 1048576
-          format: int64
-          description: 'For accepted/merged editgroups, the changelog index that the accept
-
-            occurred at. WARNING: not populated in all contexts that an editgroup
-
-            could be included in a response.
-
-            '
-        created:
-          type: string
-          format: date-time
-          description: 'Timestamp when this editgroup was first created.
-
-            '
-        submitted:
-          type: string
-          format: date-time
-          description: 'Timestamp when this editgroup was most recently submitted for review.
-
-            If withdrawn, or never submitted, will be `null`.
-
-            '
-        description:
-          type: string
-          description: 'Comment describing the changes in this editgroup. Can be updated with
-
-            PUT request.
-
-            '
-        extra:
-          type: object
-          additionalProperties: {}
-          description: 'Free-form JSON metadata attached to this editgroup. Eg, metadata
-
-            provenance, or script user-agent details. See guide for (unenforced)
-
-            schema norms.
-
-            '
-        annotations:
-          type: array
-          items:
-            $ref: '#/components/schemas/editgroup_annotation'
-          description: 'Only included in GET responses, and not in all contexts. Do not
-
-            include this field in PUT or POST requests.
-
-            '
-        edits:
-          type: object
-          description: 'Only included in GET responses, and not in all contexts. Do not
-
-            include this field in PUT or POST requests.
-
-            '
-          properties:
-            containers:
-              type: array
-              items:
-                $ref: '#/components/schemas/entity_edit'
-            creators:
-              type: array
-              items:
-                $ref: '#/components/schemas/entity_edit'
-            files:
-              type: array
-              items:
-                $ref: '#/components/schemas/entity_edit'
-            filesets:
-              type: array
-              items:
-                $ref: '#/components/schemas/entity_edit'
-            webcaptures:
-              type: array
-              items:
-                $ref: '#/components/schemas/entity_edit'
-            releases:
-              type: array
-              items:
-                $ref: '#/components/schemas/entity_edit'
-            works:
-              type: array
-              items:
-                $ref: '#/components/schemas/entity_edit'
   securitySchemes:
     Bearer:
       type: apiKey
